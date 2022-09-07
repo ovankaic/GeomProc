@@ -5,7 +5,7 @@ Version 1.1
 July 25, 2022
 
 ## Copyright notices
-Copyright (c) 2008-2022 Oliver van Kaick <ovankaic@gmail.com>
+Copyright (c) 2008-2022 Oliver van Kaick <ovankaic at gmail.com>
 http://people.scs.carleton.ca/~olivervankaick/index.html
 Released under the MIT License.
 For all the parts of the code where authorship is not explicitly mentioned.
