@@ -1,0 +1,7 @@
+mesh module
+===========
+
+.. automodule:: geomproc
+    :members:
+    :show-inheritance:
+..    :undoc-members:

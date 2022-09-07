@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>User Guide &mdash; GeomProc 1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="modules.html" />
+    <link rel="prev" title="Demos" href="demos.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GeomProc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="geomproc.html">geomproc package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GeomProc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>User Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/userguide.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="user-guide">
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
+<p>Note that there is no need to load submodules of the library, as all the
+classes and functions in the submodules are made visible in the main
+module <em>geomproc</em>.</p>
+<p><strong>Main classes</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Triangle mesh: <a class="reference internal" href="geomproc.html#module-geomproc.mesh" title="geomproc.mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">geomproc.mesh</span></code></a></p></li>
+<li><p>Point cloud: <a class="reference internal" href="geomproc.html#module-geomproc.pcloud" title="geomproc.pcloud"><code class="xref py py-class docutils literal notranslate"><span class="pre">geomproc.pcloud</span></code></a></p></li>
+<li><p>Implicit function: <a class="reference internal" href="geomproc.html#module-geomproc.impsurf" title="geomproc.impsurf"><code class="xref py py-class docutils literal notranslate"><span class="pre">geomproc.impsurf</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<p><strong>Data loading</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="geomproc.html#geomproc.loading.load" title="geomproc.loading.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.loading.load()</span></code></a> - Load data from a file and create a
+triangle mesh or point cloud object</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Mesh creation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="geomproc.html#geomproc.creation.create_cone" title="geomproc.creation.create_cone"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.creation.create_cone()</span></code></a> - Create a cone</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.creation.create_cylinder" title="geomproc.creation.create_cylinder"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.creation.create_cylinder()</span></code></a> - Create a cylinder</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.creation.create_open_surface" title="geomproc.creation.create_open_surface"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.creation.create_open_surface()</span></code></a> - Create a 2D parametric surface</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.creation.create_sphere" title="geomproc.creation.create_sphere"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.creation.create_sphere()</span></code></a> - Create a sphere</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.creation.create_subdivided_cube" title="geomproc.creation.create_subdivided_cube"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.creation.create_subdivided_cube()</span></code></a> - Create a cube subdivided into smaller faces</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.creation.create_torus" title="geomproc.creation.create_torus"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.creation.create_torus()</span></code></a> - Create a torus</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Misc mesh creation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="geomproc.html#geomproc.creation.create_points" title="geomproc.creation.create_points"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.creation.create_points()</span></code></a> - Create mesh geometry to display a set of points</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.creation.create_vectors" title="geomproc.creation.create_vectors"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.creation.create_vectors()</span></code></a> - Create mesh geometry to display a set of vectors</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.creation.create_lines" title="geomproc.creation.create_lines"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.creation.create_lines()</span></code></a> - Create mesh geometry to display a set of lines</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Point cloud creation</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="geomproc.html#geomproc.creation.create_sphere_samples" title="geomproc.creation.create_sphere_samples"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.creation.create_sphere_samples()</span></code></a> - Sample a set of points from a sphere</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Point cloud alignment</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="geomproc.html#geomproc.alignment.icp" title="geomproc.alignment.icp"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.alignment.icp()</span></code></a> - Align two point clouds with the ICP method</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.alignment.spin_images" title="geomproc.alignment.spin_images"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.alignment.spin_images()</span></code></a> - Compute shape descriptors for
+points in a cloud</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.alignment.best_match" title="geomproc.alignment.best_match"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.alignment.best_match()</span></code></a> - Match two point clouds based on
+shape descriptors</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Surface reconstruction</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="geomproc.html#geomproc.impsurf.impsurf.setup_rbf" title="geomproc.impsurf.impsurf.setup_rbf"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.setup_rbf()</span></code></a> - Reconstruct an implicit surface from a set of point samples</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.marching_cubes.marching_cubes" title="geomproc.marching_cubes.marching_cubes"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.marching_cubes.marching_cubes()</span></code></a> - Reconstruct a mesh from an implicit surface</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Auxiliary/miscellaneous functions</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="geomproc.html#geomproc.misc.map_val" title="geomproc.misc.map_val"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.misc.map_val()</span></code></a> - Linearly map a set of values to a new range</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.misc.hsv2rgb" title="geomproc.misc.hsv2rgb"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.misc.hsv2rgb()</span></code></a> - Transform a color from the HSV to the RGB color system</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.misc.rotation_matrix" title="geomproc.misc.rotation_matrix"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.misc.rotation_matrix()</span></code></a> - Create a rotation matrix from an axis and angle</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.misc.random_triangle_sample" title="geomproc.misc.random_triangle_sample"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.misc.random_triangle_sample()</span></code></a> - Randomly sample a point from a triangle</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.misc.distance" title="geomproc.misc.distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.misc.distance()</span></code></a> - Euclidean distance between two points</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Axuliary classes</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="geomproc.html#module-geomproc.graph" title="geomproc.graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">geomproc.graph</span></code></a> - Graph</p></li>
+<li><p><a class="reference internal" href="geomproc.html#geomproc.kdtree.KDTree" title="geomproc.kdtree.KDTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">geomproc.kdtree.KDTree</span></code></a> - KDTree for efficient point queries (partially third-party software)</p></li>
+</ul>
+</div></blockquote>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="modules.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="demos.html" class="btn btn-neutral float-left" title="Demos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Oliver van Kaick.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

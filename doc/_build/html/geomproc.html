@@ -1,0 +1,2933 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>geomproc package &mdash; GeomProc 1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GeomProc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="userguide.html">User Guide</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">geomproc package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.alignment">geomproc.alignment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.creation">geomproc.creation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.graph">geomproc.graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.impsurf">geomproc.impsurf module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.kdtree">geomproc.kdtree module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.loading">geomproc.loading module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.marching_cubes">geomproc.marching_cubes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.mesh">geomproc.mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.misc">geomproc.misc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.pcloud">geomproc.pcloud module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.write_options">geomproc.write_options module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GeomProc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">&lt;no title&gt;</a> &raquo;</li>
+        
+      <li>geomproc package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/geomproc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="geomproc-package">
+<h1>geomproc package<a class="headerlink" href="#geomproc-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-geomproc.alignment">
+<span id="geomproc-alignment-module"></span><h2>geomproc.alignment module<a class="headerlink" href="#module-geomproc.alignment" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions for aligning point clouds with the
+GeomProc geometry processing library.</p>
+<dl class="py function">
+<dt id="geomproc.alignment.apply_transformation">
+<code class="sig-prename descclassname">geomproc.alignment.</code><code class="sig-name descname">apply_transformation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">rot</span></em>, <em class="sig-param"><span class="n">trans</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.alignment.apply_transformation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a rigid transformation to a set of 3D points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array_like</em>) – Set of 3D points, represented as an array of shape (n, 3), where
+‘n’ is the number of points in the set</p></li>
+<li><p><strong>rot</strong> (<em>array_like</em>) – 3D rotation matrix, represented as an array of shape (3, 3)</p></li>
+<li><p><strong>trans</strong> (<em>array_like</em>) – 3D translation vector, represented as a vector of shape (3, 1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>y</strong> – Set of transformed points, represented as an array of shape
+(n, 3)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.alignment.apply_transformation_in_place">
+<code class="sig-prename descclassname">geomproc.alignment.</code><code class="sig-name descname">apply_transformation_in_place</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">rot</span></em>, <em class="sig-param"><span class="n">trans</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.alignment.apply_transformation_in_place" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a rigid transformation to a set of 3D points in place</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array_like</em>) – Set of 3D points, represented as an array of shape (n, 3), where
+‘n’ is the number of points in the set</p></li>
+<li><p><strong>rot</strong> (<em>array_like</em>) – 3D rotation matrix, represented as an array of shape (3, 3)</p></li>
+<li><p><strong>trans</strong> (<em>array_like</em>) – 3D translation vector, represented as a vector of shape (3, 1)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function is similar to <a class="reference internal" href="#geomproc.alignment.apply_transformation" title="geomproc.alignment.apply_transformation"><code class="xref py py-func docutils literal notranslate"><span class="pre">geomproc.alignment.apply_transformation()</span></code></a>,
+but modifies the input x with the transformation</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.alignment.best_match">
+<code class="sig-prename descclassname">geomproc.alignment.</code><code class="sig-name descname">best_match</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">desc1</span></em>, <em class="sig-param"><span class="n">desc2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.alignment.best_match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the best match for two sets of descriptors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>desc1</strong> (<em>array_like</em>) – First set of descriptors, given as an array of shape (n, d),
+where ‘n’ is the number of descriptors in the set, and ‘d’ the
+number of dimensions in one descriptor</p></li>
+<li><p><strong>desc2</strong> (<em>array_like</em>) – Second set of descriptors, in the same format as desc1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>corr</strong> – Matching of descriptors, represented as an array of shape (n,
+3), where ‘n’ is the number of descriptors in desc1, and each
+correspondence is of the form [index of descriptor in desc1,
+index of corresponding descriptor in desc2, distance between
+descriptors]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array_like</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>For each descriptor in desc1, the function finds the best matching
+descriptor in desc2 (with the smallest descriptor distance) by
+computing the Euclidean distance between descriptors</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.alignment.closest_points">
+<code class="sig-prename descclassname">geomproc.alignment.</code><code class="sig-name descname">closest_points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pc1</span></em>, <em class="sig-param"><span class="n">pc2</span></em>, <em class="sig-param"><span class="n">err_type</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.alignment.closest_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find closest points from one point cloud to another</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pc1</strong> (<a class="reference internal" href="#geomproc.pcloud.pcloud" title="geomproc.pcloud.pcloud"><em>pcloud</em></a>) – First set of points</p></li>
+<li><p><strong>pc2</strong> (<a class="reference internal" href="#geomproc.pcloud.pcloud" title="geomproc.pcloud.pcloud"><em>pcloud</em></a>) – Second set of points</p></li>
+<li><p><strong>err_type</strong> (<em>int</em><em>, </em><em>optional</em>) – Type of error to be calculated by the function. The error type
+can be one of: 0 = maximum error; 1 = average error.
+The default value is 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>corr</strong> – Correspondence of points from pc1 to their closest points in
+pc2, represented as an array of shape (n, 3), where ‘n’ is the
+number of points in pc1, and each correspondence is of the form
+[index of point in pc1, index of corresponding point in pc2,
+distance between points]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array_like</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>For each point in pc1, the function finds the closest point in pc2,
+and sets the output correspondence with this match. The function
+also calculates the error of the correspondences, according to the
+specified error type</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.alignment.filter_correspondences">
+<code class="sig-prename descclassname">geomproc.alignment.</code><code class="sig-name descname">filter_correspondences</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">corr</span></em>, <em class="sig-param"><span class="n">keep</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.alignment.filter_correspondences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter a set of correspondences according to the match distances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>corr</strong> (<em>array_like</em>) – Correspondence of points from one point cloud to another,
+represented as an array of shape (n, 3), where ‘n’ is the number
+of matches, and each match is of the form [index of point in
+first point cloud, index of corresponding point in second point
+cloud, distance between points]</p></li>
+<li><p><strong>keep</strong> (<em>float</em>) – Percentage of closest points to be kept</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>corr</strong> – Filtered correspondence in the same format as the input ‘corr’</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array_like</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function filters the input correspondences by keeping only the
+top ‘keep’ matches with the smallest distances</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.alignment.icp">
+<code class="sig-prename descclassname">geomproc.alignment.</code><code class="sig-name descname">icp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pc1</span></em>, <em class="sig-param"><span class="n">pc2</span></em>, <em class="sig-param"><span class="n">error_threshold</span></em>, <em class="sig-param"><span class="n">max_iter</span></em>, <em class="sig-param"><span class="n">keep</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.alignment.icp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Align two point clouds with the Iterative Closest Points (ICP) method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pc1</strong> (<a class="reference internal" href="#geomproc.pcloud.pcloud" title="geomproc.pcloud.pcloud"><em>pcloud</em></a>) – One of the two point clouds to be aligned</p></li>
+<li><p><strong>pc2</strong> (<a class="reference internal" href="#geomproc.pcloud.pcloud" title="geomproc.pcloud.pcloud"><em>pcloud</em></a>) – The other point cloud to be aligned</p></li>
+<li><p><strong>error_threshold</strong> (<em>float</em>) – Error to be satisfied by the alignment</p></li>
+<li><p><strong>max_iter</strong> (<em>int</em>) – Maximum number of iterations to be run, which takes precedence
+over the error_threshold parameter. Can be set to float(‘inf’)</p></li>
+<li><p><strong>keep</strong> (<em>float</em><em>, </em><em>optional</em>) – Percentage of closest points to be used for estimating the best
+transformation that aligns one point cloud to the other. The
+default is to keep all correspondences (keep = 1.0)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>rot</strong> (<em>array_like</em>) – 3D rotation matrix for the computed transformation, which is an
+array of shape (3, 3)</p></li>
+<li><p><strong>trans</strong> (<em>array_like</em>) – 3D translation vector for the computed transformation, which is
+a vector of shape (3, 1)</p></li>
+<li><p><strong>pc1tr</strong> (<em>pcloud</em>) – The input point cloud pc1 transformed by (rot, trans) so that it
+aligns with the input pc2</p></li>
+<li><p><strong>err</strong> (<em>float</em>) – The error that was satisfied at the end of the algorithm</p></li>
+<li><p><strong>iter_count</strong> (<em>int</em>) – Number of iterations that were carried out by the algorithm</p></li>
+<li><p><strong>corr</strong> (<em>array_like</em>) – Final correspondence of points from pc1 to pc2, represented as
+an array of shape (n, 3), where ‘n’ is the number of
+correspondences, and each correspondence is of the form [index
+of point in pc1, index of corresponding point in pc2, distance
+between points]</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The ICP algorithm aligns two point clouds pc1 and pc2 with an
+iterative algorithm. Each iteration consists in finding the closest
+point in pc2 to each point in pc1, estimating a rotation and
+translation that best aligns pc1 to pc2 in a least-squares sense
+according to the correspondences, and then applying the
+transformation to pc1. The algorithms ends when either the input
+error threshold is satisfied or the maximum number of iterations is
+reached. The error computed by the function represents how close one
+point cloud is to the other after alignment</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="geomproc.alignment.spin_image_options">
+<em class="property">class </em><code class="sig-prename descclassname">geomproc.alignment.</code><code class="sig-name descname">spin_image_options</code><a class="headerlink" href="#geomproc.alignment.spin_image_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that holds the configuration for computing spin image descriptors</p>
+<dl class="py attribute">
+<dt id="geomproc.alignment.spin_image_options.radius">
+<code class="sig-name descname">radius</code><a class="headerlink" href="#geomproc.alignment.spin_image_options.radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>The size of the spin image along its radial direction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.alignment.spin_image_options.height">
+<code class="sig-name descname">height</code><a class="headerlink" href="#geomproc.alignment.spin_image_options.height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The size of the spin image along its height. In analogy to the
+radius, the height is effectively the length from the center of
+the spin image to one of its extremities, so that height*2 is
+the length of the entire spin image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.alignment.spin_image_options.radial_bins">
+<code class="sig-name descname">radial_bins</code><a class="headerlink" href="#geomproc.alignment.spin_image_options.radial_bins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of bins along the radial direction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.alignment.spin_image_options.height_bins">
+<code class="sig-name descname">height_bins</code><a class="headerlink" href="#geomproc.alignment.spin_image_options.height_bins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of bins along the height direction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.alignment.spin_image_options.normalize">
+<code class="sig-name descname">normalize</code><a class="headerlink" href="#geomproc.alignment.spin_image_options.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize each bin by the total number of votes in all the bins,
+resulting in a descriptor with floating-point values in the
+bins. This results in a descriptor that is more comparable
+across models with different numbers of samples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Notes</p>
+<p>The resulting descriptor is an array of size radial_bins*height_bins</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.alignment.spin_images">
+<code class="sig-prename descclassname">geomproc.alignment.</code><code class="sig-name descname">spin_images</code><span class="sig-paren">(</span><em class="sig-param">pc1</em>, <em class="sig-param">pc2</em>, <em class="sig-param">opt=&lt;geomproc.alignment.spin_image_options object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.alignment.spin_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute spin image descriptors for a point cloud</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pc1</strong> (<a class="reference internal" href="#geomproc.pcloud.pcloud" title="geomproc.pcloud.pcloud"><em>pcloud</em></a>) – The function computes a spin image descriptor for each point in
+the point cloud pc1</p></li>
+<li><p><strong>pc2</strong> (<a class="reference internal" href="#geomproc.pcloud.pcloud" title="geomproc.pcloud.pcloud"><em>pcloud</em></a>) – The points in the point cloud pc2 are used for casting votes
+when constructing the spin image descriptors. pc2 can simply be
+the same as pc1. However, typically it will be a larger set of
+points than pc1, so that the descriptors can be computed with
+enough detail. In any case, pc1 and pc2 should be sampled from
+the same shape</p></li>
+<li><p><strong>opt</strong> (<em>geomproc.spin_image_options</em><em>, </em><em>optional</em>) – Object with the configuration for computing the spin image
+descriptors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>desc</strong> – Spin image descriptors, represented as an array of shape (n,
+radial_bins*height_bins), where ‘n’ is the number of points in
+pc1, and radial_bins*height_bins is the total number of bins in
+one descriptor according to the given configuration object.
+desc[i, :] represents the descriptor of point ‘i’ in pc1</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array_like</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.spin_image_options</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p>The implementation is based on the paper of Johnson and Hebert,
+“Using Spin Images for Efficient Object Recognition in Cluttered 3D
+Scenes”, IEEE PAMI 21(5), 1999.
+To compute one spin image descriptor, the method places a cylinder
+at a point according to the position of the point and orientation of
+the normal of the point. It then divides the cylinder radially and
+along its normal to create a number of bins, and counts how many
+points fall inside each bin. Finally, if desired, each bin is
+normalized by the total number of points in all the bins, to make
+the descriptor more robust to point clouds with different numbers of
+samples.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.alignment.transformation_from_correspondences">
+<code class="sig-prename descclassname">geomproc.alignment.</code><code class="sig-name descname">transformation_from_correspondences</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pc1</span></em>, <em class="sig-param"><span class="n">pc2</span></em>, <em class="sig-param"><span class="n">corr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.alignment.transformation_from_correspondences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate a transformation from a set of corresponding points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pc1</strong> (<a class="reference internal" href="#geomproc.pcloud.pcloud" title="geomproc.pcloud.pcloud"><em>pcloud</em></a>) – First set of points</p></li>
+<li><p><strong>pc2</strong> (<a class="reference internal" href="#geomproc.pcloud.pcloud" title="geomproc.pcloud.pcloud"><em>pcloud</em></a>) – Second set of points</p></li>
+<li><p><strong>corr</strong> (<em>array_like</em>) – Correspondence of points from pc1 to pc2, represented as an
+array of shape (n, 3), where ‘n’ is the number of
+correspondences, and each correspondence is of the form [index
+of point in pc1, index of corresponding point in pc2, distance
+between points]. The distance between points is not used by this
+function and can be set to 0 if needed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>rot</strong> (<em>array_like</em>) – 3D rotation matrix, represented as an array of shape (3, 3)</p></li>
+<li><p><strong>trans</strong> (<em>array_like</em>) – 3D translation vector, represented as a vector of shape (3, 1)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function estimates the rigid transformation that best aligns two
+sets of points in a least-squares sense based on a set of point
+correspondences.
+The implementation is based on the report of Sorkine-Hornung and
+Rabinovich, “Least-Squares Rigid Motion Using SVD”, ETH Zurich
+Technical Report, 2017.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-geomproc.creation">
+<span id="geomproc-creation-module"></span><h2>geomproc.creation module<a class="headerlink" href="#module-geomproc.creation" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions for creating geometric datasets of the
+GeomProc geometry processing library.</p>
+<dl class="py function">
+<dt id="geomproc.creation.create_cone">
+<code class="sig-prename descclassname">geomproc.creation.</code><code class="sig-name descname">create_cone</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">radius</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="n">num_circle_samples</span></em>, <em class="sig-param"><span class="n">num_height_samples</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.creation.create_cone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a 3D model of a cone</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<em>float</em>) – Radius of the cone at the base</p></li>
+<li><p><strong>height</strong> (<em>float</em>) – Height of the cone</p></li>
+<li><p><strong>num_circle_samples</strong> (<em>int</em>) – Number of uniform angular samples along each circle of the cone</p></li>
+<li><p><strong>num_height_samples</strong> (<em>int</em>) – Number of samples along the height of the cone</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tm</strong> – Mesh object representing the cone</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The cone is built so that the circles are parallel to the XY plane
+and the cone extends from 0 to height. The function also computes
+the analytical vertex normal vectors and curvature values of the
+surface, stored in the ‘vnormal’ and ‘curv’ fields of the model. See
+the help of ‘mesh.compute_curvature’ for information on the ‘curv’
+attribute.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.compute_curvature" title="geomproc.mesh.mesh.compute_curvature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.compute_curvature</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_cone</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.creation.create_cylinder">
+<code class="sig-prename descclassname">geomproc.creation.</code><code class="sig-name descname">create_cylinder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">radius</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="n">num_circle_samples</span></em>, <em class="sig-param"><span class="n">num_height_samples</span></em>, <em class="sig-param"><span class="n">closed</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.creation.create_cylinder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a 3D model of a cylinder</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<em>float</em>) – Radius of the cylinder</p></li>
+<li><p><strong>height</strong> (<em>float</em>) – Height of the cylinder</p></li>
+<li><p><strong>num_circle_samples</strong> (<em>int</em>) – Number of uniform angular samples along each circle of the cylinder</p></li>
+<li><p><strong>num_height_samples</strong> (<em>int</em>) – Number of samples along the height of the cylinder</p></li>
+<li><p><strong>closed</strong> (<em>boolean</em><em>, </em><em>optional</em><em> (</em><em>default False</em><em>)</em>) – Whether the cylinder should be closed at the ends or not</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tm</strong> – Mesh object representing the cylinder</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The cylinder is built so that the circles are parallel to the XY
+plane and the cylinder extends from -height/2 to height/2. The
+function also computes the analytical vertex normal vectors and
+curvature values of the surface, stored in the ‘vnormal’ and ‘curv’
+fields of the model. See the help of ‘mesh.compute_curvature’ for
+information on the ‘curv’ attribute.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.compute_curvature" title="geomproc.mesh.mesh.compute_curvature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.compute_curvature</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_cylinder</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.creation.create_lines">
+<code class="sig-prename descclassname">geomproc.creation.</code><code class="sig-name descname">create_lines</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">line</span></em>, <em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">0.03</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">[1, 0, 0]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.creation.create_lines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create geometry to represent a set of lines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> (<em>array_like</em>) – An array of shape (n, 6), representing the lines. Line ‘i’ is
+defined by the points line(i, 0:3) and line(i, 3:6).</p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – Radius of the cylinder representing each line (the default
+value is 0.03)</p></li>
+<li><p><strong>color</strong> (<em>array_like</em>) – Color of each line (the default value is red)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tm</strong> – Mesh object representing the lines</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function creates a mesh composed of multiple small cylinders
+that represent a set of lines. Each cylinder connects the two end
+points of the corresponding line.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.creation.create_open_surface">
+<code class="sig-prename descclassname">geomproc.creation.</code><code class="sig-name descname">create_open_surface</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_x_samples</span></em>, <em class="sig-param"><span class="n">num_y_samples</span></em>, <em class="sig-param"><span class="n">surf_type</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.creation.create_open_surface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a 3D open surface based on a mathematical function of two variables</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_x_samples</strong> (<em>int</em>) – Number of samples to add along the x axis</p></li>
+<li><p><strong>num_y_samples</strong> (<em>int</em>) – Number of samples to add along the y axis</p></li>
+<li><p><strong>surf_type</strong> (<em>int</em>) – <dl class="simple">
+<dt>Surface type according to the following codes:</dt><dd><ul>
+<li><p>0: flat surface f(x, y) = 0</p></li>
+<li><p>1: hyperbolic paraboloid (simple saddle) f(x, y) = x*y</p></li>
+<li><p>2: monkey saddle f(x, y) = x^3-3*x*y^2</p></li>
+<li><p>3: hemisphere f(x, y) = sqrt(1 - x^2 - y^2)</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tm</strong> – Mesh object representing the surface</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function creates an open surface by defining a 2D grid extending
+from (-1, -1) to (1, 1) and computing a function of two variables at
+the grid vertices. The function also computes the analytical vertex
+normal vectors and curvature values of the surfaces, stored in the
+‘vnormal’ and ‘curv’ fields of the model. See the help of
+‘mesh.compute_curvature’ for information on the ‘curv’ attribute.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.compute_curvature" title="geomproc.mesh.mesh.compute_curvature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.compute_curvature</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_open_surface</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.creation.create_points">
+<code class="sig-prename descclassname">geomproc.creation.</code><code class="sig-name descname">create_points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pos</span></em>, <em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">0.03</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">[1, 0, 0]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.creation.create_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create geometry to represent a set of points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pos</strong> (<em>array_like</em>) – An array of shape (n, 3), representing n 3D points</p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – Radius of the sphere representing each point (the default value
+is 0.03)</p></li>
+<li><p><strong>color</strong> (<em>array_like</em>) – Color of each point (the default value is red)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tm</strong> – Mesh object representing the points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function creates a mesh composed of multiple small spheres that
+represent a set of points, where each sphere is centered at one of
+the given points and has the specified radius and color.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pnts</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_points</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">point</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pnts</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;samples.obj&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.creation.create_simple_cube">
+<code class="sig-prename descclassname">geomproc.creation.</code><code class="sig-name descname">create_simple_cube</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.creation.create_simple_cube" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a 3D model of a simple cube</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tm</strong> – Mesh object representing the cube</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function creates the simplest possible model of a cube: a mesh
+with 8 (shared) vertices and 12 triangles (6 faces). The coordinates
+on each side go from 0 to 1.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_simple_cube</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.creation.create_sphere">
+<code class="sig-prename descclassname">geomproc.creation.</code><code class="sig-name descname">create_sphere</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">radius</span></em>, <em class="sig-param"><span class="n">num_theta_samples</span></em>, <em class="sig-param"><span class="n">num_phi_samples</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.creation.create_sphere" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a 3D model of a sphere</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<em>float</em>) – Radius of the sphere</p></li>
+<li><p><strong>num_theta_samples</strong> (<em>int</em>) – Number of uniform angular samples along the equator of the sphere</p></li>
+<li><p><strong>num_phi_samples</strong> (<em>int</em>) – Number of uniform angular samples along the meridians of the sphere</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tm</strong> – Mesh object representing the sphere</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function creates a triangle mesh representing a sphere with
+given radius and centered at the origin. The sphere is built from a
+standard parameterization based on two angles theta and phi. The
+function also computes the analytical vertex normal vectors and
+curvature values of the surface, stored in the ‘vnormal’ and ‘curv’
+attributes of the object. See the help of ‘mesh.compute_curvature’
+for information on the ‘curv’ attribute.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.compute_curvature" title="geomproc.mesh.mesh.compute_curvature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.compute_curvature</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.creation.create_sphere_samples">
+<code class="sig-prename descclassname">geomproc.creation.</code><code class="sig-name descname">create_sphere_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">center</span><span class="o">=</span><span class="default_value">[0.0, 0.0, 0.0]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.creation.create_sphere_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample a set of points from the surface of a sphere</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – Number of samples to compute</p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – Radius of the sphere (the default value is 1)</p></li>
+<li><p><strong>center</strong> (<em>array_like</em>) – 3D position with the center of the sphere (the default value is
+the origin)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>pc</strong> – Point cloud object storing the samples</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>geomproc.pcloud</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function creates a set of samples taken from the surface of the
+specified sphere. The sampling is performed to avoid bias at the
+poles of the sphere.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.creation.create_sphere" title="geomproc.creation.create_sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.creation.create_sphere</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere_samples</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.creation.create_subdivided_cube">
+<code class="sig-prename descclassname">geomproc.creation.</code><code class="sig-name descname">create_subdivided_cube</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">length</span></em>, <em class="sig-param"><span class="n">num_samples</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.creation.create_subdivided_cube" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a 3D model of a subdivided cube</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>len</strong> (<em>float</em>) – Length of the cube along each dimension</p></li>
+<li><p><strong>num_samples</strong> (<em>int</em>) – Number of samples along each dimension</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tm</strong> – Mesh object representing the cube</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function creates a cube in the range [0, 0, 0] to [length,
+length, length], and subdivides it according to the given number of
+samples. The function also computes the normals of the vertices. To
+ensure that normals are meaningful, the cube is created without
+sharing vertices at the edges.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_subdivided_cube</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.creation.create_torus">
+<code class="sig-prename descclassname">geomproc.creation.</code><code class="sig-name descname">create_torus</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">loop_radius</span></em>, <em class="sig-param"><span class="n">tube_radius</span></em>, <em class="sig-param"><span class="n">num_loop_samples</span></em>, <em class="sig-param"><span class="n">num_tube_samples</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.creation.create_torus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a 3D model of a torus</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loop_radius</strong> (<em>float</em>) – Radius of the loop (larger circle) of the torus</p></li>
+<li><p><strong>tube_radius</strong> (<em>float</em>) – Radius of the tube (smaller circle) of the torus</p></li>
+<li><p><strong>num_loop_samples</strong> (<em>int</em>) – Number of uniform angular samples along the loop of the torus</p></li>
+<li><p><strong>num_tube_samples</strong> (<em>int</em>) – Number of uniform angular samples along the tube of the torus</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tm</strong> – Mesh object representing the torus</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function creates a triangle mesh representing a torus with given
+radii and centered at the origin. The torus is built from a large
+loop with small circles around the loop to form the tube of the
+torus. The function also computes the analytical vertex normal
+vectors and curvature values of the surface, stored in the ‘vnormal’
+and ‘curv’ attributes of the object.  See the help of
+‘mesh.compute_curvature’ for information on the ‘curv’ attribute.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.compute_curvature" title="geomproc.mesh.mesh.compute_curvature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.compute_curvature</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_torus</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.creation.create_vectors">
+<code class="sig-prename descclassname">geomproc.creation.</code><code class="sig-name descname">create_vectors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pos</span></em>, <em class="sig-param"><span class="n">vect</span></em>, <em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">0.03</span></em>, <em class="sig-param"><span class="n">length</span><span class="o">=</span><span class="default_value">0.05</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">[1, 0, 0]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.creation.create_vectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create geometry to represent a set of vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pos</strong> (<em>array_like</em>) – An array of shape (n, 3), representing the origin of each vector</p></li>
+<li><p><strong>vect</strong> (<em>array_like</em>) – An array of shape (n, 3), representing n 3D vectors</p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – Radius of the cylinder representing each vector (the default
+value is 0.03)</p></li>
+<li><p><strong>length</strong> (<em>float</em>) – Length of the cylinder representing each vector (the default
+value is 0.05)</p></li>
+<li><p><strong>color</strong> (<em>array_like</em>) – Color of each vector (the default value is red)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tm</strong> – Mesh object representing the vectors</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function creates a mesh composed of multiple small cylinders
+that represent a set of vectors. Each cylinder starts at the
+provided origin for the vector and is oriented according to the
+provided vector.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span><span class="o">.</span><span class="n">compute_vertex_and_face_normals</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vn</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_vectors</span><span class="p">(</span><span class="n">tm</span><span class="o">.</span><span class="n">vertex</span><span class="p">,</span> <span class="n">tm</span><span class="o">.</span><span class="n">vnormal</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vn</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;vertex_normals.obj&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-geomproc.graph">
+<span id="geomproc-graph-module"></span><h2>geomproc.graph module<a class="headerlink" href="#module-geomproc.graph" title="Permalink to this headline">¶</a></h2>
+<p>This module contains graph functions of the GeomProc geometry
+processing library.</p>
+<dl class="py class">
+<dt id="geomproc.graph.graph">
+<em class="property">class </em><code class="sig-prename descclassname">geomproc.graph.</code><code class="sig-name descname">graph</code><a class="headerlink" href="#geomproc.graph.graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that represents a sparse directed graph</p>
+<dl class="py attribute">
+<dt id="geomproc.graph.graph.adj">
+<code class="sig-name descname">adj</code><a class="headerlink" href="#geomproc.graph.graph.adj" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of node adjacencies, where adj[i] is a list of all the
+nodes that are connected to node ‘i’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of lists</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.graph.graph.weight">
+<code class="sig-name descname">weight</code><a class="headerlink" href="#geomproc.graph.graph.weight" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of edge weights, where weight[i] is a list of all the
+weights of the edges to the neighbors of node ‘i’, according to
+the order of neighbors in ‘adj’. For example, weight[i][j] is
+the weight of edge (i, adj[i][j])</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of lists</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Notes</p>
+<p>The graph stores a directed graph. Thus, if node j appears in
+adj[i], it does not imply that node i appears in adj[j]. If the goal
+is to construct an undirected graph, the symmetric relation has to
+be manually enforced by updating both lists.</p>
+<dl class="py method">
+<dt id="geomproc.graph.graph.append">
+<code class="sig-name descname">append</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.graph.graph.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a node to the graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Index of node appended to the graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.graph.graph.compute_minimum_spanning_forest">
+<code class="sig-name descname">compute_minimum_spanning_forest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">root</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.graph.graph.compute_minimum_spanning_forest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute a minimum spanning forest for the graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>root</strong> (<em>int</em>) – Index of the node to be used as the root of the first
+spanning tree</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>forest</strong> – Forest of all the minimum spanning trees computed on the
+graph. Forest[i] is the i-th spanning tree, which is a list
+of tuples denoting the edges in the tree</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of lists</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method starts growing a spanning tree from each node in the
+graph that has not been reached yet by a tree. This is necessary
+in case we have multiple connected components in the graph. The
+set of all spanning trees forms the spanning forest. The first
+tree is grown from the suggested root provided as a parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.graph.graph.compute_shortest_paths">
+<code class="sig-name descname">compute_shortest_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sources</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.graph.graph.compute_shortest_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute shortest paths for a set of source nodes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sources</strong> (<em>list of int</em>) – Indices of the nodes to be used as sources for computing
+shortest paths</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sp</strong> – Object that stores the shortest path information and can be
+used to retrieve paths or path lengths</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>geomproc.shortest_path object</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.graph.shortest_path" title="geomproc.graph.shortest_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.graph.shortest_path</span></code></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>The method computes shortest paths on the graph with Dijkstra’s
+algorithm, implemented with a priority queue.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.graph.graph.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.graph.graph.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a deep copy of the graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>g</strong> – New copied graph</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.graph.graph" title="geomproc.graph.graph">graph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.graph.graph.get_neighbors">
+<code class="sig-name descname">get_neighbors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">i</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.graph.graph.get_neighbors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of all neighbors of a node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>i</strong> (<em>int</em>) – Index of the node</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>neighbors</strong> – List of all neighbors of node i</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.graph.graph.get_weight">
+<code class="sig-name descname">get_weight</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">i</span></em>, <em class="sig-param"><span class="n">j</span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.graph.graph.get_weight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the weight between two neighbors in the graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>i</strong> (<em>int</em>) – Index of first node</p></li>
+<li><p><strong>j</strong> (<em>int</em>) – Index of second node</p></li>
+<li><p><strong>default</strong> (<em>variant</em>) – Weight to be returned by default if the nodes are not
+connected</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>weight</strong> – Weight of the edge between the two neighbors. Note that the
+result of get_weight(i, j) may be different from
+get_weight(j, i), since the graph is directed</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>variant</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.graph.graph.get_weights">
+<code class="sig-name descname">get_weights</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">i</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.graph.graph.get_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of the weights to all the neighbors of a node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>i</strong> (<em>int</em>) – Index of the node</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>weights</strong> – List of weights of the edges from ‘i’ to all its neighbors,
+following the order provided by the ‘adj’ attribute or the
+output of get_neighbors</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.graph.graph.is_neighbor">
+<code class="sig-name descname">is_neighbor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">i</span></em>, <em class="sig-param"><span class="n">j</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.graph.graph.is_neighbor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if two nodes are neighbors in the graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>i</strong> (<em>int</em>) – Index of first node</p></li>
+<li><p><strong>j</strong> (<em>int</em>) – Index of second node</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>relation</strong> – Whether the nodes are neighbors. Note that the result of
+is_neighbor(i, j) may be different from is_neighbor(j, i),
+since the graph is directed</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.graph.graph.num_nodes">
+<code class="sig-name descname">num_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.graph.graph.num_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of nodes in the graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>number_of_nodes</strong> – Number of nodes in the graph</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.graph.graph.set_neighbor">
+<code class="sig-name descname">set_neighbor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">i</span></em>, <em class="sig-param"><span class="n">j</span></em>, <em class="sig-param"><span class="n">weight</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.graph.graph.set_neighbor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a neighbor to a node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>i</strong> (<em>int</em>) – Index of first node</p></li>
+<li><p><strong>j</strong> (<em>int</em>) – Index of neighbor</p></li>
+<li><p><strong>weight</strong> (<em>variant</em>) – Weight of the edge (i, j). The default value is 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.graph.graph.set_neighbors">
+<code class="sig-name descname">set_neighbors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">i</span></em>, <em class="sig-param"><span class="n">neigh</span></em>, <em class="sig-param"><span class="n">weight</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.graph.graph.set_neighbors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add multiple neighbors to a node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>i</strong> (<em>int</em>) – Index of node</p></li>
+<li><p><strong>neigh</strong> (<em>list</em>) – List with the indices of nodes to be added as neighbors</p></li>
+<li><p><strong>weight</strong> (<em>variant</em>) – Weight of the edges from node ‘i’ to the new neighbors. The
+parameter can be either a single scalar that is assigned as
+the weight of all the edges, or a list of the same length as
+‘neigh’ with the individual edge weights. The default weight
+is 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="geomproc.graph.shortest_path">
+<em class="property">class </em><code class="sig-prename descclassname">geomproc.graph.</code><code class="sig-name descname">shortest_path</code><a class="headerlink" href="#geomproc.graph.shortest_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that stores shortest path information</p>
+<dl class="py attribute">
+<dt id="geomproc.graph.shortest_path.sources">
+<code class="sig-name descname">sources</code><a class="headerlink" href="#geomproc.graph.shortest_path.sources" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of all source nodes that were used to compute shortest path
+information, where sources[i] is the i-th source</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.graph.shortest_path.dist">
+<code class="sig-name descname">dist</code><a class="headerlink" href="#geomproc.graph.shortest_path.dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix of path distances for each source, where dist[i] is a
+list of distances from the i-th source to all other nodes in the
+graph, with dist[i][j] being the distance from sources[i] to
+node j in the graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.graph.shortest_path.pred">
+<code class="sig-name descname">pred</code><a class="headerlink" href="#geomproc.graph.shortest_path.pred" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matrix of shortest path predecessors for each source, where
+pred[i][j] is the predecessor of node j in the shortest paths
+starting at source[i]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Notes</p>
+<p>An object of this class is created when computing shortest paths in
+the graph class. The distances of the paths can be retrieved from
+the ‘dist’ attribute, while the paths can be obtained with the
+get_path method.</p>
+<dl class="py method">
+<dt id="geomproc.graph.shortest_path.get_path">
+<code class="sig-name descname">get_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_index</span></em>, <em class="sig-param"><span class="n">target</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.graph.shortest_path.get_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get shortest path between a source and target node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_index</strong> (<em>int</em>) – Index of the source in the ‘sources’ attributes, indicating
+which source we are using to obtain the path</p></li>
+<li><p><strong>target</strong> (<em>int</em>) – Target node for the path</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>path</strong> – List with the sequence of nodes that provides the path from
+sources[i] to ‘target’</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method returns a shortest path from node
+sources[source_index] to node ‘target’</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-geomproc.impsurf">
+<span id="geomproc-impsurf-module"></span><h2>geomproc.impsurf module<a class="headerlink" href="#module-geomproc.impsurf" title="Permalink to this headline">¶</a></h2>
+<p>This module contains the implicit function class of the GeomProc
+geometry processing library used for defining implicit functions and
+performing surface reconstruction.</p>
+<dl class="py class">
+<dt id="geomproc.impsurf.impsurf">
+<em class="property">class </em><code class="sig-prename descclassname">geomproc.impsurf.</code><code class="sig-name descname">impsurf</code><a class="headerlink" href="#geomproc.impsurf.impsurf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that defines an implicit function</p>
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">evaluate = pointer to a function(array_like x)</code></dt>
+<dd><p>Function used for evaluating the implicit function at a 3D point
+x, returning the signed distance of the surface to point x.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Notes</p>
+<p>An implicit function can be setup by calling one of the setup_&lt;name&gt;
+methods. After that, the implicit function can be evaluated by
+simply calling the impsurf.evaluate(x) method.</p>
+<dl class="py method">
+<dt id="geomproc.impsurf.impsurf.compute_displaced_samples">
+<code class="sig-name descname">compute_displaced_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pc</span></em>, <em class="sig-param"><span class="n">epsilon</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.impsurf.impsurf.compute_displaced_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a set of samples displaced along point normals</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pc</strong> (<em>geomproc.pcloud</em>) – Input point cloud stored as a point cloud object. Note that
+the point cloud needs to have normal vectors associated to
+the points</p></li>
+<li><p><strong>epsilon</strong> (<em>float</em>) – Amount of displacement to perform along normals</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Given an input point cloud, this method creates a set of samples
+that can be used for RBF surface reconstruction. Given an input
+point cloud with n points, the method creates a sample set with
+n*2 points, where n points are the original points from the
+input point cloud, and another n points are created by
+displacing each original sample along its normal by a value of
+epsilon. The samples are stored in the temporary attribute of
+the class called “sample”, which is of shape (n*2, 3). Moreover,
+the method also creates a vector of displacements called
+“displacement”, which is of shape (n*2, 1). The vector stores
+the displacement of each sample, which is zero for the original
+samples and epsilon for the new samples.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.impsurf.impsurf.setup_rbf" title="geomproc.impsurf.impsurf.setup_rbf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.setup_rbf</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.impsurf.impsurf.compute_rbf">
+<code class="sig-name descname">compute_rbf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">kernel</span></em>, <em class="sig-param"><span class="n">vectorized</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.impsurf.impsurf.compute_rbf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct an implicit function from a set of point samples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kernel</strong> (<em>function</em>) – Kernel function of the form kernel(x, y) : float that
+computes the dissimilarity between two 3D points x and y,
+e.g., kernel = lambda x, y: math.pow(np.linalg.norm(x - y), 3)</p></li>
+<li><p><strong>vectorized</strong> (<em>boolean</em>) – If vectorized is True, the method assumes that the kernel
+supplied function applies the kernel function to two sets of
+points, resulting in a matrix of shape (m, n) for sets of
+samples with m and n points. The default value of vectorized
+is False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method reconstructs an implicit function from a set of point
+samples using the RBF method. The method assumes that a set of
+samples and displacements have been stored in the temporary
+attributes “sample” and “displacement”, as described in the help
+of method surfrec.impsurf.compute_displaced_samples. The method
+then stores a temporary attribute “w” that represents the
+weights of radial basis functions (RBFs). The weights define the
+implicit function in the form phi(x) = sum_{i=1}^n
+w(i)*kernel(x, sample(i)). The method also stores the given
+kernel in the temporary attribute “kernel”.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.impsurf.impsurf.compute_displaced_samples" title="geomproc.impsurf.impsurf.compute_displaced_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.compute_displaced_samples</span></code></a>, <a class="reference internal" href="#geomproc.impsurf.impsurf.setup_rbf" title="geomproc.impsurf.impsurf.setup_rbf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.setup_rbf</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.impsurf.impsurf.evaluate_rbf">
+<code class="sig-name descname">evaluate_rbf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.impsurf.impsurf.evaluate_rbf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate an implicit function encoded as an RBF</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>array_like</em>) – 3D point where the RBF should be evaluated</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>y</strong> – Scalar value of the implicit function at point x</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method returns the value of the implicit function at a given
+point x. The value is typically the signed distance of the point
+to the surface. The method assumes that temporary attributes
+“sample”, “kernel”, and “w” have been stored in the class, as
+described in the help of methods
+surfrec.impsurf.compute_displaced_samples and surfrec.impsurf.compute_rbf.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.impsurf.impsurf.compute_displaced_samples" title="geomproc.impsurf.impsurf.compute_displaced_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.compute_displaced_samples</span></code></a>, <a class="reference internal" href="#geomproc.impsurf.impsurf.compute_rbf" title="geomproc.impsurf.impsurf.compute_rbf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.compute_rbf</span></code></a>, <a class="reference internal" href="#geomproc.impsurf.impsurf.setup_rbf" title="geomproc.impsurf.impsurf.setup_rbf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.setup_rbf</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.impsurf.impsurf.evaluate_sphere">
+<code class="sig-name descname">evaluate_sphere</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.impsurf.impsurf.evaluate_sphere" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the implicit function of a sphere</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>p</strong> (<em>array_like</em>) – 3D point where the sphere should be evaluated</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>y</strong> – Scalar value of the implicit function at point p</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method evaluates the implicit function of a sphere at a
+given point. The method assumes that the center and radius of
+the sphere have been stored in the temporary attributes “center”
+and “sphere” by the method surfrec.impsurf.setup_sphere.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.impsurf.impsurf.setup_sphere" title="geomproc.impsurf.impsurf.setup_sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.setup_sphere</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surf</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">impsurf</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surf</span><span class="o">.</span><span class="n">setup_sphere</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">val</span> <span class="o">=</span> <span class="n">surf</span><span class="o">.</span><span class="n">evaluate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.impsurf.impsurf.evaluate_torus">
+<code class="sig-name descname">evaluate_torus</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.impsurf.impsurf.evaluate_torus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the implicit function of a torus</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>p</strong> (<em>array_like</em>) – 3D point where the sphere should be evaluated</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>y</strong> – Scalar value of the implicit function at point p</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method evaluates the implicit function of a torus at a given
+point. The method assumes that the two scalars “radius1” and
+“radius2” that describe the torus have been saved into temporary
+attributes of the class by the method
+surfrec.impsurf.setup_torus.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.impsurf.impsurf.setup_torus" title="geomproc.impsurf.impsurf.setup_torus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.setup_torus</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surf</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">impsurf</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surf</span><span class="o">.</span><span class="n">setup_torus</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">val</span> <span class="o">=</span> <span class="n">surf</span><span class="o">.</span><span class="n">evaluate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.impsurf.impsurf.setup_rbf">
+<code class="sig-name descname">setup_rbf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pc</span></em>, <em class="sig-param"><span class="n">epsilon</span></em>, <em class="sig-param"><span class="n">kernel</span></em>, <em class="sig-param"><span class="n">vectorized</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.impsurf.impsurf.setup_rbf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup an implicit function based on a set of point samples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pc</strong> (<em>geomproc.pcloud</em>) – Input point cloud stored as a point cloud object. Note that
+the point cloud needs to have normal vectors associated to
+the points</p></li>
+<li><p><strong>epsilon</strong> (<em>float</em>) – Amount of displacement to perform along normals</p></li>
+<li><p><strong>kernel</strong> (<em>function</em>) – Kernel function of the form kernel(x, y) : float that
+computes the dissimilarity between two 3D points x and y,
+e.g., kernel = lambda x, y: math.pow(np.linalg.norm(x - y), 3)</p></li>
+<li><p><strong>vectorized</strong> (<em>boolean</em>) – If vectorized is True, the method assumes that the kernel
+supplied function applies the kernel function to two sets of
+points, resulting in a matrix of shape (m, n) for sets of
+samples with m and n points. The default value of vectorized
+is False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Setup an implicit function by reconstructing the function from a
+set of point samples using the RBF method. The method first
+displaces the original point samples by a certain amount
+epsilon, to create additional samples that help avoid a trivial
+solution to the surface reconstruction problem. Then, the method
+reconstructs a surface with the RBF method based on the given
+kernel and solving a linear system. Once the implicit function
+is setup, it can be evaluated with the “evaluate” method of the
+class, which is a pointer to surfrec.impsurf.evalute_rbf.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.impsurf.impsurf.compute_displaced_samples" title="geomproc.impsurf.impsurf.compute_displaced_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.compute_displaced_samples</span></code></a>, <a class="reference internal" href="#geomproc.impsurf.impsurf.compute_rbf" title="geomproc.impsurf.impsurf.compute_rbf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.compute_rbf</span></code></a>, <a class="reference internal" href="#geomproc.impsurf.impsurf.evaluate_rbf" title="geomproc.impsurf.impsurf.evaluate_rbf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.evaluate_rbf</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.impsurf.impsurf.setup_sphere">
+<code class="sig-name descname">setup_sphere</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">radius</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">center</span><span class="o">=</span><span class="default_value">[0.0, 0.0, 0.0]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.impsurf.impsurf.setup_sphere" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup the implicit function of a sphere</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<em>float</em>) – Scalar representing the radius of the sphere (the default
+value is 1)</p></li>
+<li><p><strong>center</strong> (<em>array_like</em>) – 3D point representing the center of the sphere (the default
+value is the origin)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method sets up the implicit function for a sphere with a
+given center and radius. Once the implicit function is setup, it
+can be evaluated with the “evaluate” method of the class, which
+is a pointer to surfrec.evaluate_sphere.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.impsurf.impsurf.evaluate_sphere" title="geomproc.impsurf.impsurf.evaluate_sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.evaluate_sphere</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surf</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">impsurf</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surf</span><span class="o">.</span><span class="n">setup_sphere</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">val</span> <span class="o">=</span> <span class="n">surf</span><span class="o">.</span><span class="n">evaluate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.impsurf.impsurf.setup_torus">
+<code class="sig-name descname">setup_torus</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">radius1</span></em>, <em class="sig-param"><span class="n">radius2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.impsurf.impsurf.setup_torus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup the implicit function of a torus</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius1</strong> (<em>float</em>) – The distance from the center of the tube to the center of the torus</p></li>
+<li><p><strong>radius2</strong> (<em>float</em>) – Radius of the tube</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method sets up the implicit function for a torus which is
+radially symmetric about the z-axis. Once the implicit function
+is setup, it can be evaluated with the “evaluate” method of the
+class, which is a pointer to surfrec.evaluate_torus.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.impsurf.impsurf.evaluate_torus" title="geomproc.impsurf.impsurf.evaluate_torus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf.impsurf.evaluate_torus</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surf</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">impsurf</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surf</span><span class="o">.</span><span class="n">setup_torus</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">val</span> <span class="o">=</span> <span class="n">surf</span><span class="o">.</span><span class="n">evaluate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-geomproc.kdtree">
+<span id="geomproc-kdtree-module"></span><h2>geomproc.kdtree module<a class="headerlink" href="#module-geomproc.kdtree" title="Permalink to this headline">¶</a></h2>
+<p>This module contains a KDTree implementation for use in the GeomProc
+geometry processing library.</p>
+<dl class="py class">
+<dt id="geomproc.kdtree.KDTree">
+<em class="property">class </em><code class="sig-prename descclassname">geomproc.kdtree.</code><code class="sig-name descname">KDTree</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">index</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.kdtree.KDTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that implements a KDTree</p>
+<p class="rubric">Notes</p>
+<p>The class implements a KDTree that can be used for different types
+of points queries: nearest neighbor search, range search, and
+distance search. The dimension of the queries should be the same as
+the dimension of the points that were used to build the tree.</p>
+<p class="rubric">Examples</p>
+<p>from kdtree import KDTree</p>
+<p>data = &lt;load data&gt; # iterable of points (which are also iterable, same length)
+index = index of each data point to a reference array
+point = &lt;the point of which neighbours we’re looking for&gt;</p>
+<p>tree = KDTree(data, index)
+nearest = tree.query(point, t=4) # find nearest 4 points</p>
+<dl class="py method">
+<dt id="geomproc.kdtree.KDTree.dist_query">
+<code class="sig-name descname">dist_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">center</span></em>, <em class="sig-param"><span class="n">radius</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.kdtree.KDTree.dist_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a distance query with the KDTree</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>center</strong> (<em>list</em>) – </p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – Information for performing the distance query, where center
+is an n-dimensional point and radius is a scalar</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>result</strong> – List of all the points that are located a distance of radius
+or less from the center point. If the tree was constructed
+with an index associated to each point, then the list
+contains tuples of the form (point, index). Otherwise, the
+result is simply a list of points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.kdtree.KDTree.nn_query">
+<code class="sig-name descname">nn_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query_point</span></em>, <em class="sig-param"><span class="n">t</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.kdtree.KDTree.nn_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a nearest-neighbors query with the KDTree</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query_point</strong> (<em>list</em>) – Query point with the same number of dimensions as the points
+in the KDTree</p></li>
+<li><p><strong>t</strong> (<em>int</em>) – Number of nearest neighbors to retrieve</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>result</strong> – List of nearest neighbor points. If the tree was constructed
+with an index associated to each point, then the list
+contains tuples of the form (point, index). Otherwise, the
+result is simply a list of points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.kdtree.KDTree.range_query">
+<code class="sig-name descname">range_query</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.kdtree.KDTree.range_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a range query with the KDTree</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>query</strong> (<em>list</em>) – Range for performing a query with the KDTree, which is an
+n-dimensional box given as a list [minimum, maximum], where
+minimum and maximum are n-dimensional points</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>result</strong> – List of all the points inside the given range. If the tree
+was constructed with an index associated to each point, then
+the list contains tuples of the form (point, index).
+Otherwise, the result is simply a list of points</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-geomproc.loading">
+<span id="geomproc-loading-module"></span><h2>geomproc.loading module<a class="headerlink" href="#module-geomproc.loading" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions for loading geometric datasets of the
+GeomProc geometry processing library.</p>
+<dl class="py function">
+<dt id="geomproc.loading.load">
+<code class="sig-prename descclassname">geomproc.loading.</code><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.loading.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a geometric dataset from a file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>string</em>) – Name of the input filename</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>dataset</strong> – Loaded dataset, either a mesh or point cloud</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method reads all the information from the file and
+determines the type of dataset to be created, either a mesh with
+vertices and faces or a point cloud with only points.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#module-geomproc.mesh" title="geomproc.mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh</span></code></a>, <a class="reference internal" href="#module-geomproc.pcloud" title="geomproc.pcloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.pcloud</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;sphere.obj&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-geomproc.marching_cubes">
+<span id="geomproc-marching-cubes-module"></span><h2>geomproc.marching_cubes module<a class="headerlink" href="#module-geomproc.marching_cubes" title="Permalink to this headline">¶</a></h2>
+<p>This module contains marching cubes related functions of the GeomProc
+geometry processing library.</p>
+<dl class="py function">
+<dt id="geomproc.marching_cubes.marching_cubes">
+<code class="sig-prename descclassname">geomproc.marching_cubes.</code><code class="sig-name descname">marching_cubes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">end</span></em>, <em class="sig-param"><span class="n">num_cubes_per_dim</span></em>, <em class="sig-param"><span class="n">fun</span></em>, <em class="sig-param"><span class="n">merge_dup</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.marching_cubes.marching_cubes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the marching cubes algorithm to reconstruct a surface given
+by an implicit function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>array_like</em>) – 3D vector with the starting position along the x, y, and z
+dimensions of the volume to be reconstructed</p></li>
+<li><p><strong>end</strong> (<em>array_like</em>) – 3D vector with the end position along the x, y, and z dimensions
+of the volume to be reconstructed</p></li>
+<li><p><strong>num_cubes_per_dim</strong> (<em>int</em>) – Number of cubes to create along each dimension. The output mesh
+will be based on a volume subdivided into num_cubes_per_dim^3
+cubes</p></li>
+<li><p><strong>fun</strong> (<em>function</em>) – Implicit function in the form fun(x) : float, where x is a 3D
+point and the return value represents the approximate signed
+distance of the point to the surface</p></li>
+<li><p><strong>merge_dup</strong> (<em>boolean</em>) – Perform post-processing to merge duplicated vertices at the
+edges of the cubes and avoid a mesh with boundaries (default
+value is True)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tm</strong> – A triangle mesh with the reconstructed surface</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>geomproc.mesh</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#module-geomproc.impsurf" title="geomproc.impsurf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.impsurf</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surf</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">impsurf</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">surf</span><span class="o">.</span><span class="n">setup_torus</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">marching_cubes</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="mi">32</span><span class="p">,</span> <span class="n">surf</span><span class="o">.</span><span class="n">evaluate</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;reconstruction.obj&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-geomproc.mesh">
+<span id="geomproc-mesh-module"></span><h2>geomproc.mesh module<a class="headerlink" href="#module-geomproc.mesh" title="Permalink to this headline">¶</a></h2>
+<p>This module contains the mesh class of the GeomProc geometry
+processing library.</p>
+<dl class="py class">
+<dt id="geomproc.mesh.mesh">
+<em class="property">class </em><code class="sig-prename descclassname">geomproc.mesh.</code><code class="sig-name descname">mesh</code><a class="headerlink" href="#geomproc.mesh.mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that represents a triangle mesh</p>
+<p class="rubric">Notes</p>
+<p>The class stores a triangle mesh represented by a list of vertices
+and a list of faces referencing the list of vertices. Additional
+attributes can be optionally stored.</p>
+<dl class="py attribute">
+<dt id="geomproc.mesh.mesh.vertex">
+<code class="sig-name descname">vertex</code><a class="headerlink" href="#geomproc.mesh.mesh.vertex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vertices of the mesh. The array should be of shape (n, 3), where
+n is the number of vertices in the mesh. Each row of the array
+stores one vertex, and the columns of the array represent the x,
+y, and z coordinates of a vertex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.mesh.mesh.face">
+<code class="sig-name descname">face</code><a class="headerlink" href="#geomproc.mesh.mesh.face" title="Permalink to this definition">¶</a></dt>
+<dd><p>Faces of the mesh. The array should be of shape (m, 3), where m
+is the number of faces in the mesh. Each row of the array stores
+one face, and the columns of the array represent the vertex
+references of the faces. Vertex references are integer values
+starting at zero. Only triangular faces are supported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.mesh.mesh.vnormal">
+<code class="sig-name descname">vnormal</code><a class="headerlink" href="#geomproc.mesh.mesh.vnormal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vertex normals. The array should be either empty (to indicate
+that this attribute is not present) or of shape (n, 3), where n
+is the number of vertices in the mesh. The i-th row of the array
+stores the normal vector for the i-th vertex in the mesh, and
+the columns of the array are the x, y, and z components of the
+normal vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.mesh.mesh.vcolor">
+<code class="sig-name descname">vcolor</code><a class="headerlink" href="#geomproc.mesh.mesh.vcolor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vertex colors. The array should be either empty (to indicate
+that this attribute is not present) or of shape (n, 3), where n
+is the number of vertices in the mesh. The i-th row of the array
+stores the RGB color for the i-th vertex in the mesh in the
+order r, g, and b.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.mesh.mesh.vuv">
+<code class="sig-name descname">vuv</code><a class="headerlink" href="#geomproc.mesh.mesh.vuv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vertex texture coordinates (UVs). The array should be either
+empty (to indicate that this attribute is not present) or of
+shape (n, 2), where n is the number of vertices in the mesh. The
+i-th row of the array stores the 2D texture coordintes (u, v)
+for the i-th vertex in the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.mesh.mesh.fnormal">
+<code class="sig-name descname">fnormal</code><a class="headerlink" href="#geomproc.mesh.mesh.fnormal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Face normals. The array should be either empty (to indicate that
+this attribute is not present) or of shape (m, 3), where m is
+the number of faces in the mesh. The i-th row of the array
+stores the normal vector for the i-th face in the mesh, and the
+columns of the array are the x, y, and z components of the
+normal vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.mesh.mesh.cnormal">
+<code class="sig-name descname">cnormal</code><a class="headerlink" href="#geomproc.mesh.mesh.cnormal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Corner normals. This attribute stores the three normal vectors
+for the three corners of each face. The array should be either
+empty (to indicate that this attribute is not present) or of
+shape (m, 3, 3), where m is the number of faces in the mesh.
+The entry cnormal[i, j, :] stores the normal for the j-th
+corner of the i-th face in the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.mesh.mesh.cuv">
+<code class="sig-name descname">cuv</code><a class="headerlink" href="#geomproc.mesh.mesh.cuv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Corner texture coordinates (UVs). This attributes stores the
+three texture coordinates for the three corners of each face.
+The array should be either empty (to indicate that this
+attribute is not present) or of shape (m, 3, 2), where m is the
+number of faces in the mesh. The entry cuv[i, j, :] stores the
+2D texture coordinates (u, v) for the j-th corner of the i-th
+face in the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.mesh.mesh.vif">
+<code class="sig-name descname">vif</code><a class="headerlink" href="#geomproc.mesh.mesh.vif" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connectivity information: list of faces incident to a vertex.
+The i-th entry of this list stores the list of all faces
+incident to the i-th vertex in the mesh, that is, all the faces
+that reference the i-th vertex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of lists</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.mesh.mesh.fif">
+<code class="sig-name descname">fif</code><a class="headerlink" href="#geomproc.mesh.mesh.fif" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connectivity information: list of faces neighboring a face.
+The i-th entry of this lists stores the list of all faces
+neighboring the i-th face of the mesh. Two faces are neighbors
+if they share an edge.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of lists</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.mesh.mesh.viv">
+<code class="sig-name descname">viv</code><a class="headerlink" href="#geomproc.mesh.mesh.viv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connectivity information: list of vertices neighboring a vertex.
+The i-th entry of this lists stores the list of all vertices
+neighboring the i-th vertex of the mesh. Two vertices are neighbors
+if they are connected by an edge.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>lists of lists</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.add_noise">
+<code class="sig-name descname">add_noise</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scale</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.add_noise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add noise to the vertex coordinates of a mesh</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>scale</strong> (<em>float</em>) – Scale that modulates the noise</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Simple noise function. For each vertex coordinate in the mesh,
+the method generates a random number between 0 and 1 and scales
+it by the ‘scale’ parameter. The scaled random number is then
+added to the coordinate value</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.append">
+<code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tm</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a mesh to the current mesh object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tm</strong> (<em>geomproc.mesh</em>) – Mesh to be appended to the current mesh</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.compute_connectivity">
+<code class="sig-name descname">compute_connectivity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.compute_connectivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute mesh connectivity information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method sets up the vif, fif, and viv attributes of the mesh
+with information on connections between vertices and faces.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.vif" title="geomproc.mesh.mesh.vif"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.vif</span></code></a>, <a class="reference internal" href="#geomproc.mesh.mesh.fif" title="geomproc.mesh.mesh.fif"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.fif</span></code></a>, <a class="reference internal" href="#geomproc.mesh.mesh.viv" title="geomproc.mesh.mesh.viv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.viv</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span><span class="o">.</span><span class="n">compute_connectivity</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.compute_curvature">
+<code class="sig-name descname">compute_curvature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.compute_curvature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute curvatures of mesh vertices using the angles of triangles</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>negative</strong> – Negative is set to 1 if any negative cotangent weights were
+computed for the mesh. Otherwise, it is zero.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int, optional</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method computes the curvature of mesh vertices and stores
+this information in the ‘curv’ attribute of the class. The entry
+curv[i, 0] is the minimal curvature for vertex ‘i’, curv[i, 1]
+is the maximal curvature, curv[i, 2] is the mean curvature,
+curv[i, 3] is the Gaussian curvature, and curv[i, 4] is the area
+of the Voronoi region around the vertex.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">neg</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">compute_curvature</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.compute_vertex_and_face_normals">
+<code class="sig-name descname">compute_vertex_and_face_normals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.compute_vertex_and_face_normals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the normal vectors of vertices and faces in the mesh</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method sets up the vnormal and fnormal attributes of the
+mesh with the normal vectors of vertices and faces,
+respectively. It also sets up a temporary area attribute with
+the triangle areas.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.vnormal" title="geomproc.mesh.mesh.vnormal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.vnormal</span></code></a>, <a class="reference internal" href="#geomproc.mesh.mesh.fnormal" title="geomproc.mesh.mesh.fnormal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.fnormal</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span><span class="o">.</span><span class="n">compute_vertex_and_face_normals</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.compute_vif">
+<code class="sig-name descname">compute_vif</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.compute_vif" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute vif mesh connectivity information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method sets up the vif attribute of the mesh with
+information on connections between vertices and faces.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.vif" title="geomproc.mesh.mesh.vif"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.vif</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span><span class="o">.</span><span class="n">compute_vif</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a deep copy of the mesh</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tm</strong> – New copied mesh</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.data_face_to_vertex">
+<code class="sig-name descname">data_face_to_vertex</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fdata</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.data_face_to_vertex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform a face data array to a vertex data array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fdata</strong> (<em>array_like</em>) – Face data array. This should be an array of shape (m, 1),
+where m is the number of faces in the mesh</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>vdata</strong> – Vertex data array. This should be an array of shape (n, 1),
+where n is the number of vertices in the mesh</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array_like</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method takes data values defined per face of the mesh and
+transforms them into data values defined per vertex of the mesh.
+This is accomplished by averaging the data values for all the
+faces connected to a vertex and assigning the average to the
+vertex.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.data_to_color" title="geomproc.mesh.mesh.data_to_color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.data_to_color</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.data_to_color">
+<code class="sig-name descname">data_to_color</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">invert</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">percent</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">minimum</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">maximum</span><span class="o">=</span><span class="default_value">- 1.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.data_to_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform vertex data into vertex colors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>array_like</em>) – Data array to be mapped to colors. This should be an array
+of shape (n, 1), where n is the number of vertices in the
+mesh</p></li>
+<li><p><strong>invert</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Flag indicating whether the color map should be inverted or
+not. The default value is False</p></li>
+<li><p><strong>percent</strong> (<em>float</em><em>, </em><em>optional</em>) – Percentage of values to discard at each end of the spectrum
+of data values, to compute more robust minimum and maximum
+values for the color mapping, ignoring extreme outliers. The
+default value is 0.01. To ignore robust statistics, set this
+parameter to zero</p></li>
+<li><p><strong>minimum</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum to be used for defining the mapping. If the minimum
+is specified, then both ‘minimum’ and ‘maximum’ need to be
+specified and the ‘percent’ parameter is ignored. Otherwise
+the minimum and maximum are computed automatically from the
+data based on the ‘percent’ parameter and returned by the
+method. The explicit parameters ‘minimum’ and ‘maximum’ are
+useful if multiple mappings with the same scale need to be
+produced</p></li>
+<li><p><strong>maximum</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum to be used for defining the mapping</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>minimum</strong> (<em>float</em>) – Minimum value that was used to compute the mapping</p></li>
+<li><p><strong>maximum</strong> (<em>float</em>) – Maximum value that was used to compute the mapping</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.data_to_color_with_zero" title="geomproc.mesh.mesh.data_to_color_with_zero"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.data_to_color_with_zero</span></code></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>The method maps the values of a data array into colors and
+stores the colors in the ‘vcolor’ attribute of the mesh, so that
+each vertex has an associated color. The data values are mapped
+from [minimum, maximum] to the hue [0, 2/3] in the HSV color
+system and then transformed into RGB colors, so that the minimum
+value is red and the maximum value is blue. If ‘invert’ is True,
+the minimum value is blue and the maximum is red.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.data_to_color_with_zero">
+<code class="sig-name descname">data_to_color_with_zero</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">invert</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">percent</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">minimum</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">maximum</span><span class="o">=</span><span class="default_value">- 1.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.data_to_color_with_zero" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform vertex data into vertex colors while ensuring that zero is mapped to the center of the color spectrum (green color)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>array_like</em>) – Data array to be mapped to colors. This should be an array
+of shape (n, 1), where n is the number of vertices in the
+mesh</p></li>
+<li><p><strong>invert</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Flag indicating whether the color map should be inverted or
+not. The default value is False</p></li>
+<li><p><strong>percent</strong> (<em>float</em><em>, </em><em>optional</em>) – Percentage of values to discard at each end of the spectrum
+of data values, to compute more robust minimum and maximum
+values for the color mapping, ignoring extreme outliers. The
+default value is 0.01. To ignore robust statistics, set this
+parameter to zero</p></li>
+<li><p><strong>minimum</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum to be used for defining the mapping. If the minimum
+is specified, then both ‘minimum’ and ‘maximum’ need to be
+specified and the ‘percent’ parameter is ignored. Otherwise
+the minimum and maximum are computed automatically from the
+data based on the ‘percent’ parameter and returned by the
+method. The explicit parameters ‘minimum’ and ‘maximum’ are
+useful if multiple mappings with the same scale need to be
+produced</p></li>
+<li><p><strong>maximum</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum to be used for defining the mapping</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>minimum</strong> (<em>float</em>) – Minimum value that was used to compute the mapping</p></li>
+<li><p><strong>maximum</strong> (<em>float</em>) – Maximum value that was used to compute the mapping</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method maps the values of a data array into colors and
+stores the colors in the ‘vcolor’ attribute of the mesh, so that
+each vertex has an associated color. The data values are mapped
+from [min, 0] to the hue [0, 1/3] in the HSV color system, and
+from [0, max] to the hue [1/3, 2/3], so that min is red, 0 is
+green, and max is blue. If ‘invert’ is True, min is blue, 0 is
+green, and max is red.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.data_to_color" title="geomproc.mesh.mesh.data_to_color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.data_to_color</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_torus</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">neg</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">compute_curvature</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">mn</span><span class="p">,</span> <span class="n">mx</span><span class="p">]</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">data_to_color</span><span class="p">(</span><span class="n">tm</span><span class="o">.</span><span class="n">curv</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wo</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">write_options</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wo</span><span class="o">.</span><span class="n">write_vertex_colors</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;colored_torus.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.geometric_laplacian">
+<code class="sig-name descname">geometric_laplacian</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.geometric_laplacian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the geometric Laplacian operator for the mesh</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>L</strong> (<em>numpy.array_like</em>) – Laplacian matrix of dimensions n x n, where n is the number
+of vertices in the mesh</p></li>
+<li><p><strong>negative</strong> (<em>boolean</em>) – Flag indicating whether any of the cotangent weights are
+negative</p></li>
+<li><p><strong>boundary</strong> (<em>boolean</em>) – Flag indicating whether any boundaries where encountered in
+the mesh</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method constructors the discrete geometric Laplacian
+operator based on the geometry of the mesh.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.uniform_laplacian" title="geomproc.mesh.mesh.uniform_laplacian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.uniform_laplacian</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">geometric_laplacian</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.normalize">
+<code class="sig-name descname">normalize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target_min</span><span class="o">=</span><span class="default_value">- 1</span></em>, <em class="sig-param"><span class="n">target_max</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize the coordinates of a mesh</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_min</strong> (<em>float</em><em>, </em><em>optional</em>) – Target minimum coordinate value for the mesh vertices</p></li>
+<li><p><strong>target_max</strong> (<em>float</em><em>, </em><em>optional</em>) – Target maximum coordinate value for the mesh vertices</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method modifies the vertex positions so that the longest
+axis is mapped to the range [target_min, target_max] (which is
+[-1.0, 1.0] by default), while the other axes are mapped so as
+to preserve the aspect ratio of the model.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.vertex" title="geomproc.mesh.mesh.vertex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.vertex</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.remove_duplicated_vertices">
+<code class="sig-name descname">remove_duplicated_vertices</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tol</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.remove_duplicated_vertices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove duplicated vertices in the mesh</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tol</strong> (<em>float</em>) – Tolerance for determining if two vertices are the same</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method removes duplicated vertices in the mesh by finding
+all vertices that have the same position up to the given
+tolerance, and keeping only one of the vertices in the mesh,
+updating vertex and face arrays and vertex references as
+necessary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.sample">
+<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_samples</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample points uniformly across a mesh</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>num_samples</strong> (<em>int</em>) – Number of samples to collect</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>pc</strong> – A point cloud with the point samples and their normals</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.pcloud.pcloud" title="geomproc.pcloud.pcloud">pcloud</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method uses face areas to perform a random sampling of
+points over the mesh. A point is assigned the normal of the face
+from where it was sampled.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#module-geomproc.pcloud" title="geomproc.pcloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.pcloud</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">wo=&lt;geomproc.write_options.write_options object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a mesh to a file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – Name of the output filename</p></li>
+<li><p><strong>wo</strong> (<em>write_options object</em><em>, </em><em>optional</em>) – Object with flags that indicate which fields of the mesh
+should be written to the output file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method saves the mesh information into a file. The file
+format is determined from the filename extension. Currently, the
+obj and off file formats are supported. By default, only
+vertices and faces are written into the file. Other information
+is written if the corresponding flags are set in the
+write_options object. Not all flags are supported by all file
+formats.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#module-geomproc.write_options" title="geomproc.write_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.write_options</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;sphere.obj&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.mesh.mesh.uniform_laplacian">
+<code class="sig-name descname">uniform_laplacian</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.mesh.mesh.uniform_laplacian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the uniform Laplacian operator for the mesh</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>L</strong> – Laplacian matrix of dimensions n x n, where n is the number
+of vertices in the mesh</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method constructors the discrete uniform Laplacian operator
+based on the geometry of the mesh.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#geomproc.mesh.mesh.geometric_laplacian" title="geomproc.mesh.mesh.geometric_laplacian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.geometric_laplacian</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">uniform_laplacian</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-geomproc.misc">
+<span id="geomproc-misc-module"></span><h2>geomproc.misc module<a class="headerlink" href="#module-geomproc.misc" title="Permalink to this headline">¶</a></h2>
+<p>This module contains auxiliary functions of the GeomProc geometry
+processing library.</p>
+<dl class="py function">
+<dt id="geomproc.misc.distance">
+<code class="sig-prename descclassname">geomproc.misc.</code><code class="sig-name descname">distance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.misc.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Euclidean distance between two points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>list of array_like</em>) – First 3D point</p></li>
+<li><p><strong>b</strong> (<em>list</em><em> or </em><em>array_like</em>) – Second 3D point</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>d</strong> – Euclidean distance between a and b</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.misc.hsv2rgb">
+<code class="sig-prename descclassname">geomproc.misc.</code><code class="sig-name descname">hsv2rgb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hsv</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.misc.hsv2rgb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map an HSV color into an RGB color</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>hsv</strong> (<em>numpy.array_like</em>) – Array with three float values representing the Hue, Saturation,
+and Value components of the color. Each component should be a
+value between 0 and 1</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>rgb</strong> – Array with three float values representing the corresponding
+Red, Green, and Blue components of the color. Each component is
+a value between 0 and 1</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rgb</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">hsv2rgb</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.misc.map_val">
+<code class="sig-prename descclassname">geomproc.misc.</code><code class="sig-name descname">map_val</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">val</span></em>, <em class="sig-param"><span class="n">cmin</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">cmax</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">mn</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">mx</span><span class="o">=</span><span class="default_value">- 1.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.misc.map_val" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linearly map a set of values to a new range</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>val</strong> (<em>numpy.array_like</em>) – Array containing the values to be mapped</p></li>
+<li><p><strong>cmin</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum value for the new range</p></li>
+<li><p><strong>cmax</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum value for the new range</p></li>
+<li><p><strong>mn</strong> (<em>float</em><em>, </em><em>optional</em>) – The value to be considered as the minimum in the range of ‘val’.
+If this parameter is not provided, it is computed as min(val).
+Setting a minimum that is different from the actual data minimum
+allows to clamp values that are too small. Note that, if ‘mn’ is
+provided, then both ‘mn’ and ‘mx’ need to be provided</p></li>
+<li><p><strong>mx</strong> (<em>float</em><em>, </em><em>optional</em>) – The value to be considered the maximum in the range of ‘val’. If
+this parameter is not provided, it is computed as max(val).
+Setting a maximum that is different from the actual data maximum
+allows to clamp values that are too big. Note that, if ‘mn’ is
+provided, then both ‘mn’ and ‘mx’ need to be provided</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>new_val</strong> – Array containing ‘val’ mapped to the new range [cmin, cmax]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The purpose of this function is to linearly map a set of values
+‘val’ in the range [mn, mx] to a new set of values ‘new_val’ in the
+range [cmin, cmax]. This can be utilized, for example, to map data
+values to color values.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.misc.random_triangle_sample">
+<code class="sig-prename descclassname">geomproc.misc.</code><code class="sig-name descname">random_triangle_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tm</span></em>, <em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.misc.random_triangle_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly sample a point inside of a triangle without geometric bias</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tm</strong> (<em>geomproc.mesh</em>) – Triangle mesh</p></li>
+<li><p><strong>index</strong> (<em>float</em>) – Index of the triangle in the mesh to be sampled</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>point</strong> – A random 3D point on the surface of the triangle and inside its
+boundaries</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="geomproc.misc.rotation_matrix">
+<code class="sig-prename descclassname">geomproc.misc.</code><code class="sig-name descname">rotation_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ang</span></em>, <em class="sig-param"><span class="n">axs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.misc.rotation_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a rotation matrix for a rotation of an angle around an axis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axis</strong> (<em>array_like</em>) – Rotation axis: a 3D vector</p></li>
+<li><p><strong>angle</strong> (<em>float</em>) – Rotation angle in radians</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>matrix</strong> – 4x4 rotation matrix in column-major form</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-geomproc.pcloud">
+<span id="geomproc-pcloud-module"></span><h2>geomproc.pcloud module<a class="headerlink" href="#module-geomproc.pcloud" title="Permalink to this headline">¶</a></h2>
+<p>This module contains all the classes and functions of the GeomProc
+geometry processing library.</p>
+<dl class="py class">
+<dt id="geomproc.pcloud.pcloud">
+<em class="property">class </em><code class="sig-prename descclassname">geomproc.pcloud.</code><code class="sig-name descname">pcloud</code><a class="headerlink" href="#geomproc.pcloud.pcloud" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that represents a point cloud</p>
+<dl class="py attribute">
+<dt id="geomproc.pcloud.pcloud.point">
+<code class="sig-name descname">point</code><a class="headerlink" href="#geomproc.pcloud.pcloud.point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Points in the point cloud. The array should be of shape (n, 3),
+where n is the number of points in the point cloud. Each row of
+the array stores one point, and the columns of the array
+represent the x, y, and z coordinates of a point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.pcloud.pcloud.normal">
+<code class="sig-name descname">normal</code><a class="headerlink" href="#geomproc.pcloud.pcloud.normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point normals. The array should be either empty (to indicate
+that this attribute is not present) or of shape (n, 3), where n
+is the number of points in the point cloud. The i-th row of the
+array stores the normal vector for the i-th point in the point
+cloud, and the columns of the array are the x, y, and z
+components of the normal vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.pcloud.pcloud.color">
+<code class="sig-name descname">color</code><a class="headerlink" href="#geomproc.pcloud.pcloud.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Point colors. The array should be either empty (to indicate that
+this attribute is not present) or of shape (n, 3), where n is
+the number of points in the point cloud. The i-th row of the
+array stores the RGB color for the i-th point in the point
+cloud in the order r, g, and b.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.pcloud.pcloud.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.pcloud.pcloud.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a deep copy of the point cloud</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>pc</strong> – New copied point cloud</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.pcloud.pcloud" title="geomproc.pcloud.pcloud">pcloud</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.pcloud.pcloud.estimate_normals">
+<code class="sig-name descname">estimate_normals</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">k</span></em>, <em class="sig-param"><span class="n">consistent</span><span class="o">=</span><span class="default_value">- 1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.pcloud.pcloud.estimate_normals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate point normals from nearest neighbors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> (<em>int</em>) – Number of nearest neighbors to use in the estimate</p></li>
+<li><p><strong>consistent</strong> (<em>int</em><em>, </em><em>optional</em>) – Index of a point that we know has a consistent normal. If
+this parameter is not provided, it is estimated with a
+heuristic</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method estimates the normal of each point in the point cloud
+by performing an analysis of covariance on the k nearest
+neighbors of each point. Then, the method flips the directions
+of the normals consistently. The method sets the ‘normal’
+attribute of the class with the estimated normals.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">estimate_normals</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.pcloud.pcloud.estimate_normals_simple">
+<code class="sig-name descname">estimate_normals_simple</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">k</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.pcloud.pcloud.estimate_normals_simple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate point normals from nearest neighbors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>k</strong> (<em>int</em>) – Number of nearest neighbors to use in the estimate</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method estimates the normal of each point in the point cloud
+by performing an analysis of covariance on the k nearest
+neighbors of each point. The method sets the ‘normal’ attribute
+of the class with the estimated normals.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">estimate_normals_simple</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="geomproc.pcloud.pcloud.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">wo=&lt;geomproc.write_options.write_options object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.pcloud.pcloud.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a point cloud to a file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – Name of the output filename</p></li>
+<li><p><strong>wo</strong> (<em>write_options object</em><em>, </em><em>optional</em>) – Object with flags that indicate which fields of the point
+cloud should be written to the output file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method saves the point cloud information into a file. The
+file format is determined from the filename extension.
+Currently, the obj and ply file formats are supported. By
+default, only points are written into the file. Other
+information is written if the corresponding flags are set in the
+write_options object. Not all flags are supported by all file
+formats.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#module-geomproc.write_options" title="geomproc.write_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.write_options</span></code></a></p>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_sphere</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;sphere_samples.obj&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-geomproc.write_options">
+<span id="geomproc-write-options-module"></span><h2>geomproc.write_options module<a class="headerlink" href="#module-geomproc.write_options" title="Permalink to this headline">¶</a></h2>
+<p>This module contains the write_options class of the GeomProc geometry
+processing library.</p>
+<dl class="py class">
+<dt id="geomproc.write_options.write_options">
+<em class="property">class </em><code class="sig-prename descclassname">geomproc.write_options.</code><code class="sig-name descname">write_options</code><a class="headerlink" href="#geomproc.write_options.write_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that holds options of what information to write when saving a file</p>
+<dl class="py attribute">
+<dt id="geomproc.write_options.write_options.write_vertex_normals">
+<code class="sig-name descname">write_vertex_normals</code><a class="headerlink" href="#geomproc.write_options.write_options.write_vertex_normals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save normal vectors stored at mesh vertices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.write_options.write_options.write_vertex_colors">
+<code class="sig-name descname">write_vertex_colors</code><a class="headerlink" href="#geomproc.write_options.write_options.write_vertex_colors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save colors stored at mesh vertices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.write_options.write_options.write_vertex_uvs">
+<code class="sig-name descname">write_vertex_uvs</code><a class="headerlink" href="#geomproc.write_options.write_options.write_vertex_uvs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save (u, v) texture coordinates stored at mesh vertices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.write_options.write_options.write_face_normals">
+<code class="sig-name descname">write_face_normals</code><a class="headerlink" href="#geomproc.write_options.write_options.write_face_normals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save normal vectors stored at mesh faces</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.write_options.write_options.write_corner_normals">
+<code class="sig-name descname">write_corner_normals</code><a class="headerlink" href="#geomproc.write_options.write_options.write_corner_normals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save normal vectors stored at face corners</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.write_options.write_options.write_corner_uvs">
+<code class="sig-name descname">write_corner_uvs</code><a class="headerlink" href="#geomproc.write_options.write_options.write_corner_uvs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save (u, v) texture coordinates stored at face corners</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.write_options.write_options.texture_name">
+<code class="sig-name descname">texture_name</code><a class="headerlink" href="#geomproc.write_options.write_options.texture_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filename of image referenced by texture coordinates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.write_options.write_options.write_point_normals">
+<code class="sig-name descname">write_point_normals</code><a class="headerlink" href="#geomproc.write_options.write_options.write_point_normals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save normal vectors stored at points in point cloud</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="geomproc.write_options.write_options.write_point_colors">
+<code class="sig-name descname">write_point_colors</code><a class="headerlink" href="#geomproc.write_options.write_options.write_point_colors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save colors stored at points in point cloud</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Notes</p>
+<p>Not all options are accepted by every file format. The class
+collects all the possible options supported by different file
+formats. The structure is relevant to both meshes and point clouds.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="modules.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Oliver van Kaick.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

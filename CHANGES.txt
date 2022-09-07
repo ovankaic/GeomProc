@@ -1,0 +1,4 @@
+v1.1.0 2022/07/25: Added some bug fixes.
+
+v1.0.0 2021/04/30: First version of library assembled from existing
+                   code.

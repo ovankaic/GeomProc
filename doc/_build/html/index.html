@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Welcome to GeomProc’s documentation! &mdash; GeomProc 1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Demos" href="demos.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> GeomProc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="userguide.html">User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="geomproc.html">geomproc package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">GeomProc</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Welcome to GeomProc’s documentation!</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="welcome-to-geomproc-s-documentation">
+<h1>Welcome to GeomProc’s documentation!<a class="headerlink" href="#welcome-to-geomproc-s-documentation" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://graphics.stanford.edu/software/scanview/models/bunny.html"><img alt="Example outputs of the library" src="_images/geomproc.png" style="width: 1024px;" /></a>
+<p><strong>GeomProc</strong> is a geometry processing library intended for educational
+purposes. Thus, the library was developed with an emphasis on legibility
+of the code, documentation, and ease of use, rather than efficiency,
+although the efficiency should not lag behind similar implementations in
+interpreted languages, as the included methods are based on
+state-of-the-art algorithms.  However, there is no guarantee that the
+code is as efficient as a C++ implementation, or applicable to large
+triangle meshes. To ensure ease of use, the library has only one
+dependency: Python 3 with numpy. Note that an external mesh viewer such
+as <a class="reference external" href="https://www.meshlab.net/">MeshLab</a> is required for visualizing the
+output of the library.</p>
+<p>The library comprises a set of example implementations of geometry
+processing methods applicable to triangle meshes, point clouds, and
+implicit functions. The basic classes of the library implement triangle
+mesh and point cloud data structures. The library was developed from
+code initially written in Matlab.</p>
+</div>
+<div class="section" id="demos">
+<h1>Demos<a class="headerlink" href="#demos" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="demos.html">Demos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="demos.html#load-a-mesh-and-visualize-normal-vectors">Load a mesh and visualize normal vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos.html#visualize-mesh-degree">Visualize mesh degree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos.html#curvature-computation">Curvature computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos.html#mesh-smoothing">Mesh smoothing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos.html#mesh-parameterization">Mesh parameterization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos.html#sample-a-mesh">Sample a mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos.html#estimate-normals-of-a-point-cloud">Estimate normals of a point cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos.html#align-two-point-clouds">Align two point clouds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos.html#reconstruction-of-an-implicit-surface">Reconstruction of an implicit surface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos.html#rbf-surface-reconstruction">RBF surface reconstruction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demos.html#approximate-geodesic-distances">Approximate geodesic distances</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="user-guide">
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="userguide.html">User Guide</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="modules">
+<h1>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="geomproc.html">geomproc package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="geomproc.html#module-geomproc.alignment">geomproc.alignment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geomproc.html#module-geomproc.creation">geomproc.creation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geomproc.html#module-geomproc.graph">geomproc.graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geomproc.html#module-geomproc.impsurf">geomproc.impsurf module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geomproc.html#module-geomproc.kdtree">geomproc.kdtree module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geomproc.html#module-geomproc.loading">geomproc.loading module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geomproc.html#module-geomproc.marching_cubes">geomproc.marching_cubes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geomproc.html#module-geomproc.mesh">geomproc.mesh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geomproc.html#module-geomproc.misc">geomproc.misc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geomproc.html#module-geomproc.pcloud">geomproc.pcloud module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geomproc.html#module-geomproc.write_options">geomproc.write_options module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="demos.html" class="btn btn-neutral float-right" title="Demos" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Oliver van Kaick.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

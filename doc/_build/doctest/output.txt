@@ -1,0 +1,17 @@
+Results of doctest builder run on 2021-04-19 13:33:59
+=====================================================
+
+Document: geomproc
+------------------
+1 items passed all tests:
+  96 tests in default
+96 tests in 1 items.
+96 passed and 0 failed.
+Test passed.
+
+Doctest summary
+===============
+   96 tests
+    0 failures in tests
+    0 failures in setup code
+    0 failures in cleanup code
