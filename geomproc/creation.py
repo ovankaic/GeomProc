@@ -419,11 +419,12 @@ def create_cone(radius, height, num_circle_samples, num_height_samples):
     Notes
     -----
     The cone is built so that the circles are parallel to the XY plane
-    and the cone extends from 0 to height. The function also computes
-    the analytical vertex normal vectors and curvature values of the
-    surface, stored in the 'vnormal' and 'curv' fields of the model. See
-    the help of 'mesh.compute_curvature' for information on the 'curv'
-    attribute.
+    and the cone extends from 0 to height. The circular base of the cone
+    is at z = 0 and the apex (single vertex) at z = height. The function
+    also computes the analytical vertex normal vectors and curvature
+    values of the surface, stored in the 'vnormal' and 'curv' fields of
+    the model. See the help of 'mesh.compute_curvature' for information
+    on the 'curv' attribute.
 
     See Also
     --------
@@ -450,23 +451,35 @@ def create_cone(radius, height, num_circle_samples, num_height_samples):
             # Define vertex position
             theta = 2*math.pi*j/num_circle_samples
             scaling = (height - h)/height
-            tm.vertex[vindex, :] = [scaling*radius*math.cos(theta), \
-                                    scaling*radius*math.sin(theta), h]
+            sr = scaling*radius
+            tm.vertex[vindex, :] = [sr*math.cos(theta), \
+                                    sr*math.sin(theta), h]
             # Define normal
-            nrm = [math.cos(theta), math.sin(theta), 0]
+            nrm = [sr*math.cos(theta), \
+                   sr*math.sin(theta), \
+                   ((sr*radius*(math.sin(theta)**2)) +
+                    (sr*radius*(math.cos(theta)**2)))/(height**2)]
             nrm /= np.linalg.norm(nrm)
             tm.vnormal[vindex, :] = nrm
             # Define curvatures
+            # Adapt our parametric equation to the general equation of
+            # an infinite cone
+            # Reference: https://mathworld.wolfram.com/Cone.html
+            u = height - h
+            a = radius/height
+            # Mean and Gaussian curvature
+            H = np.absolute(u)/(2*a*np.sqrt(1 + a**2)*u**2) # Mean
+            K = 0 # Gaussian
+            tm.curv[vindex, 2] = H 
+            tm.curv[vindex, 3] = K
+            # Derive min and max from mean and Gaussian
             tm.curv[vindex, 0] = 0
-            tm.curv[vindex, 1] = 1/(scaling*radius)
-            tm.curv[vindex, 2] = 1/(2*scaling*radius)
-            tm.curv[vindex, 3] = 0
+            tm.curv[vindex, 1] = 2*H
             vindex = vindex + 1
     # Add apex
     tm.vertex[vindex, :] = [0, 0, height]
     # Define normal
     nrm = [0, 0, 1]
-    nrm /= np.linalg.norm(nrm)
     tm.vnormal[vindex, :] = nrm
     # Define curvatures
     tm.curv[vindex, 0] = 0
@@ -937,7 +950,12 @@ def create_vectors(pos, vect, radius=0.03, length=0.05, color=[1, 0, 0]):
         # Specialized to [0, 0, length]:
         axs = np.array([-length*vect[i, 1], length*vect[i, 0], 0])
         # Rotate cylinder by angle and axis
-        R = rotation_matrix(ang, axs)
+        if np.linalg.norm(axs) < np.finfo(float).eps:
+            # If the axis is exactly [0, 0, 1], we don't need any
+            # rotation
+            R = np.identity(3)
+        else:
+            R = rotation_matrix(ang, axs)
         # Retrieve saved geometry of cylinder
         temp_cyl.vertex[:] = cyl.vertex[:]
         # Apply rotation matrix
