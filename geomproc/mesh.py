@@ -318,6 +318,11 @@ class mesh:
                 f.write('illum 0\n')
                 f.write('map_Kd ' + wo.texture_name + '\n')
 
+        # Check if we have quads
+        quads = False
+        if self.face.shape[1] == 4:
+            quads = True
+
         # Open the file
         with open(filename, 'w') as f: 
             # Material file reference
@@ -377,10 +382,17 @@ class mesh:
                 (not wo.write_vertex_uvs) and 
                 (not wo.write_corner_uvs)):
                 # Write only vertex indices
-                for i in range(self.face.shape[0]):
-                    f.write('f '+str(self.face[i, 0]+1)+' '+
-                            str(self.face[i, 1]+1)+' '+
-                            str(self.face[i, 2]+1)+'\n')
+                if quads:
+                    for i in range(self.face.shape[0]):
+                        f.write('f '+str(self.face[i, 0]+1)+' '+
+                                str(self.face[i, 1]+1)+' '+
+                                str(self.face[i, 2]+1)+' '+
+                                str(self.face[i, 3]+1)+'\n')
+                else:
+                    for i in range(self.face.shape[0]):
+                        f.write('f '+str(self.face[i, 0]+1)+' '+
+                                str(self.face[i, 1]+1)+' '+
+                                str(self.face[i, 2]+1)+'\n')
             else:
                 # Write more attributes
                 # Check which attribute separators we need to write
@@ -391,44 +403,93 @@ class mesh:
                      wo.write_corner_normals))):
                     sep2 = ''
                 # Write faces
-                for i in range(self.face.shape[0]):
-                    # Get face attributes
-                    # Vertex ids
-                    v0 = str(self.face[i, 0]+1)
-                    v1 = str(self.face[i, 1]+1)
-                    v2 = str(self.face[i, 2]+1)
-                    # Texture coordinates
-                    if wo.write_vertex_uvs:
-                        t0 = v0
-                        t1 = v1
-                        t2 = v2
-                    elif wo.write_corner_uvs:
-                        t0 = str(i*3 + 0 + 1) # Indexing starts at 1, so + 1
-                        t1 = str(i*3 + 1 + 1)
-                        t2 = str(i*3 + 2 + 1)
-                    else:
-                        t0 = ''
-                        t1 = ''
-                        t2 = ''
-                    # Normals
-                    if wo.write_vertex_normals:
-                        n0 = v0
-                        n1 = v1
-                        n2 = v2
-                    elif wo.write_face_normals:
-                        n0 = str(i + 1)
-                        n1 = str(i + 1)
-                        n2 = str(i + 1)
-                    elif wo.write_corner_normals:
-                        n0 = str(i*3 + 0 + 1)
-                        n1 = str(i*3 + 1 + 1)
-                        n2 = str(i*3 + 2 + 1)
-                    else:
-                        n0 = ''
-                        n1 = ''
-                        n2 = ''
-                    # Write the face with all the attributes
-                    f.write('f ' + v0 + sep1 + t0 + sep2 + n0 + ' ' + v1 + sep1 + t1 + sep2 + n1 + ' ' + v2 + sep1 + t2 + sep2 + n2 + '\n')
+                if quads:
+                    for i in range(self.face.shape[0]):
+                        # Get face attributes
+                        # Vertex ids
+                        v0 = str(self.face[i, 0]+1)
+                        v1 = str(self.face[i, 1]+1)
+                        v2 = str(self.face[i, 2]+1)
+                        v3 = str(self.face[i, 3]+1)
+                        # Texture coordinates
+                        if wo.write_vertex_uvs:
+                            t0 = v0
+                            t1 = v1
+                            t2 = v2
+                            t3 = v3
+                        elif wo.write_corner_uvs:
+                            t0 = str(i*3 + 0 + 1) # Indexing starts at 1, so + 1
+                            t1 = str(i*3 + 1 + 1)
+                            t2 = str(i*3 + 2 + 1)
+                            t3 = str(i*3 + 3 + 1)
+                        else:
+                            t0 = ''
+                            t1 = ''
+                            t2 = ''
+                            t3 = ''
+                        # Normals
+                        if wo.write_vertex_normals:
+                            n0 = v0
+                            n1 = v1
+                            n2 = v2
+                            n3 = v3
+                        elif wo.write_face_normals:
+                            n0 = str(i + 1)
+                            n1 = str(i + 1)
+                            n2 = str(i + 1)
+                            n3 = str(i + 1)
+                        elif wo.write_corner_normals:
+                            n0 = str(i*3 + 0 + 1)
+                            n1 = str(i*3 + 1 + 1)
+                            n2 = str(i*3 + 2 + 1)
+                            n3 = str(i*3 + 3 + 1)
+                        else:
+                            n0 = ''
+                            n1 = ''
+                            n2 = ''
+                            n3 = ''
+                        # Write the face with all the attributes
+                        f.write('f ' + v0 + sep1 + t0 + sep2 + n0 + ' ' + v1 + sep1 + t1 + sep2 + n1 + ' ' + v2 + sep1 + t2 + sep2 + n2 + ' ' + v3 + sep1 + t3 + sep2 + n3 + '\n')
+                else:
+                    # No quads, only triangles
+                    for i in range(self.face.shape[0]):
+                        # Get face attributes
+                        # Vertex ids
+                        v0 = str(self.face[i, 0]+1)
+                        v1 = str(self.face[i, 1]+1)
+                        v2 = str(self.face[i, 2]+1)
+                        # Texture coordinates
+                        if wo.write_vertex_uvs:
+                            t0 = v0
+                            t1 = v1
+                            t2 = v2
+                        elif wo.write_corner_uvs:
+                            t0 = str(i*3 + 0 + 1) # Indexing starts at 1, so + 1
+                            t1 = str(i*3 + 1 + 1)
+                            t2 = str(i*3 + 2 + 1)
+                        else:
+                            t0 = ''
+                            t1 = ''
+                            t2 = ''
+                        # Normals
+                        if wo.write_vertex_normals:
+                            n0 = v0
+                            n1 = v1
+                            n2 = v2
+                        elif wo.write_face_normals:
+                            n0 = str(i + 1)
+                            n1 = str(i + 1)
+                            n2 = str(i + 1)
+                        elif wo.write_corner_normals:
+                            n0 = str(i*3 + 0 + 1)
+                            n1 = str(i*3 + 1 + 1)
+                            n2 = str(i*3 + 2 + 1)
+                        else:
+                            n0 = ''
+                            n1 = ''
+                            n2 = ''
+                        # Write the face with all the attributes
+                        f.write('f ' + v0 + sep1 + t0 + sep2 + n0 + ' ' + v1 + sep1 + t1 + sep2 + n1 + ' ' + v2 + sep1 + t2 + sep2 + n2 + '\n')
 
     # Save a mesh to a file in off format
     def save_off(self, filename, wo = write_options()):
@@ -444,10 +505,19 @@ class mesh:
                         str(self.vertex[i, 1])+' '+
                         str(self.vertex[i, 2])+'\n')
             # Write faces
-            for i in range(self.face.shape[0]):
-                f.write('3 '+str(self.face[i, 0])+' '+
-                             str(self.face[i, 1])+' '+
-                             str(self.face[i, 2])+'\n')
+            if self.face.shape[1] == 4:
+                # Quads
+                for i in range(self.face.shape[0]):
+                    f.write('4 '+str(self.face[i, 0])+' '+
+                                 str(self.face[i, 1])+' '+
+                                 str(self.face[i, 2])+' '+
+                                 str(self.face[i, 3])+'\n')
+            else:
+                # No quads
+                for i in range(self.face.shape[0]):
+                    f.write('3 '+str(self.face[i, 0])+' '+
+                                 str(self.face[i, 1])+' '+
+                                 str(self.face[i, 2])+'\n')
 
     # Geometry methods
 

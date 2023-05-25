@@ -27,4 +27,4 @@ for it in range(num_iterations):
 
 # Save the mesh
 wo = geomproc.write_options()
-tm.save('bunny_smooth.obj', wo)
+tm.save('output/bunny_smooth.obj', wo)

@@ -47,9 +47,9 @@ pc2 = tm2.sample(n1)
 pc2full = tm2.sample(n2)
 
 # Save input data
-tm1.save('bunny_normalized.obj')
-pc1.save('bunny_sample1.obj')
-pc2.save('bunny_sample2.obj')
+tm1.save('output/bunny_normalized.obj')
+pc1.save('output/bunny_sample1.obj')
+pc2.save('output/bunny_sample2.obj')
 
 
 #### Align the point clouds
@@ -71,7 +71,7 @@ pc1tr = pc1.copy()
 pc1tr.point = geomproc.apply_transformation(pc1.point, rot, trans)
 
 # Save registration
-pc1tr.save('bunny_sample1aligned.obj')
+pc1tr.save('output/bunny_sample1aligned.obj')
 
 # Save final correspondence so that we can see it
 if True: # Turn on/off with True/False
@@ -92,7 +92,7 @@ if True: # Turn on/off with True/False
     # Save the mesh
     wo = geomproc.write_options()
     wo.write_vertex_colors = True
-    result.save('bunny_corr.obj', wo)
+    result.save('output/bunny_corr.obj', wo)
 
 # Print some information
 print('Original transformation = ')

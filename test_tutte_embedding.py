@@ -153,9 +153,9 @@ mesh_name = 'crater'
 # Set input and output filenames
 input_mesh = 'meshes/' + mesh_name + '.obj'
 input_boundary = 'meshes/' + mesh_name + '.bnd'
-output_prefix_texture = mesh_name + '_textured'
-output_prefix_param = mesh_name + '_param'
-output_prefix_boundary = mesh_name + '_boundary'
+output_prefix_texture = 'output/' + mesh_name + '_textured'
+output_prefix_param = 'output/' + mesh_name + '_param'
+output_prefix_boundary = 'output/' + mesh_name + '_boundary'
 
 # Load and normalize mesh
 tm = geomproc.load(input_mesh)

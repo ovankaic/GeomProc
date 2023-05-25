@@ -71,6 +71,13 @@ geomproc.pcloud module
    :members:
    :show-inheritance:
 
+geomproc.read\_options module
+------------------------------
+
+.. automodule:: geomproc.read_options
+   :members:
+   :show-inheritance:
+
 geomproc.write\_options module
 ------------------------------
 

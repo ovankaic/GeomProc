@@ -29,9 +29,9 @@ for i in range(10): # Low frequency
 #for i in range(200, 201): # High frequency
     tm.data_to_color(V[:,i], True, 0)
     # Save the mesh    
-    tm.save('bunny_ev'+str(i)+'.obj', wo)
+    tm.save('output/bunny_ev'+str(i)+'.obj', wo)
     
 # Save some specific eigenvector
 #i = 100
 #tm.data_to_color(V[:,i], True, 0)
-#tm.save('bunny_ev'+str(i)+'.obj', wo)
+#tm.save('output/bunny_ev'+str(i)+'.obj', wo)

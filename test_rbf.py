@@ -17,7 +17,7 @@ tm = geomproc.load('meshes/bunny.obj')
 tm.normalize()
 
 # Save normalized mesh
-tm.save('bunny_normalized.obj')
+tm.save('output/bunny_normalized.obj')
 
 # Compute normal vectors
 tm.compute_vertex_and_face_normals()
@@ -49,4 +49,4 @@ end_time = time.time()
 print('Execution time = ' + str(end_time - start_time) +'s')
 
 # Save output mesh
-rec.save('bunny_rec.obj')
+rec.save('output/bunny_rec.obj')

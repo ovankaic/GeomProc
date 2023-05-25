@@ -67,7 +67,7 @@ if 0:
 # Save the mesh
     wo = geomproc.write_options()
     wo.write_vertex_colors = True
-    pnt.save('bunny_nv.obj', wo)
+    pnt.save('output/bunny_nv.obj', wo)
 
 # Save samples
-#pc.save('bunny_samples.ply')
+#pc.save('output/bunny_samples.ply')

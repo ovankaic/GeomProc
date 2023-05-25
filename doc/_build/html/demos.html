@@ -191,7 +191,7 @@ visible as part of the package <em>geomproc</em>.</p>
 <span class="n">tm</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
 
 <span class="c1"># Save normalized mesh</span>
-<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_normalized.obj&#39;</span><span class="p">)</span>
+<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_normalized.obj&#39;</span><span class="p">)</span>
 
 <span class="c1"># Compute normal vectors</span>
 <span class="n">tm</span><span class="o">.</span><span class="n">compute_vertex_and_face_normals</span><span class="p">()</span>
@@ -210,13 +210,13 @@ visible as part of the package <em>geomproc</em>.</p>
 <span class="c1"># Save the meshes for normals</span>
 <span class="n">wo</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">write_options</span><span class="p">()</span>
 <span class="n">wo</span><span class="o">.</span><span class="n">write_vertex_colors</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">vn</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_vnormal.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
-<span class="n">fn</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_fnormal.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
+<span class="n">vn</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_vnormal.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
+<span class="n">fn</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_fnormal.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
 
 <span class="c1"># Combine all geometries into one, if needed</span>
 <span class="c1">#tm.append(vn)</span>
 <span class="c1">#tm.append(fn)</span>
-<span class="c1">#tm.save(&#39;bunny_all.obj&#39;, wo)</span>
+<span class="c1">#tm.save(&#39;output/bunny_all.obj&#39;, wo)</span>
 </pre></div>
 </div>
 <p>Result: bunny with vertex normals (blue) and face normals (red)</p>
@@ -251,7 +251,7 @@ visible as part of the package <em>geomproc</em>.</p>
 <span class="c1"># Save the mesh</span>
 <span class="n">wo</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">write_options</span><span class="p">()</span>
 <span class="n">wo</span><span class="o">.</span><span class="n">write_vertex_colors</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_degree.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
+<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_degree.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Result: deviation from degree 6 shown with colors</p>
@@ -449,7 +449,7 @@ test_curvature_with_noise.py</p>
 
 <span class="c1"># Save the mesh</span>
 <span class="n">wo</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">write_options</span><span class="p">()</span>
-<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_smooth.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
+<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_smooth.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>With Laplacian operator: test_smoothing_with_operator.py</p>
@@ -483,7 +483,7 @@ test_curvature_with_noise.py</p>
         <span class="n">tm</span><span class="o">.</span><span class="n">vertex</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">tm</span><span class="o">.</span><span class="n">vertex</span><span class="p">)</span>
 
     <span class="c1"># Save resulting mesh</span>
-    <span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_smooth_&#39;</span> <span class="o">+</span> <span class="n">lap_types</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.obj&#39;</span><span class="p">)</span>
+    <span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_smooth_&#39;</span> <span class="o">+</span> <span class="n">lap_types</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.obj&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Result: smooth bunny obtained with uniform and geometric Laplacians</p>
@@ -648,9 +648,9 @@ test_curvature_with_noise.py</p>
 <span class="c1"># Set input and output filenames</span>
 <span class="n">input_mesh</span> <span class="o">=</span> <span class="s1">&#39;meshes/&#39;</span> <span class="o">+</span> <span class="n">mesh_name</span> <span class="o">+</span> <span class="s1">&#39;.obj&#39;</span>
 <span class="n">input_boundary</span> <span class="o">=</span> <span class="s1">&#39;meshes/&#39;</span> <span class="o">+</span> <span class="n">mesh_name</span> <span class="o">+</span> <span class="s1">&#39;.bnd&#39;</span>
-<span class="n">output_prefix_texture</span> <span class="o">=</span> <span class="n">mesh_name</span> <span class="o">+</span> <span class="s1">&#39;_textured&#39;</span>
-<span class="n">output_prefix_param</span> <span class="o">=</span> <span class="n">mesh_name</span> <span class="o">+</span> <span class="s1">&#39;_param&#39;</span>
-<span class="n">output_prefix_boundary</span> <span class="o">=</span> <span class="n">mesh_name</span> <span class="o">+</span> <span class="s1">&#39;_boundary&#39;</span>
+<span class="n">output_prefix_texture</span> <span class="o">=</span> <span class="s1">&#39;output/&#39;</span> <span class="o">+</span> <span class="n">mesh_name</span> <span class="o">+</span> <span class="s1">&#39;_textured&#39;</span>
+<span class="n">output_prefix_param</span> <span class="o">=</span> <span class="s1">&#39;output/&#39;</span> <span class="o">+</span> <span class="n">mesh_name</span> <span class="o">+</span> <span class="s1">&#39;_param&#39;</span>
+<span class="n">output_prefix_boundary</span> <span class="o">=</span> <span class="s1">&#39;output/&#39;</span> <span class="o">+</span> <span class="n">mesh_name</span> <span class="o">+</span> <span class="s1">&#39;_boundary&#39;</span>
 
 <span class="c1"># Load and normalize mesh</span>
 <span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">input_mesh</span><span class="p">)</span>
@@ -715,7 +715,7 @@ test_curvature_with_noise.py</p>
 <span class="n">tm</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
 
 <span class="c1"># Save normalized mesh</span>
-<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_normalized.obj&#39;</span><span class="p">)</span>
+<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_normalized.obj&#39;</span><span class="p">)</span>
 
 <span class="c1"># Compute normal vectors</span>
 <span class="n">tm</span><span class="o">.</span><span class="n">compute_vertex_and_face_normals</span><span class="p">()</span>
@@ -727,13 +727,13 @@ test_curvature_with_noise.py</p>
 <span class="c1"># Save just the samples</span>
 <span class="n">wo</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">write_options</span><span class="p">()</span>
 <span class="n">wo</span><span class="o">.</span><span class="n">write_point_normals</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">pc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_only_samples.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
+<span class="n">pc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_only_samples.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
 
 <span class="c1"># Save the samples as geometry that can be visualized</span>
 <span class="n">wo</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">write_options</span><span class="p">()</span>
 <span class="n">wo</span><span class="o">.</span><span class="n">write_vertex_colors</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">points</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_points</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">point</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
-<span class="n">points</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_samples.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
+<span class="n">points</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_samples.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -809,10 +809,10 @@ test_curvature_with_noise.py</p>
 <span class="c1"># Save the mesh</span>
     <span class="n">wo</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">write_options</span><span class="p">()</span>
     <span class="n">wo</span><span class="o">.</span><span class="n">write_vertex_colors</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">pnt</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_nv.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
+    <span class="n">pnt</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_nv.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
 
 <span class="c1"># Save samples</span>
-<span class="c1">#pc.save(&#39;bunny_samples.ply&#39;)</span>
+<span class="c1">#pc.save(&#39;output/bunny_samples.ply&#39;)</span>
 </pre></div>
 </div>
 </div>
@@ -873,9 +873,9 @@ test_curvature_with_noise.py</p>
 <span class="n">pc2</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">apply_transformation</span><span class="p">(</span><span class="n">pc2</span><span class="o">.</span><span class="n">point</span><span class="p">,</span> <span class="n">orig_rot</span><span class="p">,</span> <span class="n">orig_trans</span><span class="p">)</span>
 
 <span class="c1"># Save input data</span>
-<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_normalized.obj&#39;</span><span class="p">)</span>
-<span class="n">pc1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_sample1.obj&#39;</span><span class="p">)</span>
-<span class="n">pc2</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_sample2.obj&#39;</span><span class="p">)</span>
+<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_normalized.obj&#39;</span><span class="p">)</span>
+<span class="n">pc1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_sample1.obj&#39;</span><span class="p">)</span>
+<span class="n">pc2</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_sample2.obj&#39;</span><span class="p">)</span>
 
 
 <span class="c1">#### Align the point clouds</span>
@@ -886,7 +886,7 @@ test_curvature_with_noise.py</p>
 <span class="p">[</span><span class="n">rot</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">pc1tr</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">iter_count</span><span class="p">,</span> <span class="n">corr</span><span class="p">]</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">icp</span><span class="p">(</span><span class="n">pc1</span><span class="p">,</span> <span class="n">pc2</span><span class="p">,</span> <span class="n">error_threshold</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">)</span>
 
 <span class="c1"># Save registration</span>
-<span class="n">pc1tr</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_sample1aligned.obj&#39;</span><span class="p">)</span>
+<span class="n">pc1tr</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/output/bunny_sample1aligned.obj&#39;</span><span class="p">)</span>
 
 <span class="c1"># Save final correspondence so that we can see it</span>
 <span class="k">if</span> <span class="kc">True</span><span class="p">:</span> <span class="c1"># Turn on/off with True/False</span>
@@ -908,7 +908,7 @@ test_curvature_with_noise.py</p>
     <span class="c1"># Save the mesh</span>
     <span class="n">wo</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">write_options</span><span class="p">()</span>
     <span class="n">wo</span><span class="o">.</span><span class="n">write_vertex_colors</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">result</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_corr.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/output/bunny_corr.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
 
 <span class="c1"># Print some information</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original transformation = &#39;</span><span class="p">)</span>
@@ -974,9 +974,9 @@ samples</p>
 <span class="n">pc2full</span> <span class="o">=</span> <span class="n">tm2</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span>
 
 <span class="c1"># Save input data</span>
-<span class="n">tm1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_normalized.obj&#39;</span><span class="p">)</span>
-<span class="n">pc1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_sample1.obj&#39;</span><span class="p">)</span>
-<span class="n">pc2</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_sample2.obj&#39;</span><span class="p">)</span>
+<span class="n">tm1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_normalized.obj&#39;</span><span class="p">)</span>
+<span class="n">pc1</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_sample1.obj&#39;</span><span class="p">)</span>
+<span class="n">pc2</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_sample2.obj&#39;</span><span class="p">)</span>
 
 
 <span class="c1">#### Align the point clouds</span>
@@ -998,7 +998,7 @@ samples</p>
 <span class="n">pc1tr</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">apply_transformation</span><span class="p">(</span><span class="n">pc1</span><span class="o">.</span><span class="n">point</span><span class="p">,</span> <span class="n">rot</span><span class="p">,</span> <span class="n">trans</span><span class="p">)</span>
 
 <span class="c1"># Save registration</span>
-<span class="n">pc1tr</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_sample1aligned.obj&#39;</span><span class="p">)</span>
+<span class="n">pc1tr</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_sample1aligned.obj&#39;</span><span class="p">)</span>
 
 <span class="c1"># Save final correspondence so that we can see it</span>
 <span class="k">if</span> <span class="kc">True</span><span class="p">:</span> <span class="c1"># Turn on/off with True/False</span>
@@ -1019,7 +1019,7 @@ samples</p>
     <span class="c1"># Save the mesh</span>
     <span class="n">wo</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">write_options</span><span class="p">()</span>
     <span class="n">wo</span><span class="o">.</span><span class="n">write_vertex_colors</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">result</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_corr.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_corr.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
 
 <span class="c1"># Print some information</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original transformation = &#39;</span><span class="p">)</span>
@@ -1052,7 +1052,7 @@ samples</p>
 <span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">marching_cubes</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="mi">32</span><span class="p">,</span> <span class="n">surf</span><span class="o">.</span><span class="n">evaluate</span><span class="p">)</span>
 
 <span class="c1"># Save surface</span>
-<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;reconstruction.obj&#39;</span><span class="p">)</span>
+<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/reconstruction.obj&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Result: torus reconstructed from implicit function</p>
@@ -1080,7 +1080,7 @@ samples</p>
 <span class="n">tm</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
 
 <span class="c1"># Save normalized mesh</span>
-<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_normalized.obj&#39;</span><span class="p">)</span>
+<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_normalized.obj&#39;</span><span class="p">)</span>
 
 <span class="c1"># Compute normal vectors</span>
 <span class="n">tm</span><span class="o">.</span><span class="n">compute_vertex_and_face_normals</span><span class="p">()</span>
@@ -1112,7 +1112,7 @@ samples</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Execution time = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
 
 <span class="c1"># Save output mesh</span>
-<span class="n">rec</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_rec.obj&#39;</span><span class="p">)</span>
+<span class="n">rec</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_rec.obj&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Faster, vectorized version: test_rbf_vectorized.py</p>
@@ -1135,7 +1135,7 @@ samples</p>
 <span class="n">tm</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
 
 <span class="c1"># Save normalized mesh</span>
-<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_normalized.obj&#39;</span><span class="p">)</span>
+<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_normalized.obj&#39;</span><span class="p">)</span>
 
 <span class="c1"># Compute normal vectors</span>
 <span class="n">tm</span><span class="o">.</span><span class="n">compute_vertex_and_face_normals</span><span class="p">()</span>
@@ -1145,7 +1145,7 @@ samples</p>
 <span class="n">pc</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
 <span class="c1"># Define vectorized kernel for reconstruction</span>
-<span class="n">euclidean</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">euclidean</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
 <span class="n">kernel</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">euclidean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="mf">3.0</span><span class="p">)</span>
 <span class="c1">#wendland = lambda x, y, h: (math.pow(1 - np.linalg.norm(x - y)/h, 4))*(4.0*np.linalg.norm(x - y)/h + 1)</span>
 <span class="c1">#kernel = lambda x, y: wendland(x, y, 0.01)</span>
@@ -1168,7 +1168,7 @@ samples</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Execution time = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
 
 <span class="c1"># Save output mesh</span>
-<span class="n">rec</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_rec.obj&#39;</span><span class="p">)</span>
+<span class="n">rec</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_rec.obj&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1210,7 +1210,7 @@ samples</p>
 <span class="c1"># Save the mesh with the colors</span>
 <span class="n">wo</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">write_options</span><span class="p">()</span>
 <span class="n">wo</span><span class="o">.</span><span class="n">write_vertex_colors</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_vgeodesic.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
+<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_vgeodesic.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
 
 <span class="c1"># Compute graph distances on mesh faces</span>
 <span class="n">graph</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">graph</span><span class="p">()</span>
@@ -1235,7 +1235,7 @@ samples</p>
 <span class="c1"># Save the mesh with the colors</span>
 <span class="n">wo</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">write_options</span><span class="p">()</span>
 <span class="n">wo</span><span class="o">.</span><span class="n">write_vertex_colors</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;bunny_fgeodesic.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
+<span class="n">tm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_fgeodesic.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Result: approximate geodesic distance from a source vertex (blue region)</p>

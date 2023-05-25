@@ -18,18 +18,21 @@ import random
 
 from .mesh import *
 from .pcloud import *
+from .read_options import *
 
 
 #### Functions for loading geometric datasets
 
 # Create a model by loading its data from a file
-def load(filename):
+def load(filename, ro = read_options()):
     """Load a geometric dataset from a file
 
     Parameters
     ----------
     filename : string
         Name of the input filename
+    ro : read_options object, optional
+        Object with flags that indicate how to handle the input file
 
     Returns
     -------
@@ -46,6 +49,7 @@ def load(filename):
     --------
     geomproc.mesh
     geomproc.pcloud
+    geomproc.read_options
 
     Examples
     --------
@@ -57,15 +61,15 @@ def load(filename):
     # the file
     part = filename.split('.')
     if part[-1].lower() == 'obj':
-        return load_obj(filename)
+        return load_obj(filename, ro)
     elif part[-1].lower() == 'off':
-        return load_off(filename)
+        return load_off(filename, ro)
     else:
         raise RuntimeError('file format "'+part[-1]+'" not supported')
 
 
 # Load a mesh or point cloud from a file in obj format
-def load_obj(filename):
+def load_obj(filename, ro = read_options()):
 
     # Parse a vertex description of the form <vid>/<tid>/<nid>
     def get_parts(st):
@@ -145,27 +149,55 @@ def load_obj(filename):
             if part[0] == 'f':
                 # Check consistency of command
                 if (len(part) < 4) or (len(part) > 5):
-                    raise RuntimeError('f command should have 3 or 4 groups of numbers')
-                # Get first three ids of face
-                [vid1, tid1, nid1] = get_parts(part[1])
-                [vid2, tid2, nid2] = get_parts(part[2])
-                [vid3, tid3, nid3] = get_parts(part[3])
-                # Add face
-                face.append([vid1, vid2, vid3])
-                if nid1 != None:
-                    cnormal.append([nid1, nid2, nid3])
-                if tid1 != None:
-                    cuv.append([tid1, tid2, tid3])
-                # Check if it is a quad face
-                if len(part) == 5:
-                    # Parse last entry
-                    [vid4, tid4, nid4] = get_parts(part[4])
-                    # Add second face
-                    face.append([vid1, vid3, vid4])
+                    raise RuntimeError('f command should have 3 or 4 groups of numbers. Polygons of arbitrary size not supported by loading function')
+                # Check if we have a triangle
+                if len(part) == 4:
+                    # Get first three ids of face
+                    [vid1, tid1, nid1] = get_parts(part[1])
+                    [vid2, tid2, nid2] = get_parts(part[2])
+                    [vid3, tid3, nid3] = get_parts(part[3])
+                    # Add face
+                    face.append([vid1, vid2, vid3])
                     if nid1 != None:
-                        cnormal.append([nid1, nid3, nid4])
+                        cnormal.append([nid1, nid2, nid3])
                     if tid1 != None:
-                        cuv.append([tid1, tid3, tid4])
+                        cuv.append([tid1, tid2, tid3])
+                else:
+                    # We have a quad
+                    # Check if we should split polygons 
+                    if ro.split_polygons:
+                        # Split quad into two triangles
+                        # Get first three ids of face
+                        [vid1, tid1, nid1] = get_parts(part[1])
+                        [vid2, tid2, nid2] = get_parts(part[2])
+                        [vid3, tid3, nid3] = get_parts(part[3])
+                        # Add face
+                        face.append([vid1, vid2, vid3])
+                        if nid1 != None:
+                            cnormal.append([nid1, nid2, nid3])
+                        if tid1 != None:
+                            cuv.append([tid1, tid2, tid3])
+                        # Parse last entry
+                        [vid4, tid4, nid4] = get_parts(part[4])
+                        # Add second face
+                        face.append([vid1, vid3, vid4])
+                        if nid1 != None:
+                            cnormal.append([nid1, nid3, nid4])
+                        if tid1 != None:
+                            cuv.append([tid1, tid3, tid4])
+                    else:
+                        # Add entire polygon
+                        # Get all the ids of the face
+                        [vid1, tid1, nid1] = get_parts(part[1])
+                        [vid2, tid2, nid2] = get_parts(part[2])
+                        [vid3, tid3, nid3] = get_parts(part[3])
+                        [vid4, tid4, nid4] = get_parts(part[4])
+                        # Add face
+                        face.append([vid1, vid2, vid3, vid4])
+                        if nid1 != None:
+                            cnormal.append([nid1, nid2, nid3, nid4])
+                        if tid1 != None:
+                            cuv.append([tid1, tid2, tid3, tid4])
 
     # Compose output object
     if len(face) > 0:
@@ -209,7 +241,7 @@ def load_obj(filename):
 
 
 # Load a mesh or point cloud from a file in off format
-def load_off(filename):
+def load_off(filename, ro = read_options()):
     # Temporary lists to store the mesh data
     # Basic mesh: faces and vertices
     vertex = []
@@ -263,7 +295,7 @@ def load_off(filename):
             # Parse line
             part = line.split()
             if (len(part) != 4) and (len(part) != 5):
-                raise RuntimeError('face entry should have 4 or 5 numbers')
+                raise RuntimeError('face entry should have 4 or 5 numbers. Polygons of arbitrary size not supported by loading function')
             # Transform entries into numbers
             id1 = int(part[1])
             id2 = int(part[2])

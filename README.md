@@ -1,8 +1,8 @@
 # GeomProc
 Geometry processing library in python + numpy
 
-Version 1.1
-July 25, 2022
+Version 1.3
+May 25th, 2023
 
 ## Copyright notices
 Copyright (c) 2008-2022 Oliver van Kaick <ovankaic at gmail.com>

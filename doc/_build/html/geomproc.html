@@ -102,6 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-geomproc.mesh">geomproc.mesh module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-geomproc.misc">geomproc.misc module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-geomproc.pcloud">geomproc.pcloud module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.read_options">geomproc.read_options module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-geomproc.write_options">geomproc.write_options module</a></li>
 </ul>
 </li>
@@ -544,11 +545,12 @@ GeomProc geometry processing library.</p>
 </dl>
 <p class="rubric">Notes</p>
 <p>The cone is built so that the circles are parallel to the XY plane
-and the cone extends from 0 to height. The function also computes
-the analytical vertex normal vectors and curvature values of the
-surface, stored in the ‘vnormal’ and ‘curv’ fields of the model. See
-the help of ‘mesh.compute_curvature’ for information on the ‘curv’
-attribute.</p>
+and the cone extends from 0 to height. The circular base of the cone
+is at z = 0 and the apex (single vertex) at z = height. The function
+also computes the analytical vertex normal vectors and curvature
+values of the surface, stored in the ‘vnormal’ and ‘curv’ fields of
+the model. See the help of ‘mesh.compute_curvature’ for information
+on the ‘curv’ attribute.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="#geomproc.mesh.mesh.compute_curvature" title="geomproc.mesh.mesh.compute_curvature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh.mesh.compute_curvature</span></code></a></p>
@@ -610,7 +612,9 @@ information on the ‘curv’ attribute.</p>
 defined by the points line(i, 0:3) and line(i, 3:6).</p></li>
 <li><p><strong>radius</strong> (<em>float</em>) – Radius of the cylinder representing each line (the default
 value is 0.03)</p></li>
-<li><p><strong>color</strong> (<em>array_like</em>) – Color of each line (the default value is red)</p></li>
+<li><p><strong>color</strong> (<em>array_like</em>) – Color of each line (the default value is red). This parameter
+can be either a single color that is applied to all lines or an
+array of shape (n, 3) with a color for each line</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -888,7 +892,9 @@ and ‘curv’ attributes of the object.  See the help of
 value is 0.03)</p></li>
 <li><p><strong>length</strong> (<em>float</em>) – Length of the cylinder representing each vector (the default
 value is 0.05)</p></li>
-<li><p><strong>color</strong> (<em>array_like</em>) – Color of each vector (the default value is red)</p></li>
+<li><p><strong>color</strong> (<em>array_like</em>) – Color of each vector (the default value is red). This parameter
+can be either a single color that is applied to all vectors or
+an array of shape (n, 3) with a color for each vector</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1687,11 +1693,14 @@ Otherwise, the result is simply a list of points</p>
 GeomProc geometry processing library.</p>
 <dl class="py function">
 <dt id="geomproc.loading.load">
-<code class="sig-prename descclassname">geomproc.loading.</code><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.loading.load" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">geomproc.loading.</code><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">ro=&lt;geomproc.read_options.read_options object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.loading.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load a geometric dataset from a file</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> (<em>string</em>) – Name of the input filename</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – Name of the input filename</p></li>
+<li><p><strong>ro</strong> (<em>read_options object</em><em>, </em><em>optional</em>) – Object with flags that indicate how to handle the input file</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>dataset</strong> – Loaded dataset, either a mesh or point cloud</p>
@@ -1706,7 +1715,7 @@ determines the type of dataset to be created, either a mesh with
 vertices and faces or a point cloud with only points.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#module-geomproc.mesh" title="geomproc.mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh</span></code></a>, <a class="reference internal" href="#module-geomproc.pcloud" title="geomproc.pcloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.pcloud</span></code></a></p>
+<p><a class="reference internal" href="#module-geomproc.mesh" title="geomproc.mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.mesh</span></code></a>, <a class="reference internal" href="#module-geomproc.pcloud" title="geomproc.pcloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.pcloud</span></code></a>, <a class="reference internal" href="#module-geomproc.read_options" title="geomproc.read_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.read_options</span></code></a></p>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
@@ -2763,6 +2772,34 @@ formats.</p>
 </div>
 </dd></dl>
 
+</dd></dl>
+
+</div>
+<div class="section" id="module-geomproc.read_options">
+<span id="geomproc-read-options-module"></span><h2>geomproc.read_options module<a class="headerlink" href="#module-geomproc.read_options" title="Permalink to this headline">¶</a></h2>
+<p>This module contains the read_options class of the GeomProc geometry
+processing library.</p>
+<dl class="py class">
+<dt id="geomproc.read_options.read_options">
+<em class="property">class </em><code class="sig-prename descclassname">geomproc.read_options.</code><code class="sig-name descname">read_options</code><a class="headerlink" href="#geomproc.read_options.read_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that holds options of what information to read when loading a file</p>
+<dl class="py attribute">
+<dt id="geomproc.read_options.read_options.split_polygons">
+<code class="sig-name descname">split_polygons</code><a class="headerlink" href="#geomproc.read_options.read_options.split_polygons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split polygons into triangles when reading a file. The default
+value is True</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Notes</p>
+<p>Not all options are relevant to every file format. The class
+collects all the possible options supported by different file
+formats. The structure is relevant to both meshes and point clouds.</p>
 </dd></dl>
 
 </div>

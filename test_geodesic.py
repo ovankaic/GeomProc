@@ -33,7 +33,7 @@ tm.data_to_color(np.array(sp.dist[0]), True, 0)
 # Save the mesh with the colors
 wo = geomproc.write_options()
 wo.write_vertex_colors = True
-tm.save('bunny_vgeodesic.obj', wo)
+tm.save('output/bunny_vgeodesic.obj', wo)
 
 # Compute graph distances on mesh faces
 graph = geomproc.graph()
@@ -58,4 +58,4 @@ tm.data_to_color(data, True, 0)
 # Save the mesh with the colors
 wo = geomproc.write_options()
 wo.write_vertex_colors = True
-tm.save('bunny_fgeodesic.obj', wo)
+tm.save('output/bunny_fgeodesic.obj', wo)

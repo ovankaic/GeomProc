@@ -895,7 +895,9 @@ def create_vectors(pos, vect, radius=0.03, length=0.05, color=[1, 0, 0]):
         Length of the cylinder representing each vector (the default
         value is 0.05)
     color : array_like
-        Color of each vector (the default value is red)
+        Color of each vector (the default value is red). This parameter
+        can be either a single color that is applied to all vectors or
+        an array of shape (n, 3) with a color for each vector
 
     Returns
     -------
@@ -917,7 +919,15 @@ def create_vectors(pos, vect, radius=0.03, length=0.05, color=[1, 0, 0]):
     >>> vn = geomproc.create_vectors(tm.vertex, tm.vnormal, color=[0, 0, 1])
     >>> vn.save('vertex_normals.obj')
     """
- 
+
+    # Check color input
+    color_per_vector = False
+    color = np.array(color)
+    if color.shape[0] == pos.shape[0]:
+        color_per_line = True
+    elif color.shape[0] != 3:
+        raise RuntimeError('color input has the wrong number of dimensions. It should either be an 1x3 or nx3 array, where n is the number of vectors')
+
     # Create a canonical cylinder with origin at [0, 0, 0] and
     # pointing to [0, 0, length]
     cyl = create_cylinder(radius, 1, 8, 2, True)
@@ -966,8 +976,12 @@ def create_vectors(pos, vect, radius=0.03, length=0.05, color=[1, 0, 0]):
         # Add geometry of cylinder to mesh
         tm.vertex[vertex_index:(vertex_index + temp_cyl.vertex.shape[0]), :] =\
             temp_cyl.vertex
-        tm.vcolor[vertex_index:(vertex_index + temp_cyl.vertex.shape[0]), :] =\
-            color
+        if color_per_vector:
+            tm.vcolor[vertex_index:(vertex_index + temp_cyl.vertex.shape[0]), :] =\
+                color[i]
+        else:
+            tm.vcolor[vertex_index:(vertex_index + temp_cyl.vertex.shape[0]), :] =\
+                color
         tm.face[face_index:(face_index + temp_cyl.face.shape[0]), :] = \
             temp_cyl.face + vertex_index
         vertex_index += temp_cyl.vertex.shape[0]
@@ -988,7 +1002,9 @@ def create_lines(line, radius=0.03, color=[1, 0, 0]):
         Radius of the cylinder representing each line (the default
         value is 0.03)
     color : array_like
-        Color of each line (the default value is red)
+        Color of each line (the default value is red). This parameter
+        can be either a single color that is applied to all lines or an
+        array of shape (n, 3) with a color for each line
 
     Returns
     -------
@@ -1001,7 +1017,15 @@ def create_lines(line, radius=0.03, color=[1, 0, 0]):
     that represent a set of lines. Each cylinder connects the two end
     points of the corresponding line.
     """
- 
+
+    # Check color input
+    color_per_line = False
+    color = np.array(color)
+    if color.shape[0] == line.shape[0]:
+        color_per_line = True
+    elif color.shape[0] != 3:
+        raise RuntimeError('color input has the wrong number of dimensions. It should either be an 1x3 or nx3 array, where n is the number of lines')
+
     # Create a canonical cylinder with origin at [0, 0, 0] and
     # pointing to [0, 0, 1]
     cyl = create_cylinder(radius, 1, 8, 2, True)
@@ -1050,8 +1074,12 @@ def create_lines(line, radius=0.03, color=[1, 0, 0]):
         # Add geometry of cylinder to mesh
         tm.vertex[vertex_index:(vertex_index + temp_cyl.vertex.shape[0]), :] =\
             temp_cyl.vertex
-        tm.vcolor[vertex_index:(vertex_index + temp_cyl.vertex.shape[0]), :] =\
-            color
+        if color_per_line:
+            tm.vcolor[vertex_index:(vertex_index + temp_cyl.vertex.shape[0]), :] =\
+                color[i]
+        else:
+            tm.vcolor[vertex_index:(vertex_index + temp_cyl.vertex.shape[0]), :] =\
+                color
         tm.face[face_index:(face_index + temp_cyl.face.shape[0]), :] = \
             temp_cyl.face + vertex_index
         vertex_index += temp_cyl.vertex.shape[0]

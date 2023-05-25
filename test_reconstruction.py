@@ -16,4 +16,4 @@ surf.setup_torus(0.6, 0.3)
 tm = geomproc.marching_cubes(np.array([-1, -1, -1]), np.array([1, 1, 1]), 32, surf.evaluate)
 
 # Save surface
-tm.save('reconstruction.obj')
+tm.save('output/reconstruction.obj')

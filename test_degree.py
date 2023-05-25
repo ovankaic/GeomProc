@@ -24,4 +24,4 @@ tm.data_to_color(degree, True, 0)
 # Save the mesh
 wo = geomproc.write_options()
 wo.write_vertex_colors = True
-tm.save('bunny_degree.obj', wo)
+tm.save('output/bunny_degree.obj', wo)

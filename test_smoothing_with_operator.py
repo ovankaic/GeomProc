@@ -28,4 +28,4 @@ for j in range(len(lap_types)):
         tm.vertex += np.dot(L, tm.vertex)
 
     # Save resulting mesh
-    tm.save('bunny_smooth_' + lap_types[j] + '.obj')
+    tm.save('output/bunny_smooth_' + lap_types[j] + '.obj')

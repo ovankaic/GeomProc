@@ -1,3 +1,8 @@
+v1.3.0 2023/05/25: Added option to load and save quad meshes.
+
+v1.2.0 2023/05/25: Added array of colors option for create_lines and
+                   create_vectors.
+
 v1.1.0 2022/07/25: Added some bug fixes.
 
 v1.0.0 2021/04/30: First version of library assembled from existing

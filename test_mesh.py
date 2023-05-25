@@ -8,7 +8,7 @@ tm = geomproc.load('meshes/bunny.obj')
 tm.normalize()
 
 # Save normalized mesh
-tm.save('bunny_normalized.obj')
+tm.save('output/bunny_normalized.obj')
 
 # Compute normal vectors
 tm.compute_vertex_and_face_normals()
@@ -27,10 +27,10 @@ fn = geomproc.create_vectors(centroid, tm.fnormal, color=[1, 0, 0])
 # Save the meshes for normals
 wo = geomproc.write_options()
 wo.write_vertex_colors = True
-vn.save('bunny_vnormal.obj', wo)
-fn.save('bunny_fnormal.obj', wo)
+vn.save('output/bunny_vnormal.obj', wo)
+fn.save('output/bunny_fnormal.obj', wo)
 
 # Combine all geometries into one, if needed
 #tm.append(vn)
 #tm.append(fn)
-#tm.save('bunny_all.obj', wo)
+#tm.save('output/bunny_all.obj', wo)
