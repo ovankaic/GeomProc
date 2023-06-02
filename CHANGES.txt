@@ -1,3 +1,5 @@
+v1.4.0 2023/06/01: Fixed cylinder scaling in create_lines.
+
 v1.3.0 2023/05/25: Added option to load and save quad meshes.
 
 v1.2.0 2023/05/25: Added array of colors option for create_lines and
