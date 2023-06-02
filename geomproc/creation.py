@@ -990,7 +990,7 @@ def create_vectors(pos, vect, radius=0.03, length=0.05, color=[1, 0, 0]):
     return tm
 
 
-def create_lines(line, radius=0.03, color=[1, 0, 0]):
+def create_lines(line, radius=0.003, color=[1, 0, 0]):
     """Create geometry to represent a set of lines
 
     Parameters
@@ -1065,7 +1065,7 @@ def create_lines(line, radius=0.03, color=[1, 0, 0]):
         # Retrieve saved geometry of cylinder
         temp_cyl.vertex[:] = cyl.vertex[:]
         # Scale cylinder by length of line
-        temp_cyl.vertex *= length
+        temp_cyl.vertex[:, 2] *= length
         # Apply rotation matrix
         for j in range(temp_cyl.vertex.shape[0]):
             temp_cyl.vertex[j, :] = np.dot(R, temp_cyl.vertex[j, :].T)
