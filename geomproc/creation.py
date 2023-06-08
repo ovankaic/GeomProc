@@ -1061,7 +1061,10 @@ def create_lines(line, radius=0.003, color=[1, 0, 0]):
         # Specialized to [0, 0, 1]:
         axs = np.array([-vect[1], vect[0], 0])
         # Rotate cylinder by angle and axis
-        R = rotation_matrix(ang, axs)
+        if np.abs(ang) < np.finfo(float).eps:
+            R = rotation_matrix(0, [0, 0, 1])
+        else:
+            R = rotation_matrix(ang, axs)
         # Retrieve saved geometry of cylinder
         temp_cyl.vertex[:] = cyl.vertex[:]
         # Scale cylinder by length of line
