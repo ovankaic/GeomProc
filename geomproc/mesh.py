@@ -145,6 +145,58 @@ class mesh:
 
     # Data methods
 
+    # Memory allocations
+    def alloc(self, num_vertex, num_face, add_vnormal=False, add_vcolor=False, add_vuv=False, add_fnormal=False):
+        """Allocate memory for a mesh
+
+        Parameters
+        ----------
+        num_vertex : int
+            Number of vertices in the mesh
+        num_face : int
+            Number of faces in the mesh
+        add_vnormal : boolean
+            Allocate memory for vertex normals
+        add_vcolor : boolean
+            Allocate memory for vertex colors
+        add_vuv : boolean
+            Allocate memory for vertex texture coordinates
+        add_fnormal : boolean
+            Allocate memory for face normals
+
+        Returns
+        -------
+        None
+
+        Notes
+        -----
+        The method allocates the necessary numpy arrays for a mesh with
+        the given number of vertices and faces. The array entries are
+        set to zero. Optionally, other arrays can be initialized as
+        well, depending on whether the corresponding flags provided to
+        the method are set to True.
+        """
+
+        # Initialize all attributes
+
+        # Mesh data
+        # Vertex coordinates
+        self.vertex = np.zeros((num_vertex, 3), dtype=np.single)
+        # Triangular faces: integer indices starting at zero
+        self.face = np.zeros((num_face, 3), dtype=np.int_)
+        # Vertex normals
+        if add_vnormal:
+            self.vnormal = np.zeros((num_vertex, 3), dtype=np.single)
+        # Vertex colors
+        if add_vcolor:
+            self.vcolor = np.zeros((num_vertex, 3), dtype=np.single)
+        # Vertex texture coordinates
+        if add_vuv:
+            self.vuv =  np.zeros((num_vertex, 2), dtype=np.single)
+        # Face normals
+        if add_fnormal:
+            self.fnormal = np.zeros((num_face, 3), dtype=np.single)
+
     # Deep copy
     def copy(self):
         """Perform a deep copy of the mesh

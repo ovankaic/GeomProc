@@ -1,3 +1,5 @@
+v1.5.0 2023/07/24: Added mesh memory allocation method.
+
 v1.4.0 2023/06/01: Fixed cylinder scaling in create_lines.
 
 v1.3.0 2023/05/25: Added option to load and save quad meshes.
