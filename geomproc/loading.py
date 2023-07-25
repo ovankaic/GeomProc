@@ -47,6 +47,7 @@ def load(filename, ro = read_options()):
 
     This is a list of features supported by the different formats and
     the implementation:
+
     - obj: supports triangles or quads and split_polygons, normals,
       texture coordinates, vertex colors, texture_name
     - off: supports triangles or quads and split_polygons, no other

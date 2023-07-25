@@ -55,6 +55,7 @@ class write_options:
 
     This is a list of features supported by the different formats and
     the implementation:
+
     - Meshes:
         - obj: supports triangles or quads, write_vertex_colors,
           write_vertex_uvs or write_corner_uvs, write_vertex_normals or

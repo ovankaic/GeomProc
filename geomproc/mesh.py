@@ -103,9 +103,9 @@ class mesh:
         face in the mesh.
 
     vif : list of lists
-        Connectivity information: list of faces incident to a vertex.
+        Connectivity information: list of faces connected to a vertex.
         The i-th entry of this list stores the list of all faces
-        incident to the i-th vertex in the mesh, that is, all the faces
+        connected to the i-th vertex in the mesh, that is, all the faces
         that reference the i-th vertex.
 
     fif : list of lists

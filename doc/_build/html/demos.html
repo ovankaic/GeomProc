@@ -1,90 +1,48 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Demos &mdash; GeomProc 1.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="User Guide" href="userguide.html" />
     <link rel="prev" title="Welcome to GeomProc’s documentation!" href="index.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="index.html" class="icon icon-home"> GeomProc
           
-
-          
+          <a href="index.html" class="icon icon-home">
+            GeomProc
           </a>
-
-          
-            
-            
               <div class="version">
                 1.1
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Demos</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#load-a-mesh-and-visualize-normal-vectors">Load a mesh and visualize normal vectors</a></li>
@@ -108,78 +66,37 @@
 <li class="toctree-l1"><a class="reference internal" href="geomproc.html">geomproc package</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">GeomProc</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>Demos</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Demos</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/demos.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="demos">
-<h1>Demos<a class="headerlink" href="#demos" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="demos">
+<h1>Demos<a class="headerlink" href="#demos" title="Permalink to this heading"></a></h1>
 <p>Note in these code listings that there is no need to load submodules of
 the library, as all the classes and functions in the submodules are made
 visible as part of the package <em>geomproc</em>.</p>
-<div class="section" id="load-a-mesh-and-visualize-normal-vectors">
-<h2>Load a mesh and visualize normal vectors<a class="headerlink" href="#load-a-mesh-and-visualize-normal-vectors" title="Permalink to this headline">¶</a></h2>
+<section id="load-a-mesh-and-visualize-normal-vectors">
+<h2>Load a mesh and visualize normal vectors<a class="headerlink" href="#load-a-mesh-and-visualize-normal-vectors" title="Permalink to this heading"></a></h2>
 <p>test_mesh.py</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a mesh and compute some geometric information</span>
 
@@ -221,9 +138,9 @@ visible as part of the package <em>geomproc</em>.</p>
 </div>
 <p>Result: bunny with vertex normals (blue) and face normals (red)</p>
 <a class="reference internal image-reference" href="_images/bunny_normals.png"><img alt="Bunny with vertex normals (blue) and face normals (red)" src="_images/bunny_normals.png" style="width: 320px;" /></a>
-</div>
-<div class="section" id="visualize-mesh-degree">
-<h2>Visualize mesh degree<a class="headerlink" href="#visualize-mesh-degree" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="visualize-mesh-degree">
+<h2>Visualize mesh degree<a class="headerlink" href="#visualize-mesh-degree" title="Permalink to this heading"></a></h2>
 <p>test_degree.py</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Color a mesh according to the degrees of its vertices</span>
 
@@ -256,9 +173,9 @@ visible as part of the package <em>geomproc</em>.</p>
 </div>
 <p>Result: deviation from degree 6 shown with colors</p>
 <a class="reference internal image-reference" href="_images/bunny_degree.png"><img alt="Bunny with degree denoted by color" src="_images/bunny_degree.png" style="width: 320px;" /></a>
-</div>
-<div class="section" id="curvature-computation">
-<h2>Curvature computation<a class="headerlink" href="#curvature-computation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="curvature-computation">
+<h2>Curvature computation<a class="headerlink" href="#curvature-computation" title="Permalink to this heading"></a></h2>
 <p>Curvature comparison on various primitive surfaces: test_curvature.py</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute curvature values for a variety of analytical shapes</span>
 <span class="c1">#</span>
@@ -416,9 +333,9 @@ test_curvature_with_noise.py</p>
 <p>Result: curvature plot on bunny without and with noise</p>
 <a class="reference internal image-reference" href="_images/bunny_curvature.png"><img alt="Bunny with colors denoting Gaussian curvature" src="_images/bunny_curvature.png" style="width: 320px;" /></a>
 <a class="reference internal image-reference" href="_images/bunny_with_noise_curvature.png"><img alt="Noisy bunny with colors denoting Gaussian curvature" src="_images/bunny_with_noise_curvature.png" style="width: 320px;" /></a>
-</div>
-<div class="section" id="mesh-smoothing">
-<h2>Mesh smoothing<a class="headerlink" href="#mesh-smoothing" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="mesh-smoothing">
+<h2>Mesh smoothing<a class="headerlink" href="#mesh-smoothing" title="Permalink to this heading"></a></h2>
 <p>With averaging method: test_smoothing.py</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Smooth a mesh with an averaging algorithm</span>
 
@@ -489,9 +406,9 @@ test_curvature_with_noise.py</p>
 <p>Result: smooth bunny obtained with uniform and geometric Laplacians</p>
 <a class="reference internal image-reference" href="_images/bunny_smooth_uniform.png"><img alt="Smooth bunny obtained with uniform Laplacian" src="_images/bunny_smooth_uniform.png" style="width: 320px;" /></a>
 <a class="reference internal image-reference" href="_images/bunny_smooth_geometric.png"><img alt="Smooth bunny obtained with geometric Laplacian" src="_images/bunny_smooth_geometric.png" style="width: 320px;" /></a>
-</div>
-<div class="section" id="mesh-parameterization">
-<h2>Mesh parameterization<a class="headerlink" href="#mesh-parameterization" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="mesh-parameterization">
+<h2>Mesh parameterization<a class="headerlink" href="#mesh-parameterization" title="Permalink to this heading"></a></h2>
 <p>test_tutte_embedding.py</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Demo of computing a parameterization with Tutte&#39;s embedding</span>
 
@@ -506,7 +423,7 @@ test_curvature_with_noise.py</p>
 
 
 <span class="k">def</span> <span class="nf">map_boundary_to_circle</span><span class="p">(</span><span class="n">tm</span><span class="p">,</span> <span class="n">bnd</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Map the vertices of a boundary to a circle in the given order</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Map the vertices of a boundary to a circle in the given order</span>
 <span class="sd">   </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -548,7 +465,7 @@ test_curvature_with_noise.py</p>
 
 
 <span class="k">def</span> <span class="nf">param_matrix</span><span class="p">(</span><span class="n">tm</span><span class="p">,</span> <span class="n">lap_type</span><span class="p">,</span> <span class="n">bnd</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create the matrix needed for Tutte embedding based on the given boundary</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create the matrix needed for Tutte embedding based on the given boundary</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -593,7 +510,7 @@ test_curvature_with_noise.py</p>
 
 
 <span class="k">def</span> <span class="nf">tutte_embedding</span><span class="p">(</span><span class="n">tm</span><span class="p">,</span> <span class="n">lap_type</span><span class="p">,</span> <span class="n">bnd</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Compute Tutte embedding of a mesh according to a given Laplacian</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute Tutte embedding of a mesh according to a given Laplacian</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -702,9 +619,9 @@ test_curvature_with_noise.py</p>
 <a class="reference internal image-reference" href="_images/crater_param.png"><img alt="Parameterization of Crater Lake" src="_images/crater_param.png" style="width: 320px;" /></a>
 <a class="reference internal image-reference" href="_images/pattern.png"><img alt="Texture" src="_images/pattern.png" style="width: 200px;" /></a>
 <a class="reference internal image-reference" href="_images/crater_with_texture.png"><img alt="Textured Crater Lake" src="_images/crater_with_texture.png" style="width: 320px;" /></a>
-</div>
-<div class="section" id="sample-a-mesh">
-<h2>Sample a mesh<a class="headerlink" href="#sample-a-mesh" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="sample-a-mesh">
+<h2>Sample a mesh<a class="headerlink" href="#sample-a-mesh" title="Permalink to this heading"></a></h2>
 <p>test_sample.py</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load and sample a mesh</span>
 
@@ -736,9 +653,9 @@ test_curvature_with_noise.py</p>
 <span class="n">points</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_samples.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="estimate-normals-of-a-point-cloud">
-<h2>Estimate normals of a point cloud<a class="headerlink" href="#estimate-normals-of-a-point-cloud" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="estimate-normals-of-a-point-cloud">
+<h2>Estimate normals of a point cloud<a class="headerlink" href="#estimate-normals-of-a-point-cloud" title="Permalink to this heading"></a></h2>
 <p>test_normal.py</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute normals of a point cloud</span>
 
@@ -815,9 +732,9 @@ test_curvature_with_noise.py</p>
 <span class="c1">#pc.save(&#39;output/bunny_samples.ply&#39;)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="align-two-point-clouds">
-<h2>Align two point clouds<a class="headerlink" href="#align-two-point-clouds" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="align-two-point-clouds">
+<h2>Align two point clouds<a class="headerlink" href="#align-two-point-clouds" title="Permalink to this heading"></a></h2>
 <p>With the ICP method: test_icp.py</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Align two point clouds with the ICP algorithm</span>
 
@@ -886,7 +803,7 @@ test_curvature_with_noise.py</p>
 <span class="p">[</span><span class="n">rot</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">pc1tr</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">iter_count</span><span class="p">,</span> <span class="n">corr</span><span class="p">]</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">icp</span><span class="p">(</span><span class="n">pc1</span><span class="p">,</span> <span class="n">pc2</span><span class="p">,</span> <span class="n">error_threshold</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">)</span>
 
 <span class="c1"># Save registration</span>
-<span class="n">pc1tr</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/output/bunny_sample1aligned.obj&#39;</span><span class="p">)</span>
+<span class="n">pc1tr</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_sample1aligned.obj&#39;</span><span class="p">)</span>
 
 <span class="c1"># Save final correspondence so that we can see it</span>
 <span class="k">if</span> <span class="kc">True</span><span class="p">:</span> <span class="c1"># Turn on/off with True/False</span>
@@ -908,7 +825,7 @@ test_curvature_with_noise.py</p>
     <span class="c1"># Save the mesh</span>
     <span class="n">wo</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">write_options</span><span class="p">()</span>
     <span class="n">wo</span><span class="o">.</span><span class="n">write_vertex_colors</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">result</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/output/bunny_corr.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_corr.obj&#39;</span><span class="p">,</span> <span class="n">wo</span><span class="p">)</span>
 
 <span class="c1"># Print some information</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original transformation = &#39;</span><span class="p">)</span>
@@ -1030,9 +947,9 @@ samples</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="reconstruction-of-an-implicit-surface">
-<h2>Reconstruction of an implicit surface<a class="headerlink" href="#reconstruction-of-an-implicit-surface" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="reconstruction-of-an-implicit-surface">
+<h2>Reconstruction of an implicit surface<a class="headerlink" href="#reconstruction-of-an-implicit-surface" title="Permalink to this heading"></a></h2>
 <p>test_reconstruction.py</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test reconstruction of an implicit function with the marching cubes</span>
 <span class="c1"># algorithm</span>
@@ -1057,9 +974,9 @@ samples</p>
 </div>
 <p>Result: torus reconstructed from implicit function</p>
 <a class="reference internal image-reference" href="_images/torus_rec.png"><img alt="Reconstruction of a torus" src="_images/torus_rec.png" style="width: 320px;" /></a>
-</div>
-<div class="section" id="rbf-surface-reconstruction">
-<h2>RBF surface reconstruction<a class="headerlink" href="#rbf-surface-reconstruction" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="rbf-surface-reconstruction">
+<h2>RBF surface reconstruction<a class="headerlink" href="#rbf-surface-reconstruction" title="Permalink to this heading"></a></h2>
 <p>Simple version: test_rbf.py</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test reconstruction of a set of samples with the RBF method</span>
 
@@ -1171,9 +1088,9 @@ samples</p>
 <span class="n">rec</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_rec.obj&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="approximate-geodesic-distances">
-<h2>Approximate geodesic distances<a class="headerlink" href="#approximate-geodesic-distances" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="approximate-geodesic-distances">
+<h2>Approximate geodesic distances<a class="headerlink" href="#approximate-geodesic-distances" title="Permalink to this heading"></a></h2>
 <p>test_geodesic.py</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Approximate geodesic distances on a mesh by computing graph distances</span>
 
@@ -1240,55 +1157,38 @@ samples</p>
 </div>
 <p>Result: approximate geodesic distance from a source vertex (blue region)</p>
 <a class="reference internal image-reference" href="_images/bunny_geodesic.png"><img alt="Bunny with color denoting geodesic distances" src="_images/bunny_geodesic.png" style="width: 320px;" /></a>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="userguide.html" class="btn btn-neutral float-right" title="User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to GeomProc’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="userguide.html" class="btn btn-neutral float-right" title="User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2022, Oliver van Kaick.
-
-    </p>
+    <p>&#169; Copyright 2022, Oliver van Kaick.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
