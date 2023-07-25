@@ -15,6 +15,7 @@ import numpy as np
 import copy
 import math
 import random
+import os
 
 from .write_options import *
 from .misc import *
@@ -376,7 +377,8 @@ class mesh:
         # Create material file, if needed
         if (wo.write_vertex_uvs or wo.write_corner_uvs) and (wo.texture_name != ''):
             # Write material file with texture name
-            fn_part = filename.split('.')
+            fn = os.path.basename(filename)
+            fn_part = fn.split('.')
             material_filename = fn_part[0] + '.mtl'
             with open(material_filename, 'w') as f: 
                 f.write('newmtl textured\n')
