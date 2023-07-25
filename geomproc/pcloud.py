@@ -151,7 +151,7 @@ class pcloud:
                             str(self.normal[i, 1])+' '+
                             str(self.normal[i, 2])+'\n')
 
-    # Save a point cloud to a file in off format
+    # Save a point cloud to a file in ply format
     def save_ply(self, filename, wo = write_options()):
         # Open the file
         with open(filename, 'w') as f: 
@@ -167,9 +167,9 @@ class pcloud:
                 f.write('property float ny\n')
                 f.write('property float nz\n')
             if wo.write_point_colors:
-                f.write('property float r\n')
-                f.write('property float g\n')
-                f.write('property float b\n')
+                f.write('property uchar red\n')
+                f.write('property uchar green\n')
+                f.write('property uchar blue\n')
             f.write('end_header\n')
             # Write data
             for i in range(self.point.shape[0]):
@@ -181,9 +181,9 @@ class pcloud:
                                 str(self.normal[i, 1])+' '+
                                 str(self.normal[i, 2]))
                 if wo.write_point_colors:
-                    f.write(' '+str(self.color[i, 0])+' '+
-                                str(self.color[i, 1])+' '+
-                                str(self.color[i, 2]))
+                    f.write(' '+str(int(self.color[i, 0]*255.0))+' '+
+                                str(int(self.color[i, 1]*255.0))+' '+
+                                str(int(self.color[i, 2]*255.0)))
                 f.write('\n')
 
     def estimate_normals_simple(self, k):

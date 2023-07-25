@@ -45,6 +45,15 @@ def load(filename, ro = read_options()):
     determines the type of dataset to be created, either a mesh with
     vertices and faces or a point cloud with only points.
 
+    This is a list of features supported by the different formats and
+    the implementation:
+    - obj: supports triangles or quads and split_polygons, normals,
+      texture coordinates, vertex colors, texture_name
+    - off: supports triangles or quads and split_polygons, no other
+      attributes
+    - ply: supports triangles or quads and split_polygons, vertex/point
+      normals, vertex/point colors, face colors
+
     See Also
     --------
     geomproc.mesh
@@ -64,6 +73,8 @@ def load(filename, ro = read_options()):
         return load_obj(filename, ro)
     elif part[-1].lower() == 'off':
         return load_off(filename, ro)
+    elif part[-1].lower() == 'ply':
+        return load_ply(filename, ro)
     else:
         raise RuntimeError('file format "'+part[-1]+'" not supported')
 
@@ -300,14 +311,20 @@ def load_off(filename, ro = read_options()):
             id1 = int(part[1])
             id2 = int(part[2])
             id3 = int(part[3])
-            # Append face
-            face.append([id1, id2, id3])
             # Check if it is a quad face
             if len(part) == 5:
                 # Get remaining number
                 id4 = int(part[4])
-                # Add second face
-                face.append([id1, id3, id4])
+                if ro.split_polygons:
+                    # Add two triangles
+                    face.append([id1, id2, id3])
+                    face.append([id1, id3, id4])
+                else:
+                    # Add quad
+                    face.append([id1, id2, id3, id4])
+            else:
+                # Append single triangle
+                face.append([id1, id2, id3])
 
     # Compose output object
     if len(face) > 0:
@@ -321,6 +338,198 @@ def load_off(filename, ro = read_options()):
         output = pcloud()
         # Points and colors
         output.point = np.array(vertex)
+
+    # Return output object
+    return output
+
+
+# Load a mesh or point cloud from a file in ply format
+def load_ply(filename, ro = read_options()):
+
+    # Temporary lists to store the mesh data
+    # Basic mesh: faces and vertices
+    vertex = []
+    face = []
+    # Vertex colors
+    vcolor = []
+    # Face colors
+    fcolor = []
+    # Normals and texture coordinates that can be reused
+    normal = []
+    uv = []
+
+    # Open the file
+    with open(filename, 'r') as f: 
+
+        #### Read header
+        header = []
+
+        # Check if file starts with the string 'ply'
+        line = f.readline().strip()
+        if line != 'ply':
+            raise RuntimeError('file does not have a valid ply magic number in the header')
+        # Check if the file format and version is supported
+        line = f.readline().strip()
+        part = line.split()
+        if part[0] != 'format':
+            raise RuntimeError('file should specify ply format before any other commands')
+        if part[1] != 'ascii':
+            raise RuntimeError('only ply ascii format 1.0 is currently supported')
+        if part[2] != '1.0':
+            raise RuntimeError('only ply ascii format 1.0 is currently supported')
+        # Read rest of header entries
+        line = f.readline().strip()
+        while line != 'end_header':
+            part = line.split()
+            
+            if part[0] == 'element':
+                # Append element name, count, and empty list of properties
+                header.append([part[1], int(part[2]), []])
+            elif part[0] == 'property':
+                if part[1] == 'list':
+                    # Append name, list, and types to the current element
+                    header[-1][2].append([part[4], part[1], part[2], part[3]])
+                else:
+                    # Append name and type to the current element
+                    header[-1][2].append([part[2], part[1]])
+            elif part[0] == 'comment':
+                [] # Ignore comment
+            else:
+                # Report error for unsupported command
+                raise RuntimeError('unrecognized command"' + part[0] + '"')
+
+            # Read next line and go back to while loop
+            line = f.readline().strip()
+
+        #### Read data
+        #print(header) # For debug
+
+        # For each element in the header
+        for i in range(len(header)):
+            # For each entry in the current element
+            for j in range(header[i][1]):
+                # Read data in the file
+                line = f.readline().strip()
+                part = line.split()
+                index = 0
+                # For each property in the current entry
+                for k in range(len(header[i][2])):
+                    # Parse property and copy data to corresponding array
+                    if header[i][0] == 'vertex':
+                        if header[i][2][k][0] == 'x':
+                            if j == len(vertex):
+                                vertex.append([0.0, 0.0, 0.0])
+                            vertex[-1][0] = float(part[index])
+                        if header[i][2][k][0] == 'y':
+                            if j == len(vertex):
+                                vertex.append([0.0, 0.0, 0.0])
+                            vertex[-1][1] = float(part[index])
+                        if header[i][2][k][0] == 'z':
+                            if j == len(vertex):
+                                vertex.append([0.0, 0.0, 0.0])
+                            vertex[-1][2] = float(part[index])
+                        if header[i][2][k][0] == 'nx':
+                            if j == len(normal):
+                                normal.append([0.0, 0.0, 0.0])
+                            normal[-1][0] = float(part[index])
+                        if header[i][2][k][0] == 'ny':
+                            if j == len(normal):
+                                normal.append([0.0, 0.0, 0.0])
+                            normal[-1][1] = float(part[index])
+                        if header[i][2][k][0] == 'nz':
+                            if j == len(normal):
+                                normal.append([0.0, 0.0, 0.0])
+                            normal[-1][2] = float(part[index])
+                        if header[i][2][k][0] == 'red':
+                            if j == len(vcolor):
+                                vcolor.append([0.0, 0.0, 0.0])
+                            if header[i][2][k][1] == 'uchar':
+                                vcolor[-1][0] = float(part[index])/255.0
+                            elif header[i][2][k][1] == 'float':
+                                vcolor[-1][0] = float(part[index])
+                        if header[i][2][k][0] == 'green':
+                            if j == len(vcolor):
+                                vcolor.append([0.0, 0.0, 0.0])
+                            if header[i][2][k][1] == 'uchar':
+                                vcolor[-1][1] = float(part[index])/255.0
+                            elif header[i][2][k][1] == 'float':
+                                vcolor[-1][1] = float(part[index])
+                        if header[i][2][k][0] == 'blue':
+                            if j == len(vcolor):
+                                vcolor.append([0.0, 0.0, 0.0])
+                            if header[i][2][k][1] == 'uchar':
+                                vcolor[-1][2] = float(part[index])/255.0
+                            elif header[i][2][k][1] == 'float':
+                                vcolor[-1][2] = float(part[index])
+
+                    if header[i][0] == 'face':
+                        if (header[i][2][k][0] == 'vertex_index') or \
+                           (header[i][2][k][0] == 'vertex_indices'):
+                            count = int(part[index])
+                            index += 1
+                            if count == 3:
+                                temp = [0, 0, 0]
+                            elif count == 4:
+                                temp = [0, 0, 0, 0]
+                            else:
+                                raise RuntimeError('face entry should have 3 or 4 vertex references. Polygons of arbitrary size not supported by loading function')
+                            for vi in range(count):
+                                temp[vi] = int(part[index])
+                                index += 1
+                            index -= 1
+                            if count == 3:
+                                face.append(temp)
+                            else: # if count == 4:
+                                if ro.split_polygons:
+                                    face.append([temp[0], temp[1], temp[2]])
+                                    face.append([temp[0], temp[2], temp[3]])
+                                else:
+                                    face.append(temp)
+                        if header[i][2][k][0] == 'red':
+                            if j == len(fcolor):
+                                fcolor.append([0.0, 0.0, 0.0])
+                            if header[i][2][k][1] == 'uchar':
+                                fcolor[-1][0] = float(part[index])/255.0
+                            elif header[i][2][k][1] == 'float':
+                                fcolor[-1][0] = float(part[index])
+                        if header[i][2][k][0] == 'green':
+                            if j == len(fcolor):
+                                fcolor.append([0.0, 0.0, 0.0])
+                            if header[i][2][k][1] == 'uchar':
+                                fcolor[-1][1] = float(part[index])/255.0
+                            elif header[i][2][k][1] == 'float':
+                                fcolor[-1][1] = float(part[index])
+                        if header[i][2][k][0] == 'blue':
+                            if j == len(fcolor):
+                                fcolor.append([0.0, 0.0, 0.0])
+                            if header[i][2][k][1] == 'uchar':
+                                fcolor[-1][2] = float(part[index])/255.0
+                            elif header[i][2][k][1] == 'float':
+                                fcolor[-1][2] = float(part[index])
+
+                    index += 1
+
+    # Compose output object
+    if len(face) > 0:
+        # Create a mesh object
+        output = mesh()
+        # Vertices and faces
+        output.vertex = np.array(vertex)
+        output.face = np.array(face, dtype=np.int_)
+        output.vcolor = np.array(vcolor)
+        output.fcolor = np.array(fcolor)
+    elif len(vertex) > 0:
+        # Create a point cloud object
+        output = pcloud()
+        # Points and colors
+        output.point = np.array(vertex)
+        output.color = np.array(vcolor)
+        # Other properties
+        if len(normal) > 0:
+            if len(normal) == len(vertex):
+                output.normal = np.array(normal)
+    else:
+        raise RuntimeError('no data read from the file')
 
     # Return output object
     return output

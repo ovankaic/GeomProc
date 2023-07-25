@@ -77,6 +77,13 @@ class mesh:
         columns of the array are the x, y, and z components of the
         normal vector.
 
+    fcolor : numpy.array_like
+        Face colors. The array should be either empty (to indicate that
+        this attribute is not present) or of shape (m, 3), where m is
+        the number of face in the mesh. The i-th row of the array stores
+        the RGB color for the i-th face in the mesh in the order r, g,
+        and b.
+
     cnormal : numpy.array_like
         Corner normals. This attribute stores the three normal vectors
         for the three corners of each face. The array should be either
@@ -130,6 +137,8 @@ class mesh:
         self.vuv =  np.zeros((0, 2), dtype=np.single)
         # Face normals
         self.fnormal = np.zeros((0, 3), dtype=np.single)
+        # Face colors
+        self.fcolor = np.zeros((0, 3), dtype=np.single)
         # Corner normals: one normal for each corner of a face
         self.cnormal = np.zeros((0, 0),  dtype=np.single)
         # Corner texture coordinates: one (u, v) pair for each corner of a face
@@ -146,7 +155,7 @@ class mesh:
     # Data methods
 
     # Memory allocations
-    def alloc(self, num_vertex, num_face, add_vnormal=False, add_vcolor=False, add_vuv=False, add_fnormal=False):
+    def alloc(self, num_vertex, num_face, add_vnormal=False, add_vcolor=False, add_vuv=False, add_fnormal=False, add_fcolor=False):
         """Allocate memory for a mesh
 
         Parameters
@@ -163,6 +172,8 @@ class mesh:
             Allocate memory for vertex texture coordinates
         add_fnormal : boolean
             Allocate memory for face normals
+        add_fcolor : boolean
+            Allocate memory for face colors
 
         Returns
         -------
@@ -196,6 +207,9 @@ class mesh:
         # Face normals
         if add_fnormal:
             self.fnormal = np.zeros((num_face, 3), dtype=np.single)
+        # Face colors
+        if add_fcolor:
+            self.fcolor = np.zeros((num_face, 3), dtype=np.single)
 
     # Deep copy
     def copy(self):
@@ -218,6 +232,7 @@ class mesh:
         tm.vcolor = self.vcolor.copy()
         tm.vuv = self.vuv.copy()
         tm.fnormal = self.fnormal.copy()
+        tm.fcolor = self.fcolor.copy()
         tm.cnormal = self.cnormal.copy()
         tm.cuv = self.cuv.copy()
         tm.vif = copy.deepcopy(self.vif)
@@ -287,7 +302,8 @@ class mesh:
         self.vnormal = merge_arrays(self.vnormal, tm.vnormal, svc, tvc, 3, np.single)
         self.vcolor = merge_arrays(self.vcolor, tm.vcolor, svc, tvc, 3, np.single, 0.8)
         self.vuv = merge_arrays(self.vuv, tm.vuv, svc, tvc,  2, np.single)
-        self.fnormal = merge_arrays(self.fnormal, tm.fnormal, sfc, tfc,  3, np.single)
+        self.fnormal = merge_arrays(self.fnormal, tm.fnormal, sfc, tfc, 3, np.single)
+        self.fcolor = merge_arrays(self.fcolor, tm.fcolor, sfc, tfc, 3, np.single)
         self.cnormal = merge_2d_arrays(self.cnormal, tm.cnormal, sfc, tfc, 3, 3, np.single)
         self.cuv = merge_2d_arrays(self.cnormal, tm.cnormal, sfc, tfc, 3, 3, np.single)
 
@@ -342,6 +358,8 @@ class mesh:
             return self.save_obj(filename, wo)
         elif part[-1].lower() == 'off':
             return self.save_off(filename, wo)
+        elif part[-1].lower() == 'ply':
+            return self.save_ply(filename, wo)
         else:
             raise RuntimeError('file format "'+part[-1]+'" not supported')
 
@@ -570,6 +588,62 @@ class mesh:
                     f.write('3 '+str(self.face[i, 0])+' '+
                                  str(self.face[i, 1])+' '+
                                  str(self.face[i, 2])+'\n')
+
+    # Save a mesh to a file in ply format
+    def save_ply(self, filename, wo = write_options()):
+        # Open the file
+        with open(filename, 'w') as f: 
+            # Write header
+            f.write('ply\n')
+            f.write('format ascii 1.0\n')
+            f.write('element vertex '+str(self.vertex.shape[0])+'\n')
+            f.write('property float x\n')
+            f.write('property float y\n')
+            f.write('property float z\n')
+            if wo.write_vertex_normals:
+                f.write('property float nx\n')
+                f.write('property float ny\n')
+                f.write('property float nz\n')
+            if wo.write_vertex_colors:
+                f.write('property uchar red\n')
+                f.write('property uchar green\n')
+                f.write('property uchar blue\n')
+            f.write('element face '+str(self.face.shape[0])+'\n')
+            f.write('property list uchar int vertex_index\n')
+            if wo.write_face_colors:
+                f.write('property uchar red\n')
+                f.write('property uchar green\n')
+                f.write('property uchar blue\n')
+            f.write('end_header\n')
+            # Write data
+            for i in range(self.vertex.shape[0]):
+                f.write(str(self.vertex[i, 0])+' '+
+                        str(self.vertex[i, 1])+' '+
+                        str(self.vertex[i, 2]))
+                if wo.write_vertex_normals:
+                    f.write(' '+str(self.vnormal[i, 0])+' '+
+                                str(self.vnormal[i, 1])+' '+
+                                str(self.vnormal[i, 2]))
+                if wo.write_vertex_colors:
+                    f.write(' '+str(int(self.vcolor[i, 0]*255.0))+' '+
+                                str(int(self.vcolor[i, 1]*255.0))+' '+
+                                str(int(self.vcolor[i, 2]*255.0)))
+                f.write('\n')
+            for i in range(self.face.shape[0]):
+                if self.face.shape[1] == 4:
+                    f.write('4 ' + str(self.face[i, 0])+' '+
+                            str(self.face[i, 1])+' '+
+                            str(self.face[i, 2])+' '+
+                            str(self.face[i, 3]))
+                else:
+                    f.write('3 ' + str(self.face[i, 0])+' '+
+                            str(self.face[i, 1])+' '+
+                            str(self.face[i, 2]))
+                if wo.write_face_colors:
+                    f.write(' '+str(int(self.fcolor[i, 0]*255.0))+' '+
+                                str(int(self.fcolor[i, 1]*255.0))+' '+
+                                str(int(self.fcolor[i, 2]*255.0)))
+                f.write('\n')
 
     # Geometry methods
 
