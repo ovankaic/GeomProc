@@ -69,11 +69,17 @@ class shortest_path:
         sources[source_index] to node 'target'
         """
 
+        # Find index of provided source
+        index = self.sources.index(source_index)
+        if index == -1:
+            raise RuntimeError('provided source not found in the list of sources')
+
+        # Trace back from the last node to the first
         node = target
         path = []
         while node != -1:
-            path.insert(node)
-            node = pred[source_index][node]
+            path.insert(0, node)
+            node = self.pred[index][node]
         return path
 
 
