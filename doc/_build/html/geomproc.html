@@ -79,6 +79,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#geomproc.creation.create_sphere"><code class="docutils literal notranslate"><span class="pre">create_sphere()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#geomproc.creation.create_sphere_samples"><code class="docutils literal notranslate"><span class="pre">create_sphere_samples()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#geomproc.creation.create_subdivided_cube"><code class="docutils literal notranslate"><span class="pre">create_subdivided_cube()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geomproc.creation.create_superquadric"><code class="docutils literal notranslate"><span class="pre">create_superquadric()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geomproc.creation.create_supertoroid"><code class="docutils literal notranslate"><span class="pre">create_supertoroid()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#geomproc.creation.create_torus"><code class="docutils literal notranslate"><span class="pre">create_torus()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#geomproc.creation.create_vectors"><code class="docutils literal notranslate"><span class="pre">create_vectors()</span></code></a></li>
 </ul>
@@ -906,6 +908,83 @@ sharing vertices at the edges.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_subdivided_cube</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geomproc.creation.create_superquadric">
+<span class="sig-prename descclassname"><span class="pre">geomproc.creation.</span></span><span class="sig-name descname"><span class="pre">create_superquadric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_theta_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_phi_samples</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.creation.create_superquadric" title="Permalink to this definition"></a></dt>
+<dd><p>Create a 3D model of a superquadric</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<em>float</em><em> or </em><em>array_like</em>) – Radius of the superquadric. If radius is a vector, it denotes
+the radii along each axis.</p></li>
+<li><p><strong>e1</strong> (<em>float</em>) – Parameters of the superquadric. The parameters should be
+positive scalars, where values closer to 0 create shapes that
+are more box-like.</p></li>
+<li><p><strong>e2</strong> (<em>float</em>) – Parameters of the superquadric. The parameters should be
+positive scalars, where values closer to 0 create shapes that
+are more box-like.</p></li>
+<li><p><strong>num_theta_samples</strong> (<em>int</em>) – Number of uniform angular samples along the equator of the
+superquadric</p></li>
+<li><p><strong>num_phi_samples</strong> (<em>int</em>) – Number of uniform angular samples along the meridians of the
+superquadric</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>tm</strong> – Mesh object representing the superquadric</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function creates a triangle mesh representing a superquadric
+with given radius and centered at the origin. The quadric is built
+from a standard parameterization based on two angles theta and phi.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_superquadric</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geomproc.creation.create_supertoroid">
+<span class="sig-prename descclassname"><span class="pre">geomproc.creation.</span></span><span class="sig-name descname"><span class="pre">create_supertoroid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loop_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tube_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_loop_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_tube_samples</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.creation.create_supertoroid" title="Permalink to this definition"></a></dt>
+<dd><p>Create a 3D model of a supertoroid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loop_radius</strong> (<em>float</em>) – Radius of the loop (larger circle) of the toroid</p></li>
+<li><p><strong>tube_radius</strong> (<em>float</em>) – Radius of the tube (smaller circle) of the toroid</p></li>
+<li><p><strong>e1</strong> (<em>float</em>) – Parameters of the supertoroid. The parameters should be positive
+scalars, where values closer to 0 create shapes that are more
+box-like.</p></li>
+<li><p><strong>e2</strong> (<em>float</em>) – Parameters of the supertoroid. The parameters should be positive
+scalars, where values closer to 0 create shapes that are more
+box-like.</p></li>
+<li><p><strong>num_loop_samples</strong> (<em>int</em>) – Number of uniform angular samples along the loop of the toroid</p></li>
+<li><p><strong>num_tube_samples</strong> (<em>int</em>) – Number of uniform angular samples along the tube of the toroid</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>tm</strong> – Mesh object representing the toroid</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The function creates a triangle mesh representing a supertoroid with
+given radii and centered at the origin. The toroid is built from a
+large loop with small circles around the loop to form the tube of
+the toroid.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">geomproc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tm</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">create_supertoroid</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>

@@ -1152,3 +1152,216 @@ def create_sphere_samples(n, radius=1.0, center=[0.0, 0.0, 0.0]):
     pc.point = point
     pc.normal = normal
     return pc
+
+
+def trig_pow(num, xp):
+    #return np.sign(num)*np.power(np.abs(num), xp)
+    return math.copysign(1, num)*math.pow(math.fabs(num), xp)
+
+
+# Create a superquadric
+def create_superquadric(radius, e1, e2, num_theta_samples, num_phi_samples):
+    """Create a 3D model of a superquadric
+
+    Parameters
+    ----------
+    radius : float or array_like
+        Radius of the superquadric. If radius is a vector, it denotes
+        the radii along each axis.
+    e1, e2 : float
+        Parameters of the superquadric. The parameters should be
+        positive scalars, where values closer to 0 create shapes that
+        are more box-like.
+    num_theta_samples : int
+        Number of uniform angular samples along the equator of the
+        superquadric
+    num_phi_samples : int
+        Number of uniform angular samples along the meridians of the
+        superquadric
+
+    Returns
+    -------
+    tm : mesh
+        Mesh object representing the superquadric
+
+    Notes
+    -----
+    The function creates a triangle mesh representing a superquadric
+    with given radius and centered at the origin. The quadric is built
+    from a standard parameterization based on two angles theta and phi.
+
+    Examples
+    --------
+    >>> import geomproc
+    >>> tm = geomproc.create_superquadric(1.0, 0.1, 0.1, 30, 30)
+    """
+
+    # Calculate size of mesh
+    num_verts = num_theta_samples*(num_phi_samples-2) + 2
+    num_faces = num_theta_samples*(num_phi_samples-3)*2 + num_theta_samples*2
+
+    # Initialize output mesh
+    tm = mesh()
+    tm.vertex = np.zeros((num_verts, 3))
+    tm.face = np.zeros((num_faces, 3), dtype=np.int_)
+
+    # Get radii
+    if np.isscalar(radius):
+        rx = radius
+        ry = radius
+        rz = radius
+    else:
+        rx = radius[0]
+        ry = radius[1]
+        rz = radius[2]
+
+    # Create vertices
+    vindex = 0
+
+    # Create central vertices
+    for j in range(1, num_phi_samples-1):
+        phi = -(math.pi/2) + math.pi*j/(num_phi_samples-1)
+        for i in range(num_theta_samples):
+            theta = 2*math.pi*i/num_theta_samples
+            # Define vertex position
+            cs_th = math.cos(theta)
+            sn_th = math.sin(theta)
+            cs_ph = math.cos(phi)
+            sn_ph = math.sin(phi)
+            tm.vertex[vindex, :] = np.array([rx*trig_pow(cs_th, e1)*trig_pow(cs_ph, e2), \
+                                             ry*trig_pow(sn_th, e1)*trig_pow(cs_ph, e2), \
+                                             rz*trig_pow(sn_ph, e2)])
+            # Next vertex
+            vindex = vindex + 1
+
+    # Create poles
+    for i in [-1, 1]:
+        # Define vertex position
+        tm.vertex[vindex, :] = np.array([0, 0, rz*i])
+
+        # Next vertex
+        vindex = vindex + 1
+
+    # Create faces
+    findex = 0
+
+    # Central part of the mesh
+    for j in range(num_phi_samples-3):
+        for i in range(num_theta_samples):
+            # (i, j), (i+1, j), (i, j+1)
+            tm.face[findex, :] = [j*num_theta_samples + \
+                                  (i % num_theta_samples), \
+                                  j*num_theta_samples + \
+                                  ((i+1) % num_theta_samples), \
+                                  (j+1)*num_theta_samples + \
+                                  (i % num_theta_samples)]
+            findex = findex + 1
+            # (i+1, j), (i+1, j+1), (i, j+1)
+            tm.face[findex, :] = [j*num_theta_samples + \
+                                  ((i+1) % num_theta_samples), \
+                                  (j+1)*num_theta_samples + \
+                                  ((i+1) % num_theta_samples), \
+                                  (j+1)*num_theta_samples + \
+                                  (i % num_theta_samples)]
+            findex = findex + 1
+
+    # Attach poles
+    for i in range(num_theta_samples):
+        # (i, j), (i+1, j), (pole) with j = 0
+        pole = vindex-2
+        tm.face[findex, :] = np.array([(i % num_theta_samples), \
+                                      pole, \
+                                      ((i+1) % num_theta_samples)])
+        findex = findex + 1
+        # (i, j), (i+1, j), (pole)
+        pole = vindex-1
+        j = num_phi_samples-3
+        tm.face[findex, :] = np.array([j*num_theta_samples + \
+                                       (i % num_theta_samples), \
+                                      j*num_theta_samples + \
+                                      ((i+1) % num_theta_samples), \
+                                      pole])
+        findex = findex + 1
+
+    return tm
+
+
+# Create a supertoroid
+def create_supertoroid(loop_radius, tube_radius, e1, e2, num_loop_samples, num_tube_samples):
+    """Create a 3D model of a supertoroid
+
+    Parameters
+    ----------
+    loop_radius : float
+        Radius of the loop (larger circle) of the toroid
+    tube_radius : float
+        Radius of the tube (smaller circle) of the toroid
+    e1, e2 : float
+        Parameters of the supertoroid. The parameters should be positive
+        scalars, where values closer to 0 create shapes that are more
+        box-like.
+    num_loop_samples : int
+        Number of uniform angular samples along the loop of the toroid
+    num_tube_samples : int
+        Number of uniform angular samples along the tube of the toroid
+
+    Returns
+    -------
+    tm : mesh
+        Mesh object representing the toroid
+
+    Notes
+    -----
+    The function creates a triangle mesh representing a supertoroid with
+    given radii and centered at the origin. The toroid is built from a
+    large loop with small circles around the loop to form the tube of
+    the toroid. 
+
+    Examples
+    --------
+    >>> import geomproc
+    >>> tm = geomproc.create_supertoroid(1.0, 0.33, 0.25, 0.25, 90, 30)
+    """
+
+    # Initialize output
+    tm = mesh()
+    tm.vertex = np.zeros((num_loop_samples*num_tube_samples, 3))
+    tm.face = np.zeros((num_loop_samples*num_tube_samples*2, 3), dtype=np.int_)
+
+    # Create vertices
+    vindex = 0
+    for i in range (num_loop_samples):
+        theta = 2*math.pi*i/num_loop_samples
+        for j in range(num_tube_samples):
+            phi = 2*math.pi*j/num_tube_samples
+            # Define vertex position
+            cs_th = math.cos(theta)
+            sn_th = math.sin(theta)
+            cs_ph = math.cos(phi)
+            sn_ph = math.sin(phi)
+            tm.vertex[vindex, :] = [trig_pow(cs_th, e1)*(loop_radius + \
+                                    tube_radius*trig_pow(cs_ph, e2)), \
+                                    trig_pow(sn_th, e1)*(loop_radius + \
+                                    tube_radius*trig_pow(cs_ph, e2)), \
+                                    tube_radius*trig_pow(sn_ph, e2)]
+            # Next vertex
+            vindex = vindex + 1
+
+    # Create faces
+    findex = 0
+    for i in range (num_loop_samples):
+        for j in range(num_tube_samples):
+            # (i+1, j), (i, j+1), (i, j)
+            tm.face[findex, :] = \
+                [((i+1) % num_loop_samples)*num_tube_samples + j, \
+                 i*num_tube_samples + ((j+1) % num_tube_samples), \
+                 i*num_tube_samples + j]
+            findex = findex + 1
+            # (i+1, j), (i+1, j+1), (i, j+1)
+            tm.face[findex, :] = \
+                [((i+1) % num_loop_samples)*num_tube_samples + j, \
+                 ((i+1) % num_loop_samples)*num_tube_samples + ((j+1) % num_tube_samples), \
+                i*num_tube_samples + ((j+1) % num_tube_samples)]
+            findex = findex + 1
+    
+    return tm
