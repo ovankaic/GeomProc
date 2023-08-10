@@ -1,3 +1,9 @@
+v1.6.0 2023/08/10: Added support for ply files.
+                   Improved support for quad meshes.
+                   Added example of LSCM method.
+                   Fixes to shortest paths in graph and added interpolation demo.
+                   Added functions for creating superquadrics and supertoroids.
+
 v1.5.0 2023/07/24: Added mesh memory allocation method.
 
 v1.4.0 2023/06/01: Fixed cylinder scaling in create_lines.
