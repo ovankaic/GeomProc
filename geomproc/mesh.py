@@ -380,8 +380,9 @@ class mesh:
             dn = os.path.dirname(filename)
             fn = os.path.basename(filename)
             fn_part = fn.split('.')
-            material_filename = os.path.join(dn, fn_part[0] + '.mtl')
-            with open(material_filename, 'w') as f: 
+            material_filename = fn_part[0] + '.mtl'
+            full_material_filename = os.path.join(dn, material_filename)
+            with open(full_material_filename, 'w') as f: 
                 f.write('newmtl textured\n')
                 f.write('Ka 1.000 1.000 1.000\n')
                 f.write('Kd 1.000 1.000 1.000\n')
