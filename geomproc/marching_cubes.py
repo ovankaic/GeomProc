@@ -1,7 +1,7 @@
 #
 # GeomProc: geometry processing library in python + numpy
 #
-# Copyright (c) 2008-2021 Oliver van Kaick <ovankaic@gmail.com>
+# Copyright (c) 2008-2024 Oliver van Kaick <ovankaic@gmail.com>
 # under the MIT License.
 # For all the parts of the code where authorship is not explicitly
 # mentioned.
