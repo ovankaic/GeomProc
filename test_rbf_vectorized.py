@@ -29,8 +29,6 @@ pc = tm.sample(n)
 # Define vectorized kernel for reconstruction
 euclidean = lambda x, y: np.sqrt(np.absolute(-2.0*np.dot(x, y.T) + np.sum(np.square(x), axis=1, keepdims=True) + np.sum(np.square(y), axis=1, keepdims=True).T))
 kernel = lambda x, y: np.power(euclidean(x, y), 3.0)
-#wendland = lambda x, y, h: (math.pow(1 - np.linalg.norm(x - y)/h, 4))*(4.0*np.linalg.norm(x - y)/h + 1)
-#kernel = lambda x, y: wendland(x, y, 0.01)
 
 # Define epsilon for displacing samples
 epsilon = 0.01

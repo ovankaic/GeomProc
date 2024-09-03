@@ -27,9 +27,9 @@ n = 1000
 pc = tm.sample(n)
 
 # Define kernel for reconstruction
-kernel = lambda x, y: math.pow(np.linalg.norm(x - y), 3)
-#wendland = lambda x, y, h: (math.pow(1 - np.linalg.norm(x - y)/h, 4))*(4.0*np.linalg.norm(x - y)/h + 1)
-#kernel = lambda x, y: wendland(x, y, 0.01)
+#kernel = lambda x, y: math.pow(np.linalg.norm(x - y), 3)
+wendland = lambda r, h: max(math.pow(1 - r/h, 4), 0.0)*(4.0*r/h + 1)
+kernel = lambda x, y: wendland(np.linalg.norm(x - y), 0.01)
 
 # Define epsilon for displacing samples
 epsilon = 0.01

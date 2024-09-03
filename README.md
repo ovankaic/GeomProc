@@ -1,11 +1,11 @@
 # GeomProc
 Geometry processing library in python + numpy
 
-Version 1.6
-August 10th, 2023
+Version 1.7
+September 3rd, 2024
 
 ## Copyright notices
-Copyright (c) 2008-2023 Oliver van Kaick <ovankaic at gmail.com>
+Copyright (c) 2008-2024 Oliver van Kaick <ovankaic at gmail.com>
 http://people.scs.carleton.ca/~olivervankaick/index.html
 Released under the MIT License.
 For all the parts of the code where authorship is not explicitly mentioned.

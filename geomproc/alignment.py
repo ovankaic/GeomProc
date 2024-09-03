@@ -36,10 +36,13 @@ def closest_points(pc1, pc2, err_type=1):
     -------
     corr : array_like
         Correspondence of points from pc1 to their closest points in
-        pc2, represented as an array of shape (n, 3), where 'n' is the
+        pc2, represented as an array of shape (n, 2), where 'n' is the
         number of points in pc1, and each correspondence is of the form
-        [index of point in pc1, index of corresponding point in pc2,
-        distance between points]
+        [index of point in pc1, index of corresponding point in pc2]
+    dist : array_like
+        dist(i) stores the distance between the points in corr(i)
+    err : float
+        Correspondence error, according to err_type
 
     Notes
     -----
@@ -50,7 +53,8 @@ def closest_points(pc1, pc2, err_type=1):
     """
 
     # Initialize correspondence and error
-    corr = np.zeros((pc1.point.shape[0], 3), dtype=np.int_)
+    corr = np.zeros((pc1.point.shape[0], 2), dtype=np.int_)
+    dist = np.zeros(pc1.point.shape[0])
     err = 0
 
     # Set up KDTree with all points
@@ -62,20 +66,22 @@ def closest_points(pc1, pc2, err_type=1):
         # Find point in pc2 that is closest to point 'i' in pc1
         nearest = tree.nn_query(pc1.point[i, :], 1)
         min_dist = distance(pc1.point[i, :], nearest[0][0])
-        corr[i, :] = [i, nearest[0][1], min_dist]
+        corr[i, :] = [i, nearest[0][1]]
+        dist[i] = min_dist
 
         # Quadratic code
         if 0:
             min_dist = float('inf') 
             for j in range(pc2.point.shape[0]):
                 # Compute Euclidean distance between points
-                dist = np.linalg.norm(pc1.point[i, :] - pc2.point[j, :])
+                temp_dist = np.linalg.norm(pc1.point[i, :] - pc2.point[j, :])
                 # Compare to current minimum distance
-                if dist < min_dist:
+                if temp_dist < min_dist:
                     # We found a closer point, update min_dist and
                     # correspondence
-                    min_dist = dist
-                    corr[i, :] = [i, j, min_dist]
+                    min_dist = temp_dist
+                    corr[i, :] = [i, j]
+                    dist[i] = min_dist
 
         # Add error for point to total error
         if err_type == 0:
@@ -89,20 +95,23 @@ def closest_points(pc1, pc2, err_type=1):
     if err_type == 1:
         err /= pc1.point.shape[0]
 
-    return [corr, err]
+    return [corr, dist, err]
 
 
-def filter_correspondences(corr, keep):
+def filter_correspondences(corr, dist, keep):
     """Filter a set of correspondences according to the match distances
 
     Parameters
     ----------
     corr : array_like
         Correspondence of points from one point cloud to another,
-        represented as an array of shape (n, 3), where 'n' is the number
+        represented as an array of shape (n, 2), where 'n' is the number
         of matches, and each match is of the form [index of point in
         first point cloud, index of corresponding point in second point
-        cloud, distance between points]
+        cloud]
+    dist : array_like
+        dist(i) stores the distance between the points in corr(i), which is
+        used for the filtering
 
     keep : float
         Percentage of closest points to be kept
@@ -111,6 +120,8 @@ def filter_correspondences(corr, keep):
     -------
     corr : array_like
         Filtered correspondence in the same format as the input 'corr'
+    dist : array_like
+        Filtered dist array in the same format as the input 'dist'
 
     Notes
     -----
@@ -120,12 +131,21 @@ def filter_correspondences(corr, keep):
 
     # Keep only best quality correspondences
     corr_new = corr.copy()
+    dist_new = dist.copy()
     if keep < 1.0:
+        # Sort corr and dist together
         corr_new = list(corr_new)
-        corr_new.sort(key=lambda match: match[2])
+        dist_new = list(dist_new)
+        srt = sorted(zip(dist_new, corr_new))
+        # Separate sorted lists
+        corr_new = [x for _, x in srt]
+        dist_new = [y for y, _ in srt]
+        # Keep only 'keep' amount of elements
         corr_new = corr_new[0:int(math.ceil(len(corr_new)*keep))]
+        dist_new = dist_new[0:int(math.ceil(len(corr_new)*keep))]
+        # Set type for correspondence array
         corr_new = np.array(corr_new, dtype=np.int_)
-    return corr_new
+    return corr_new, dist_new
 
 
 def transformation_from_correspondences(pc1, pc2, corr):
@@ -327,18 +347,18 @@ def icp(pc1, pc2, error_threshold, max_iter, keep=1.0):
     #### Standard ICP loop
     # For each point in pc1, find its closest point pc2
     # Also compute the error for the current alignment
-    [corr, err] = closest_points(pc1tr, pc2)
+    [corr, dist, err] = closest_points(pc1tr, pc2)
     # If need to iterate
     while err > error_threshold:
         # Keep only best quality correspondences
         if keep < 1.0:
-            corr = filter_correspondences(corr, keep)
+            [corr, dist] = filter_correspondences(corr, dist, keep)
         # Derive a rigid transformation from the point correspondences
         [rot, trans] = transformation_from_correspondences(pc1tr, pc2, corr)
         # Apply the transformation to the point cloud in place
         apply_transformation_in_place(pc1tr.point, rot, trans)
         # Recompute closest points and error
-        [corr, err] = closest_points(pc1tr, pc2)
+        [corr, dist, err] = closest_points(pc1tr, pc2)
         # Check number of iterations used
         iter_count = iter_count + 1
         if iter_count > max_iter:

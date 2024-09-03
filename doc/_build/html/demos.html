@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Demos &mdash; GeomProc 1.6 documentation</title>
+  <title>Demos &mdash; GeomProc 1.7 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   
@@ -33,7 +33,7 @@
             GeomProc
           </a>
               <div class="version">
-                1.6
+                1.7
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -362,7 +362,7 @@ test_curvature_with_noise.py</p>
         <span class="c1"># Save averaged position</span>
         <span class="n">smooth</span><span class="p">[</span><span class="n">vi</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">tm</span><span class="o">.</span><span class="n">vertex</span><span class="p">[</span><span class="n">tm</span><span class="o">.</span><span class="n">viv</span><span class="p">[</span><span class="n">vi</span><span class="p">],</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="c1"># Update all vertex position with averaged positions</span>
-    <span class="n">tm</span><span class="o">.</span><span class="n">vertex</span> <span class="o">=</span> <span class="n">smooth</span>
+    <span class="n">tm</span><span class="o">.</span><span class="n">vertex</span> <span class="o">=</span> <span class="n">smooth</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
 <span class="c1"># Save the mesh</span>
 <span class="n">wo</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">write_options</span><span class="p">()</span>
@@ -451,14 +451,14 @@ test_curvature_with_noise.py</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="c1"># Get length of the boundary</span>
-    <span class="n">l</span> <span class="o">=</span> <span class="n">bnd</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">lgt</span> <span class="o">=</span> <span class="n">bnd</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="c1"># Initialize output coordinates</span>
     <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">tm</span><span class="o">.</span><span class="n">vertex</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">))</span>
 
     <span class="c1"># Specify points along a circle</span>
-    <span class="n">increment</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+    <span class="n">increment</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">lgt</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lgt</span><span class="p">):</span>
         <span class="n">u</span><span class="p">[</span><span class="n">bnd</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">increment</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">increment</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">u</span>
@@ -771,17 +771,13 @@ test_curvature_with_noise.py</p>
 <span class="c1"># Define the transformation</span>
 <span class="k">if</span> <span class="kc">False</span><span class="p">:</span> <span class="c1"># Choose the transformation by switching True/False</span>
     <span class="c1"># Choose a completely random transformation</span>
-    <span class="n">rnd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-    <span class="p">[</span><span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">rnd</span><span class="p">)</span>
-    <span class="n">orig_rot</span> <span class="o">=</span> <span class="n">q</span>
-    <span class="n">orig_trans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">orig_rot</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">rotation_random</span><span class="p">()</span>
+    <span class="n">orig_trans</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">translation_random</span><span class="p">()</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="c1"># Choose a specific rotation around the y axis</span>
     <span class="n">angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span>
-    <span class="n">orig_rot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)],</span>
-                         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-                         <span class="p">[</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)]])</span>
-    <span class="n">orig_trans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">orig_rot</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">rotation_y</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+    <span class="n">orig_trans</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">translation</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Apply the transformation to pc1 to create the second point cloud pc2</span>
 <span class="n">pc2</span> <span class="o">=</span> <span class="n">pc1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -800,7 +796,7 @@ test_curvature_with_noise.py</p>
 <span class="c1"># Run the ICP method</span>
 <span class="n">error_threshold</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="n">num_iters</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="p">[</span><span class="n">rot</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">pc1tr</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">iter_count</span><span class="p">,</span> <span class="n">corr</span><span class="p">]</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">icp</span><span class="p">(</span><span class="n">pc1</span><span class="p">,</span> <span class="n">pc2</span><span class="p">,</span> <span class="n">error_threshold</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">)</span>
+<span class="p">[</span><span class="n">rot</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">pc1tr</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">iter_count</span><span class="p">,</span> <span class="n">corr</span><span class="p">]</span> <span class="o">=</span> <span class="n">geomproc</span><span class="o">.</span><span class="n">icp</span><span class="p">(</span><span class="n">pc1</span><span class="p">,</span> <span class="n">pc2</span><span class="p">,</span> <span class="n">error_threshold</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span>
 
 <span class="c1"># Save registration</span>
 <span class="n">pc1tr</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output/bunny_sample1aligned.obj&#39;</span><span class="p">)</span>
@@ -1007,9 +1003,9 @@ samples</p>
 <span class="n">pc</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
 <span class="c1"># Define kernel for reconstruction</span>
-<span class="n">kernel</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
-<span class="c1">#wendland = lambda x, y, h: (math.pow(1 - np.linalg.norm(x - y)/h, 4))*(4.0*np.linalg.norm(x - y)/h + 1)</span>
-<span class="c1">#kernel = lambda x, y: wendland(x, y, 0.01)</span>
+<span class="c1">#kernel = lambda x, y: math.pow(np.linalg.norm(x - y), 3)</span>
+<span class="n">wendland</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">r</span><span class="p">,</span> <span class="n">h</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">r</span><span class="o">/</span><span class="n">h</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">4.0</span><span class="o">*</span><span class="n">r</span><span class="o">/</span><span class="n">h</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">kernel</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">wendland</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">),</span> <span class="mf">0.01</span><span class="p">)</span>
 
 <span class="c1"># Define epsilon for displacing samples</span>
 <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.01</span>
@@ -1064,8 +1060,6 @@ samples</p>
 <span class="c1"># Define vectorized kernel for reconstruction</span>
 <span class="n">euclidean</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
 <span class="n">kernel</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">euclidean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="mf">3.0</span><span class="p">)</span>
-<span class="c1">#wendland = lambda x, y, h: (math.pow(1 - np.linalg.norm(x - y)/h, 4))*(4.0*np.linalg.norm(x - y)/h + 1)</span>
-<span class="c1">#kernel = lambda x, y: wendland(x, y, 0.01)</span>
 
 <span class="c1"># Define epsilon for displacing samples</span>
 <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.01</span>

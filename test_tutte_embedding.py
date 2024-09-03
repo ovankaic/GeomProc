@@ -39,14 +39,14 @@ def map_boundary_to_circle(tm, bnd):
     """
     
     # Get length of the boundary
-    l = bnd.shape[0]
+    lgt = bnd.shape[0]
 
     # Initialize output coordinates
     u = np.zeros((tm.vertex.shape[0], 2))
 
     # Specify points along a circle
-    increment = (2*math.pi)/(l-1)
-    for i in range(l):
+    increment = (2*math.pi)/(lgt-1)
+    for i in range(lgt):
         u[bnd[i], :] = [0.5*math.cos(i*increment) + 0.5, 0.5*math.sin(i*increment) + 0.5]
 
     return u

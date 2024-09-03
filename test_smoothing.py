@@ -23,7 +23,7 @@ for it in range(num_iterations):
         # Save averaged position
         smooth[vi, :] = np.average(tm.vertex[tm.viv[vi], :], axis=0)
     # Update all vertex position with averaged positions
-    tm.vertex = smooth
+    tm.vertex = smooth.copy()
 
 # Save the mesh
 wo = geomproc.write_options()

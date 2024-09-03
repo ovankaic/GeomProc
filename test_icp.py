@@ -33,17 +33,13 @@ pc1 = tm.sample(n)
 # Define the transformation
 if False: # Choose the transformation by switching True/False
     # Choose a completely random transformation
-    rnd = np.random.random((3, 3))
-    [q, r] = np.linalg.qr(rnd)
-    orig_rot = q
-    orig_trans = np.random.random((3, 1))
+    orig_rot = geomproc.rotation_random()
+    orig_trans = geomproc.translation_random()
 else:
     # Choose a specific rotation around the y axis
     angle = math.pi/3
-    orig_rot = np.array([[math.cos(angle), 0, math.sin(angle)],
-                         [0, 1, 0],
-                         [-math.sin(angle), 0, math.cos(angle)]])
-    orig_trans = np.zeros((3, 1))
+    orig_rot = geomproc.rotation_y(angle)
+    orig_trans = geomproc.translation(0, 0, 0)
 
 # Apply the transformation to pc1 to create the second point cloud pc2
 pc2 = pc1.copy()
@@ -62,7 +58,7 @@ pc2.save('output/bunny_sample2.obj')
 # Run the ICP method
 error_threshold = 0.01
 num_iters = 50
-[rot, trans, pc1tr, err, iter_count, corr] = geomproc.icp(pc1, pc2, error_threshold, num_iters)
+[rot, trans, pc1tr, err, iter_count, corr] = geomproc.icp(pc1, pc2, error_threshold, num_iters, 0.8)
 
 # Save registration
 pc1tr.save('output/bunny_sample1aligned.obj')

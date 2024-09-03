@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>geomproc package &mdash; GeomProc 1.6 documentation</title>
+  <title>geomproc package &mdash; GeomProc 1.7 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   
@@ -32,7 +32,7 @@
             GeomProc
           </a>
               <div class="version">
-                1.6
+                1.7
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -205,6 +205,16 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.transform">geomproc.transform module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#geomproc.transform.rotation_random"><code class="docutils literal notranslate"><span class="pre">rotation_random()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geomproc.transform.rotation_x"><code class="docutils literal notranslate"><span class="pre">rotation_x()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geomproc.transform.rotation_y"><code class="docutils literal notranslate"><span class="pre">rotation_y()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geomproc.transform.rotation_z"><code class="docutils literal notranslate"><span class="pre">rotation_z()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geomproc.transform.scaling"><code class="docutils literal notranslate"><span class="pre">scaling()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geomproc.transform.translation"><code class="docutils literal notranslate"><span class="pre">translation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geomproc.transform.translation_random"><code class="docutils literal notranslate"><span class="pre">translation_random()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#module-geomproc.write_options">geomproc.write_options module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#geomproc.write_options.write_options"><code class="docutils literal notranslate"><span class="pre">write_options</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#geomproc.write_options.write_options.write_vertex_normals"><code class="docutils literal notranslate"><span class="pre">write_options.write_vertex_normals</span></code></a></li>
@@ -346,14 +356,15 @@ The default value is 1</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>corr</strong> – Correspondence of points from pc1 to their closest points in
-pc2, represented as an array of shape (n, 3), where ‘n’ is the
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>corr</strong> (<em>array_like</em>) – Correspondence of points from pc1 to their closest points in
+pc2, represented as an array of shape (n, 2), where ‘n’ is the
 number of points in pc1, and each correspondence is of the form
-[index of point in pc1, index of corresponding point in pc2,
-distance between points]</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>array_like</p>
+[index of point in pc1, index of corresponding point in pc2]</p></li>
+<li><p><strong>dist</strong> (<em>array_like</em>) – dist(i) stores the distance between the points in corr(i)</p></li>
+<li><p><strong>err</strong> (<em>float</em>) – Correspondence error, according to err_type</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -365,24 +376,27 @@ specified error type</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="geomproc.alignment.filter_correspondences">
-<span class="sig-prename descclassname"><span class="pre">geomproc.alignment.</span></span><span class="sig-name descname"><span class="pre">filter_correspondences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.alignment.filter_correspondences" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">geomproc.alignment.</span></span><span class="sig-name descname"><span class="pre">filter_correspondences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.alignment.filter_correspondences" title="Permalink to this definition"></a></dt>
 <dd><p>Filter a set of correspondences according to the match distances</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>corr</strong> (<em>array_like</em>) – Correspondence of points from one point cloud to another,
-represented as an array of shape (n, 3), where ‘n’ is the number
+represented as an array of shape (n, 2), where ‘n’ is the number
 of matches, and each match is of the form [index of point in
 first point cloud, index of corresponding point in second point
-cloud, distance between points]</p></li>
+cloud]</p></li>
+<li><p><strong>dist</strong> (<em>array_like</em>) – dist(i) stores the distance between the points in corr(i), which is
+used for the filtering</p></li>
 <li><p><strong>keep</strong> (<em>float</em>) – Percentage of closest points to be kept</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>corr</strong> – Filtered correspondence in the same format as the input ‘corr’</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>array_like</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>corr</strong> (<em>array_like</em>) – Filtered correspondence in the same format as the input ‘corr’</p></li>
+<li><p><strong>dist</strong> (<em>array_like</em>) – Filtered dist array in the same format as the input ‘dist’</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -2945,6 +2959,140 @@ value is True</p>
 <p>Not all options are relevant to every file format. The class
 collects all the possible options supported by different file
 formats. The structure is relevant to both meshes and point clouds.</p>
+</dd></dl>
+
+</section>
+<section id="module-geomproc.transform">
+<span id="geomproc-transform-module"></span><h2>geomproc.transform module<a class="headerlink" href="#module-geomproc.transform" title="Permalink to this heading"></a></h2>
+<p>This module contains functions for defining geometric transformations in the
+GeomProc geometry processing library.</p>
+<p>Rotations and scaling are represented as 3x3 matrices in column-major order</p>
+<p>Translations are represented as 3x1 vectors</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="geomproc.transform.rotation_random">
+<span class="sig-prename descclassname"><span class="pre">geomproc.transform.</span></span><span class="sig-name descname"><span class="pre">rotation_random</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.transform.rotation_random" title="Permalink to this definition"></a></dt>
+<dd><p>Sample a random rotation in 3D</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>mat</strong> – 3x3 matrix representing the rotation</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geomproc.transform.rotation_x">
+<span class="sig-prename descclassname"><span class="pre">geomproc.transform.</span></span><span class="sig-name descname"><span class="pre">rotation_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.transform.rotation_x" title="Permalink to this definition"></a></dt>
+<dd><p>Define a 3D rotation around the X axis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angle</strong> (<em>float</em>) – Angle of rotation around the axis</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>mat</strong> – 3x3 matrix representing the rotation</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geomproc.transform.rotation_y">
+<span class="sig-prename descclassname"><span class="pre">geomproc.transform.</span></span><span class="sig-name descname"><span class="pre">rotation_y</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.transform.rotation_y" title="Permalink to this definition"></a></dt>
+<dd><p>Define a 3D rotation around the Y axis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angle</strong> (<em>float</em>) – Angle of rotation around the axis</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>mat</strong> – 3x3 matrix representing the rotation</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geomproc.transform.rotation_z">
+<span class="sig-prename descclassname"><span class="pre">geomproc.transform.</span></span><span class="sig-name descname"><span class="pre">rotation_z</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.transform.rotation_z" title="Permalink to this definition"></a></dt>
+<dd><p>Define a 3D rotation around the Z axis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angle</strong> (<em>float</em>) – Angle of rotation around the axis</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>mat</strong> – 3x3 matrix representing the rotation</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geomproc.transform.scaling">
+<span class="sig-prename descclassname"><span class="pre">geomproc.transform.</span></span><span class="sig-name descname"><span class="pre">scaling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.transform.scaling" title="Permalink to this definition"></a></dt>
+<dd><p>Define a 3D scaling transformation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – Scaling amount along x axis</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – Scaling amount along y axis</p></li>
+<li><p><strong>z</strong> (<em>float</em>) – Scaling amount along z axis</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>mat</strong> – 3x3 matrix representing the scaling</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geomproc.transform.translation">
+<span class="sig-prename descclassname"><span class="pre">geomproc.transform.</span></span><span class="sig-name descname"><span class="pre">translation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.transform.translation" title="Permalink to this definition"></a></dt>
+<dd><p>Define a 3D translation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – Translation amount along x axis</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – Translation amount along y axis</p></li>
+<li><p><strong>z</strong> (<em>float</em>) – Translation amount along z axis</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>vec</strong> – 3x1 vector representing the translation</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geomproc.transform.translation_random">
+<span class="sig-prename descclassname"><span class="pre">geomproc.transform.</span></span><span class="sig-name descname"><span class="pre">translation_random</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.transform.translation_random" title="Permalink to this definition"></a></dt>
+<dd><p>Sample a random 3D translation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>vec</strong> – 3x1 vector representing the translation</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

@@ -78,6 +78,13 @@ geomproc.read\_options module
    :members:
    :show-inheritance:
 
+geomproc.transform module
+------------------------------
+
+.. automodule:: geomproc.transform
+   :members:
+   :show-inheritance:
+
 geomproc.write\_options module
 ------------------------------
 

@@ -103,8 +103,12 @@ def load_obj(filename, ro = read_options()):
             vid = arr[0]
         # Convert data into numbers
         vid = int(vid)-1
+        if tid == '':
+            tid = None
         if tid != None:
             tid = int(tid)-1
+        if nid == '':
+            nid = None
         if nid != None:
             nid = int(nid)-1
         return vid, tid, nid

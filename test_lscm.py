@@ -46,7 +46,7 @@ def lscm(tm, constr_indx, constr_coord):
     # on each other
     # We have two constraints (equations) per triangle, 
     # and four extra fixed constraints (u and v for 2 points = 4 in total)
-    A = np.zeros((2*m + 4, 2*n))
+    A = np.zeros((2*m + 2*len(constr_indx), 2*n))
 
     # Set coefficients of linear system
     # Create two equations (t, and m + t) per triangle
@@ -81,7 +81,7 @@ def lscm(tm, constr_indx, constr_coord):
         A[m + t, n + i2] = n1
         
     # Set constraints
-    constr = np.zeros(2*m + 4)
+    constr = np.zeros(2*m + 2*len(constr_indx))
     
     # Assign constraints to A and constr vector
     for i in range(len(constr_indx)):
