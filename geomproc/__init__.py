@@ -10,5 +10,6 @@ from .read_options import read_options
 from .impsurf import impsurf
 from .graph import graph, shortest_path
 from .transform import *
+from .volume import volume
 from .alignment import icp, closest_points, filter_correspondences, transformation_from_correspondences, apply_transformation, spin_image_options, spin_images, best_match
 from .kdtree import KDTree
