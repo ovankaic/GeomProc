@@ -85,6 +85,13 @@ geomproc.transform module
    :members:
    :show-inheritance:
 
+geomproc.volume module
+------------------------------
+
+.. automodule:: geomproc.volume
+   :members:
+   :show-inheritance:
+
 geomproc.write\_options module
 ------------------------------
 

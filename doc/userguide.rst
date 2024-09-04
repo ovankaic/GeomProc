@@ -10,6 +10,7 @@ module *geomproc*.
  - Triangle mesh: :py:class:`geomproc.mesh`
  - Point cloud: :py:class:`geomproc.pcloud`
  - Implicit function: :py:class:`geomproc.impsurf`
+ - Volume: :py:class:`geomproc.volume`
 
 **Data loading**
 
@@ -48,6 +49,10 @@ module *geomproc*.
  - :py:func:`geomproc.impsurf.impsurf.setup_rbf` - Reconstruct an implicit surface from a set of point samples
  - :py:func:`geomproc.marching_cubes.marching_cubes` - Reconstruct a mesh from an implicit surface 
 
+**Voxelization**
+
+ - :py:func:`geomproc.volume.voxelize_mesh` - Voxelize a mesh
+
 **Auxiliary/miscellaneous functions**
 
  - :py:func:`geomproc.misc.map_val` - Linearly map a set of values to a new range
@@ -55,6 +60,7 @@ module *geomproc*.
  - :py:func:`geomproc.misc.rotation_matrix` - Create a rotation matrix from an axis and angle
  - :py:func:`geomproc.misc.random_triangle_sample` - Randomly sample a point from a triangle
  - :py:func:`geomproc.misc.distance` - Euclidean distance between two points
+ - :py:func:`geomproc.transform` - Initialize geometric transformations
 
 **Axuliary classes**
 

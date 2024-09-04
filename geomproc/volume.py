@@ -26,7 +26,7 @@ class volume:
     cell : numpy.array_like
         Voxels or cells of the volume stored in a 3D array. In the array, cell[i, j, k] is 1.0 if the voxel is occupied (intersects a shape), while it is 0.0 if the cell is empty.
     start : numpy.array_like
-        Coordinate of the voxel of the top-left corner of the volume
+        Coordinate of the voxel on the top-left corner of the volume
     end : numpy.array_like
         Coordinate of the voxel on the bottom-right corner of the volume
     num_cubes_per_dim : int
@@ -128,12 +128,12 @@ class volume:
 
         Notes
         -----
-        The method sets up the current volume based on the given mesh. Empty
-        voxels are set to 0.0, while voxels that contain the mesh are set to
-        1.0. The resulting volume only captures the surface (outer shell) of
-        the mesh. To obtain a volume where the interior of the mesh is also
-        filled with voxels of value 1.0, use the method fill_volume(). The
-        method requires the normals of mesh faces.
+        The method sets up the current volume based on the given mesh. The
+        method requires the normals of mesh faces. Empty voxels are set to 0.0,
+        while voxels that contain the mesh are set to 1.0. The resulting volume
+        only captures the surface (outer shell) of the mesh. To obtain a volume
+        where the interior of the mesh is also filled with voxels of value 1.0,
+        use the method fill_volume(). 
 
         See Also
         --------

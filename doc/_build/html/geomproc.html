@@ -215,6 +215,20 @@
 <li class="toctree-l3"><a class="reference internal" href="#geomproc.transform.translation_random"><code class="docutils literal notranslate"><span class="pre">translation_random()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-geomproc.volume">geomproc.volume module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#geomproc.volume.volume"><code class="docutils literal notranslate"><span class="pre">volume</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#geomproc.volume.volume.cell"><code class="docutils literal notranslate"><span class="pre">volume.cell</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geomproc.volume.volume.start"><code class="docutils literal notranslate"><span class="pre">volume.start</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geomproc.volume.volume.end"><code class="docutils literal notranslate"><span class="pre">volume.end</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geomproc.volume.volume.num_cubes_per_dim"><code class="docutils literal notranslate"><span class="pre">volume.num_cubes_per_dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geomproc.volume.volume.cube_size"><code class="docutils literal notranslate"><span class="pre">volume.cube_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geomproc.volume.volume.create_mesh"><code class="docutils literal notranslate"><span class="pre">volume.create_mesh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geomproc.volume.volume.fill_interior"><code class="docutils literal notranslate"><span class="pre">volume.fill_interior()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#geomproc.volume.volume.voxelize_mesh"><code class="docutils literal notranslate"><span class="pre">volume.voxelize_mesh()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#module-geomproc.write_options">geomproc.write_options module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#geomproc.write_options.write_options"><code class="docutils literal notranslate"><span class="pre">write_options</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#geomproc.write_options.write_options.write_vertex_normals"><code class="docutils literal notranslate"><span class="pre">write_options.write_vertex_normals</span></code></a></li>
@@ -3093,6 +3107,152 @@ GeomProc geometry processing library.</p>
 <dd class="field-odd"><p>numpy.array_like</p>
 </dd>
 </dl>
+</dd></dl>
+
+</section>
+<section id="module-geomproc.volume">
+<span id="geomproc-volume-module"></span><h2>geomproc.volume module<a class="headerlink" href="#module-geomproc.volume" title="Permalink to this heading"></a></h2>
+<p>This module contains the volume class of the GeomProc geometry processing
+library used for voxelizing a mesh.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="geomproc.volume.volume">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">geomproc.volume.</span></span><span class="sig-name descname"><span class="pre">volume</span></span><a class="headerlink" href="#geomproc.volume.volume" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that represents a volume (set of voxels)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="geomproc.volume.volume.cell">
+<span class="sig-name descname"><span class="pre">cell</span></span><a class="headerlink" href="#geomproc.volume.volume.cell" title="Permalink to this definition"></a></dt>
+<dd><p>Voxels or cells of the volume stored in a 3D array. In the array, cell[i, j, k] is 1.0 if the voxel is occupied (intersects a shape), while it is 0.0 if the cell is empty.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="geomproc.volume.volume.start">
+<span class="sig-name descname"><span class="pre">start</span></span><a class="headerlink" href="#geomproc.volume.volume.start" title="Permalink to this definition"></a></dt>
+<dd><p>Coordinate of the voxel on the top-left corner of the volume</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="geomproc.volume.volume.end">
+<span class="sig-name descname"><span class="pre">end</span></span><a class="headerlink" href="#geomproc.volume.volume.end" title="Permalink to this definition"></a></dt>
+<dd><p>Coordinate of the voxel on the bottom-right corner of the volume</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="geomproc.volume.volume.num_cubes_per_dim">
+<span class="sig-name descname"><span class="pre">num_cubes_per_dim</span></span><a class="headerlink" href="#geomproc.volume.volume.num_cubes_per_dim" title="Permalink to this definition"></a></dt>
+<dd><p>Number of voxels per each dimension x, y, and z</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="geomproc.volume.volume.cube_size">
+<span class="sig-name descname"><span class="pre">cube_size</span></span><a class="headerlink" href="#geomproc.volume.volume.cube_size" title="Permalink to this definition"></a></dt>
+<dd><p>Size of each cube (width, height, or depth)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Notes</p>
+<p>The class stores a volume as a set of cells. The coordinates of a cell (i,
+j, k) in the original shape space can be obtained with x = start[0] +
+i*cube_size[0], y = start[1] + j*cube_size[1], and z = start[2] +
+k*cube_size[2].</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="geomproc.volume.volume.create_mesh">
+<span class="sig-name descname"><span class="pre">create_mesh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.volume.volume.create_mesh" title="Permalink to this definition"></a></dt>
+<dd><p>Transform the volume into a mesh for visualization purposes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>tm</strong> – The resulting triangle mesh.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh">mesh</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method transforms the current volume into a triangle mesh. Note
+that the resulting mesh is not manifold, as each voxel is simply a
+stand-alone cube. Thus, the resulting mesh is for visualization
+purposes only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geomproc.volume.volume.fill_interior">
+<span class="sig-name descname"><span class="pre">fill_interior</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.volume.volume.fill_interior" title="Permalink to this definition"></a></dt>
+<dd><p>Fill the interior of a voxelized shape</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method assumes that a volume is given where the voxels that
+intersect a surface have a value of 1.0 and empty voxels have a value
+of 0.0. The method fills the voxels that are inside the surface. Note
+that the method only works properly if the shape is closed with no
+holes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="geomproc.volume.volume.voxelize_mesh">
+<span class="sig-name descname"><span class="pre">voxelize_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_cubes_per_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rough</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.volume.volume.voxelize_mesh" title="Permalink to this definition"></a></dt>
+<dd><p>Voxelize a given mesh</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tm</strong> (<a class="reference internal" href="#geomproc.mesh.mesh" title="geomproc.mesh.mesh"><em>mesh</em></a>) – Mesh to be voxelized</p></li>
+<li><p><strong>start</strong> (<em>array_like</em>) – Vector of size 3 with the starting coordinates (x, y, z) of the
+volume in the space of the mesh</p></li>
+<li><p><strong>end</strong> (<em>array_like</em>) – Vector of size 3 with the ending coordinates (x, y, z) of the
+volume in the space of the mesh</p></li>
+<li><p><strong>num_cubes_per_dim</strong> (<em>int</em>) – Desired number of cubes per dimension</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The method sets up the current volume based on the given mesh. The
+method requires the normals of mesh faces. Empty voxels are set to 0.0,
+while voxels that contain the mesh are set to 1.0. The resulting volume
+only captures the surface (outer shell) of the mesh. To obtain a volume
+where the interior of the mesh is also filled with voxels of value 1.0,
+use the method fill_volume().</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.volume.fill_interior</span></code></p>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 </section>
