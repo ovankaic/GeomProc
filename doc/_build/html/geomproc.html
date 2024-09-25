@@ -339,14 +339,15 @@ number of dimensions in one descriptor</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>corr</strong> – Matching of descriptors, represented as an array of shape (n,
-3), where ‘n’ is the number of descriptors in desc1, and each
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>corr</strong> (<em>array_like</em>) – Matching of descriptors, represented as an array of shape (n,
+2), where ‘n’ is the number of descriptors in desc1, and each
 correspondence is of the form [index of descriptor in desc1,
-index of corresponding descriptor in desc2, distance between
-descriptors]</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>array_like</p>
+index of corresponding descriptor in desc2]</p></li>
+<li><p><strong>dist</strong> (<em>array_like</em>) – dist[i] stores the distance between the points in corr[i, :], which is
+used for the filtering</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -375,7 +376,7 @@ The default value is 1</p></li>
 pc2, represented as an array of shape (n, 2), where ‘n’ is the
 number of points in pc1, and each correspondence is of the form
 [index of point in pc1, index of corresponding point in pc2]</p></li>
-<li><p><strong>dist</strong> (<em>array_like</em>) – dist(i) stores the distance between the points in corr(i)</p></li>
+<li><p><strong>dist</strong> (<em>array_like</em>) – dist[i] stores the distance between the points in corr[i, :]</p></li>
 <li><p><strong>err</strong> (<em>float</em>) – Correspondence error, according to err_type</p></li>
 </ul>
 </p>
@@ -400,7 +401,7 @@ represented as an array of shape (n, 2), where ‘n’ is the number
 of matches, and each match is of the form [index of point in
 first point cloud, index of corresponding point in second point
 cloud]</p></li>
-<li><p><strong>dist</strong> (<em>array_like</em>) – dist(i) stores the distance between the points in corr(i), which is
+<li><p><strong>dist</strong> (<em>array_like</em>) – dist[i] stores the distance between the points in corr[i, :], which is
 used for the filtering</p></li>
 <li><p><strong>keep</strong> (<em>float</em>) – Percentage of closest points to be kept</p></li>
 </ul>
@@ -3133,7 +3134,7 @@ library used for voxelizing a mesh.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="geomproc.volume.volume.start">
 <span class="sig-name descname"><span class="pre">start</span></span><a class="headerlink" href="#geomproc.volume.volume.start" title="Permalink to this definition"></a></dt>
-<dd><p>Coordinate of the voxel on the top-left corner of the volume</p>
+<dd><p>Coordinate of the voxel of the top-left corner of the volume</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.array_like</p>
@@ -3241,12 +3242,12 @@ volume in the space of the mesh</p></li>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>The method sets up the current volume based on the given mesh. The
-method requires the normals of mesh faces. Empty voxels are set to 0.0,
-while voxels that contain the mesh are set to 1.0. The resulting volume
-only captures the surface (outer shell) of the mesh. To obtain a volume
-where the interior of the mesh is also filled with voxels of value 1.0,
-use the method fill_volume().</p>
+<p>The method sets up the current volume based on the given mesh. Empty
+voxels are set to 0.0, while voxels that contain the mesh are set to
+1.0. The resulting volume only captures the surface (outer shell) of
+the mesh. To obtain a volume where the interior of the mesh is also
+filled with voxels of value 1.0, use the method fill_volume(). The
+method requires the normals of mesh faces.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><code class="xref py py-obj docutils literal notranslate"><span class="pre">geomproc.volume.fill_interior</span></code></p>
