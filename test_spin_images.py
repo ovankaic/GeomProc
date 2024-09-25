@@ -60,8 +60,8 @@ desc1 = geomproc.spin_images(pc1, pc1full, opt)
 desc2 = geomproc.spin_images(pc2, pc2full, opt)
 
 # Match the descriptors
-corr = geomproc.best_match(desc1, desc2)
-corr = geomproc.filter_correspondences(corr, 0.3)
+[corr, dist] = geomproc.best_match(desc1, desc2)
+[corr, dist] = geomproc.filter_correspondences(corr, dist, 0.3)
 
 # Derive a transformation from the point match
 [rot, trans] = geomproc.transformation_from_correspondences(pc1, pc2, corr)

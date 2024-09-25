@@ -40,7 +40,7 @@ def closest_points(pc1, pc2, err_type=1):
         number of points in pc1, and each correspondence is of the form
         [index of point in pc1, index of corresponding point in pc2]
     dist : array_like
-        dist(i) stores the distance between the points in corr(i)
+        dist[i] stores the distance between the points in corr[i, :]
     err : float
         Correspondence error, according to err_type
 
@@ -110,7 +110,7 @@ def filter_correspondences(corr, dist, keep):
         first point cloud, index of corresponding point in second point
         cloud]
     dist : array_like
-        dist(i) stores the distance between the points in corr(i), which is
+        dist[i] stores the distance between the points in corr[i, :], which is
         used for the filtering
 
     keep : float
@@ -529,10 +529,13 @@ def best_match(desc1, desc2):
     -------
     corr : array_like
         Matching of descriptors, represented as an array of shape (n,
-        3), where 'n' is the number of descriptors in desc1, and each
+        2), where 'n' is the number of descriptors in desc1, and each
         correspondence is of the form [index of descriptor in desc1,
-        index of corresponding descriptor in desc2, distance between
-        descriptors]
+        index of corresponding descriptor in desc2]
+
+    dist : array_like
+        dist[i] stores the distance between the points in corr[i, :], which is
+        used for the filtering
 
     Notes
     -----
@@ -541,21 +544,21 @@ def best_match(desc1, desc2):
     computing the Euclidean distance between descriptors
     """
 
-    # Initialize output correspondence
-    #corr = np.zeros((desc1.shape[0], 3), dtype=np.int_)
-    # Make sure we are using floats
-    corr = np.zeros((desc1.shape[0], 3))
+    # Initialize output correspondence and distance matrix
+    corr = np.zeros((desc1.shape[0], 2), dtype=np.int_)
+    dist = np.zeros(desc1.shape[0])
 
     # Find best descriptor match
     for i in range(desc1.shape[0]):
         min_dist = float('inf')
         for j in range(desc2.shape[0]):
             # Compute Euclidean distance
-            dist = np.linalg.norm(desc1[i, :] - desc2[j, :])
+            temp_dist = np.linalg.norm(desc1[i, :] - desc2[j, :])
             # Check if this is the best distance so far
-            if dist < min_dist:
-                min_dist = dist
-                corr[i, :] = [i, j, min_dist]
+            if temp_dist < min_dist:
+                corr[i, :] = [i, j]
+                min_dist = temp_dist
+                dist[i] = min_dist
 
     # Return correspondence
-    return corr
+    return [corr, dist]
