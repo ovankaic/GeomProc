@@ -611,12 +611,11 @@ function and can be set to 0 if needed</p></li>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>The function estimates the rigid transformation that best aligns two
-sets of points in a least-squares sense based on a set of point
-correspondences.
-The implementation is based on the report of Sorkine-Hornung and
-Rabinovich, “Least-Squares Rigid Motion Using SVD”, ETH Zurich
-Technical Report, 2017.</p>
+<p>The function estimates the rigid transformation that best aligns two sets
+of points in a least-squares sense based on a set of point correspondences.
+Specifically, the function returns a transformation from pc1 to pc2. The
+implementation is based on the report of Sorkine-Hornung and Rabinovich,
+“Least-Squares Rigid Motion Using SVD”, ETH Zurich Technical Report, 2017.</p>
 </dd></dl>
 
 </section>
@@ -1895,7 +1894,7 @@ normals, vertex/point colors, face colors</p></li>
 geometry processing library.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="geomproc.marching_cubes.marching_cubes">
-<span class="sig-prename descclassname"><span class="pre">geomproc.marching_cubes.</span></span><span class="sig-name descname"><span class="pre">marching_cubes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_cubes_per_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">merge_dup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.marching_cubes.marching_cubes" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">geomproc.marching_cubes.</span></span><span class="sig-name descname"><span class="pre">marching_cubes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_cubes_per_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precompute</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">merge_dup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geomproc.marching_cubes.marching_cubes" title="Permalink to this definition"></a></dt>
 <dd><p>Run the marching cubes algorithm to reconstruct a surface given
 by an implicit function</p>
 <dl class="field-list simple">
@@ -1911,6 +1910,9 @@ cubes</p></li>
 <li><p><strong>fun</strong> (<em>function</em>) – Implicit function in the form fun(x) : float, where x is a 3D
 point and the return value represents the approximate signed
 distance of the point to the surface</p></li>
+<li><p><strong>precompute</strong> (<em>boolean</em>) – Pre-compute the function values at each corner before doing the
+reconstruction. This speeds up the computation at the expense of
+requiring more memory.</p></li>
 <li><p><strong>merge_dup</strong> (<em>boolean</em>) – Perform post-processing to merge duplicated vertices at the
 edges of the cubes and avoid a mesh with boundaries (default
 value is True)</p></li>

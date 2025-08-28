@@ -136,7 +136,7 @@ def filter_correspondences(corr, dist, keep):
         # Sort corr and dist together
         corr_new = list(corr_new)
         dist_new = list(dist_new)
-        srt = sorted(zip(dist_new, corr_new))
+        srt = sorted(zip(dist_new, corr_new), key=lambda entry: entry[0])
         # Separate sorted lists
         corr_new = [x for _, x in srt]
         dist_new = [y for y, _ in srt]
@@ -169,6 +169,7 @@ def transformation_from_correspondences(pc1, pc2, corr):
 
     Returns
     -------
+
     rot : array_like
         3D rotation matrix, represented as an array of shape (3, 3)
 
@@ -177,12 +178,11 @@ def transformation_from_correspondences(pc1, pc2, corr):
 
     Notes
     -----
-    The function estimates the rigid transformation that best aligns two
-    sets of points in a least-squares sense based on a set of point
-    correspondences.
-    The implementation is based on the report of Sorkine-Hornung and
-    Rabinovich, "Least-Squares Rigid Motion Using SVD", ETH Zurich
-    Technical Report, 2017.
+    The function estimates the rigid transformation that best aligns two sets
+    of points in a least-squares sense based on a set of point correspondences.
+    Specifically, the function returns a transformation from pc1 to pc2. The
+    implementation is based on the report of Sorkine-Hornung and Rabinovich,
+    "Least-Squares Rigid Motion Using SVD", ETH Zurich Technical Report, 2017.
     """
 
     # Create two corresponding sets
@@ -403,8 +403,8 @@ class spin_image_options:
         # The selected parameters are different from the original spin
         # image paper: the parameters are set to create more localized
         # descriptors
-        self.radius = 0.5
-        self.height = 0.5
+        self.radius = 0.2
+        self.height = 0.2
         self.radial_bins = 10
         self.height_bins = 10
         self.normalize = True

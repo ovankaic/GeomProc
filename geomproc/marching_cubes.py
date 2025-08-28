@@ -439,7 +439,7 @@ def process_cube(cube_point, cube_val):
 #
 # Note that this is an entirely new function and not based on the code
 # quoted above
-def marching_cubes(start, end, num_cubes_per_dim, fun, merge_dup=True):
+def marching_cubes(start, end, num_cubes_per_dim, fun, precompute=True, merge_dup=True):
     """Run the marching cubes algorithm to reconstruct a surface given
     by an implicit function
 
@@ -459,6 +459,10 @@ def marching_cubes(start, end, num_cubes_per_dim, fun, merge_dup=True):
         Implicit function in the form fun(x) : float, where x is a 3D
         point and the return value represents the approximate signed
         distance of the point to the surface
+    precompute : boolean
+        Pre-compute the function values at each corner before doing the
+        reconstruction. This speeds up the computation at the expense of
+        requiring more memory.
     merge_dup : boolean
         Perform post-processing to merge duplicated vertices at the
         edges of the cubes and avoid a mesh with boundaries (default
@@ -483,6 +487,31 @@ def marching_cubes(start, end, num_cubes_per_dim, fun, merge_dup=True):
     >>> tm.save('reconstruction.obj')
     """
 
+    # Determine dimensions of each cube based on input parameters
+    cube_size = (end - start) / num_cubes_per_dim
+
+    # Pre-compute the value at each cube vertex to cut down duplicate calculations
+    #
+    # Modification contributed by Noverita
+    if precompute:
+        value = np.zeros((num_cubes_per_dim + 1, num_cubes_per_dim + 1, num_cubes_per_dim + 1), dtype=float)
+        zi = 0
+        z = start[2]
+        while z <= end[2]:
+            yi = 0
+            y = start[1]
+            while y <= end[1]:
+                xi = 0
+                x = start[0]
+                while x <= end[0]:
+                    value[xi, yi, zi] = fun(np.array([x, y, z]))
+                    xi += 1
+                    x += cube_size[0]
+                yi += 1 
+                y += cube_size[1]
+            zi += 1
+            z += cube_size[2]
+
     # Initialize temporary storage of the mesh
     #
     # We use lists as we need to grow them dynamically, while numpy
@@ -496,18 +525,18 @@ def marching_cubes(start, end, num_cubes_per_dim, fun, merge_dup=True):
     # to the full mesh
     last_index = 0
 
-    # Determine dimensions of each cube based on input parameters
-    cube_size = (end - start) / num_cubes_per_dim
-
     # Process one cube at a time
     # Initialize cube point coordinates and function values
-    cube_point = [np.array([0, 0, 0]) for i in range(8)]
-    cube_val = [0 for i in range(8)]
+    cube_point = [np.array([0.0, 0.0, 0.0]) for i in range(8)]
+    cube_val = [0.0 for i in range(8)]
     # Go through each cube of the volume
+    zi = 0
     z = start[2]
     while z < end[2]:
+        yi = 0
         y = start[1]
         while y < end[1]:
+            xi = 0
             x = start[0]
             while x < end[0]:
                 # Go over the 8 corners of the cube and store the
@@ -524,9 +553,12 @@ def marching_cubes(start, end, num_cubes_per_dim, fun, merge_dup=True):
                             x + shift[0]*cube_size[0], \
                             y + shift[1]*cube_size[1], \
                             z + k*cube_size[2]])
-                        # Compute value of implicit function at the
-                        # corner
-                        cube_val[point_index] = fun(cube_point[point_index])
+                        # Get value of implicit function at the corner
+                        if precompute:
+                            cube_val[point_index] = value[xi + shift[0], yi + shift[1], zi + k]
+                        else:
+                            cube_val[point_index] = fun(cube_point[point_index])
+
                         # Increment index for the next corner
                         point_index += 1
                 # Now that we have all the function values at the eight
@@ -552,8 +584,11 @@ def marching_cubes(start, end, num_cubes_per_dim, fun, merge_dup=True):
                     last_index += len(cube_vertex)
 
                 # Increments to continue the while loop
+                xi += 1
                 x += cube_size[0]
+            yi += 1
             y += cube_size[1]
+        zi += 1
         z += cube_size[2]
 
     # Create output mesh
@@ -564,7 +599,8 @@ def marching_cubes(start, end, num_cubes_per_dim, fun, merge_dup=True):
     # Check if we should apply post-processing to merge duplicated
     # vertices
     if merge_dup:
-        tm.remove_duplicated_vertices(np.finfo(float).eps*10.0)
+        if tm.vertex.shape[0] > 0:
+            tm.remove_duplicated_vertices(np.finfo(float).eps*10.0)
     
     # Return mesh
     return tm
