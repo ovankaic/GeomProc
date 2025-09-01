@@ -311,7 +311,7 @@ class mesh:
         # Recompute connectivity information if it was present in either
         # of the two meshes
         if (len(self.vif) > 0) or (len(tm.vif) > 0):
-            self.compute_connecivity()
+            self.compute_connectivity()
 
     # I/O methods
 
