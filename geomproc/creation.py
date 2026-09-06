@@ -518,7 +518,7 @@ def create_cone(radius, height, num_circle_samples, num_height_samples):
 
 
 # Create an open surface
-def create_open_surface(num_x_samples, num_y_samples, surf_type):
+def create_open_surface(num_x_samples, num_y_samples, surf_type, extent=[-1, 1], user_defined_function=None):
     """Create a 3D open surface based on a mathematical function of two variables
 
     Parameters
@@ -533,6 +533,11 @@ def create_open_surface(num_x_samples, num_y_samples, surf_type):
             * 1: hyperbolic paraboloid (simple saddle) f(x, y) = x*y
             * 2: monkey saddle f(x, y) = x^3-3*x*y^2
             * 3: hemisphere f(x, y) = sqrt(1 - x^2 - y^2)
+            * 4: user-defined function of the form f(x, y)
+    extent : list
+        Extent of the plane along x and y, provided as a pair with minimum and maximum extent.
+    user_defined_function : function
+        User-defined function if surf_type = 4
 
     Returns
     -------
@@ -541,10 +546,10 @@ def create_open_surface(num_x_samples, num_y_samples, surf_type):
 
     Notes
     -----
-    The function creates an open surface by defining a 2D grid extending
-    from (-1, -1) to (1, 1) and computing a function of two variables at
-    the grid vertices. The function also computes the analytical vertex
-    normal vectors and curvature values of the surfaces, stored in the
+    The function creates an open surface by defining a 2D grid extending from
+    (-1, -1) to (1, 1) by default and computing a function of two variables at
+    the grid vertices. The function also computes the analytical vertex normal
+    vectors and curvature values of the built-in surfaces, stored in the
     'vnormal' and 'curv' fields of the model. See the help of
     'mesh.compute_curvature' for information on the 'curv' attribute.
 
@@ -575,9 +580,9 @@ def create_open_surface(num_x_samples, num_y_samples, surf_type):
     # Create vertices
     vindex = 0
     for i in range(num_y_samples):
-        y = -1 + 2*i/(num_y_samples-1)
+        y = extent[0] + (extent[1] - extent[0])*i/(num_y_samples-1)
         for j in range (num_x_samples):
-            x = -1 + 2*j/(num_x_samples-1)
+            x = extent[0] + (extent[1] - extent[0])*j/(num_x_samples-1)
             if surf_type == 0:
                 # Flat surface
                 tm.vertex[vindex, :] = [x, y, 0]
@@ -607,6 +612,11 @@ def create_open_surface(num_x_samples, num_y_samples, surf_type):
                 tm.vnormal[vindex, :] = tm.vertex[vindex, :]
                 H = 1/radius
                 K = 1/(radius*radius)
+            elif surf_type == 4:
+                tm.vertex[vindex, :] = [x, y, user_defined_function(x, y)]
+                tm.vnormal[vindex, :] = tm.vertex[vindex, :]
+                H = 0
+                K = 0
             # Normalize normal vector
             tm.vnormal[vindex, :] /= np.linalg.norm(tm.vnormal[vindex, :])
             # Assign curvatures

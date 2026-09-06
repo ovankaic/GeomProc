@@ -23,7 +23,7 @@ wo = geomproc.write_options()
 wo.write_vertex_colors = True
 
 # Save curvature information as colors of a mesh
-[mn, mx] = tm.data_to_color_with_zero(tm.curv[:, 3], percent=0.1)
+[mn, mx] = tm.data_to_color_blue_white_red(tm.curv[:, 3], invert=True, percent=0.1)
 tm.save('curv/bunny_gaussian_discrete.obj', wo)
 
 # Add noise to the mesh
@@ -35,5 +35,5 @@ tm.compute_vertex_and_face_normals()
 tm.compute_curvature()
 
 # Save curvature information as colors of a mesh
-tm.data_to_color_with_zero(tm.curv[:, 3], percent=0.1, minimum=mn, maximum=mx)
+tm.data_to_color_blue_white_red(tm.curv[:, 3], invert=True, percent=0.1, minimum=mn, maximum=mx)
 tm.save('curv/bunny_with_noise_gaussian_discrete.obj', wo)

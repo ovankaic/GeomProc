@@ -1244,7 +1244,7 @@ class mesh:
         >>> import geomproc
         >>> tm = geomproc.create_torus(2, 1, 30, 30)
         >>> neg = tm.compute_curvature()
-        >>> [mn, mx] = tm.data_to_color(tm.curv[:, 3])
+        >>> [mn, mx] = tm.data_to_color_with_zero(tm.curv[:, 3])
         >>> wo = geomproc.write_options()
         >>> wo.write_vertex_colors = True
         >>> tm.save('colored_torus.obj', wo)
@@ -1307,6 +1307,141 @@ class mesh:
         self.vcolor = np.zeros((self.vertex.shape[0], 3))
         for i in range(self.vertex.shape[0]):
             self.vcolor[i, :] = hsv2rgb([result[i], 0.8, 0.8])
+
+        return [minimum, maximum]
+
+    def data_to_color_blue_white_red(self, data, invert=False, percent=0.01, minimum=1.0, maximum=-1.0):
+        """Transform vertex data into vertex colors ranging from blue to red passing through white (corresponding to zero)
+
+        Parameters
+        ----------
+        data : array_like
+            Data array to be mapped to colors. This should be an array
+            of shape (n, 1), where n is the number of vertices in the
+            mesh
+        invert : boolean, optional
+            Flag indicating whether the color map should be inverted or
+            not. The default value is False
+        percent : float, optional
+            Percentage of values to discard at each end of the spectrum
+            of data values, to compute more robust minimum and maximum
+            values for the color mapping, ignoring extreme outliers. The
+            default value is 0.01. To ignore robust statistics, set this
+            parameter to zero
+        minimum : float, optional
+            Minimum to be used for defining the mapping. If the minimum
+            is specified, then both 'minimum' and 'maximum' need to be
+            specified and the 'percent' parameter is ignored. Otherwise
+            the minimum and maximum are computed automatically from the
+            data based on the 'percent' parameter and returned by the
+            method. The explicit parameters 'minimum' and 'maximum' are
+            useful if multiple mappings with the same scale need to be
+            produced
+        maximum : float, optional
+            Maximum to be used for defining the mapping
+
+        Returns
+        -------
+        minimum : float
+            Minimum value that was used to compute the mapping
+        maximum : float
+            Maximum value that was used to compute the mapping
+
+        Notes
+        -----
+        The method maps the values of a data array into colors and stores the
+        colors in the 'vcolor' attribute of the mesh, so that each vertex has
+        an associated color. The data values are mapped from [min, 0] to [blue,
+        white], and from [0, max] to the [white, red]. If 'invert' is True, min
+        is red and max is blue.
+
+        See Also
+        --------
+        geomproc.mesh.mesh.data_to_color
+
+        Examples
+        --------
+        >>> import geomproc
+        >>> tm = geomproc.create_torus(2, 1, 30, 30)
+        >>> neg = tm.compute_curvature()
+        >>> [mn, mx] = tm.data_to_color_blue_white_red(tm.curv[:, 3])
+        >>> wo = geomproc.write_options()
+        >>> wo.write_vertex_colors = True
+        >>> tm.save('colored_torus.obj', wo)
+        """
+
+        # Map data values to colors
+
+        # Calculate min and max with percentages to obtain a more robust
+        # mapping
+        if minimum > maximum:
+            val = np.sort(data)
+            minimum_index = math.floor(percent*val.shape[0])
+            minimum = val[minimum_index]
+
+            maximum_index = math.ceil((1 - percent)*val.shape[0])
+            if maximum_index > (val.shape[0]-1):
+                maximum_index = val.shape[0]-1
+            maximum = val[maximum_index]
+
+        # Check inversion of mapping
+        if invert:
+            low = [1, 0, 0]
+            high = [0, 0, 1]
+        else:
+            low = [0, 0, 1]
+            high = [1, 0, 0]
+        middle = [1, 1, 1]
+
+        # Perform color mapping
+        if minimum == maximum:
+            # Avoid division by zero if min and max are identical
+            if abs(minimum) < np.finfo(float).eps:
+                result_red = middle[0]*np.ones(data.shape[0])
+                result_green = middle[1]*np.ones(data.shape[0])
+                result_blue = middle[2]*np.ones(data.shape[0])
+            elif minimum < 0:
+                result_red = low[0]*np.ones(data.shape[0])
+                result_green = low[1]*np.ones(data.shape[0])
+                result_blue = low[2]*np.ones(data.shape[0])
+            else:
+                result_red = high[0]*np.ones(data.shape[0])
+                result_green = high[1]*np.ones(data.shape[0])
+                result_blue = high[2]*np.ones(data.shape[0])
+        else:
+            # Map positive and negative values independently
+            result_red = data.copy()
+            result_green = data.copy()
+            result_blue = data.copy()
+            neg_index = np.where(data < 0)[0]
+            pos_index = np.where(data >= 0)[0]
+            if len(neg_index) > 0:
+                if abs(minimum) < np.finfo(float).eps:
+                    # minimum is zero
+                    result_red[neg_index] = middle[0]*np.ones(neg_index.shape[0])
+                    result_green[neg_index] = middle[1]*np.ones(neg_index.shape[0])
+                    result_blue[neg_index] = middle[2]*np.ones(neg_index.shape[0])
+                else:
+                    result_red[neg_index] = map_val(result_red[neg_index], low[0], middle[0], minimum, 0)
+                    result_green[neg_index] = map_val(result_green[neg_index], low[1], middle[1], minimum, 0)
+                    result_blue[neg_index] = map_val(result_blue[neg_index], low[2], middle[2], minimum, 0)
+
+            if len(pos_index) > 0:
+                if abs(maximum) < np.finfo(float).eps:
+                    # maximum is zero
+                    result_red[pos_index] = middle_hue*np.ones(pos_index.shape[0])
+                    result_green[pos_index] = middle_sat*np.ones(pos_index.shape[0])
+                    result_blue[pos_index] = middle_sat*np.ones(pos_index.shape[0])
+                else:
+                    result_red[pos_index] = map_val(result_red[pos_index], middle[0], high[0], 0, maximum)
+                    result_green[pos_index] = map_val(result_green[pos_index], middle[1], high[1], 0, maximum)
+                    result_blue[pos_index] = map_val(result_blue[pos_index], middle[2], high[2], 0, maximum)
+
+        # Get RGB colors
+        # Saturation and brightness are set to 0.8
+        self.vcolor = np.zeros((self.vertex.shape[0], 3))
+        for i in range(self.vertex.shape[0]):
+            self.vcolor[i, :] = [result_red[i], result_green[i], result_blue[i]]
 
         return [minimum, maximum]
 

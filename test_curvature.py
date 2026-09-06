@@ -20,89 +20,89 @@ wo.write_vertex_colors = True
 # Cylinder
 if 1: # Change if statement to 0 to disable this block
     cylinder = geomproc.create_cylinder(0.5, 1, 60, 10)
-    cylinder.data_to_color_with_zero(cylinder.curv[:, 2])
+    cylinder.data_to_color_blue_white_red(cylinder.curv[:, 2], True)
     cylinder.save('curv/cylinder_mean_analytic.obj', wo)
-    cylinder.data_to_color_with_zero(cylinder.curv[:, 3])
+    cylinder.data_to_color_blue_white_red(cylinder.curv[:, 3], True)
     cylinder.save('curv/cylinder_gaussian_analytic.obj', wo)
 
     cylinder2 = cylinder.copy()
     cylinder2.compute_curvature()
-    cylinder2.data_to_color_with_zero(cylinder2.curv[:, 2])
+    cylinder2.data_to_color_blue_white_red(cylinder2.curv[:, 2], True)
     cylinder2.save('curv/cylinder_mean_discrete.obj', wo)
-    cylinder2.data_to_color_with_zero(cylinder2.curv[:, 3])
+    cylinder2.data_to_color_blue_white_red(cylinder2.curv[:, 3], True)
     cylinder2.save('curv/cylinder_gaussian_discrete.obj', wo)
 
 # Sphere
 if 1:
     sphere = geomproc.create_sphere(0.5, 30, 30)
-    sphere.data_to_color_with_zero(sphere.curv[:, 2])
+    sphere.data_to_color_blue_white_red(sphere.curv[:, 2], True)
     sphere.save('curv/sphere_mean_analytic.obj', wo)
-    sphere.data_to_color_with_zero(sphere.curv[:, 3])
+    sphere.data_to_color_blue_white_red(sphere.curv[:, 3], True)
     sphere.save('curv/sphere_gaussian_analytic.obj', wo)
 
     sphere2 = sphere.copy()
     sphere2.compute_curvature()
-    sphere2.data_to_color_with_zero(sphere2.curv[:, 2])
+    sphere2.data_to_color_blue_white_red(sphere2.curv[:, 2], True)
     sphere2.save('curv/sphere_mean_discrete.obj', wo)
-    sphere2.data_to_color_with_zero(sphere2.curv[:, 3])
+    sphere2.data_to_color_blue_white_red(sphere2.curv[:, 3], True)
     sphere2.save('curv/sphere_gaussian_discrete.obj', wo)
 
 # Cone
 if 1:
     cone = geomproc.create_cone(0.5, 1, 60, 10)
-    cone.data_to_color_with_zero(cone.curv[:, 2])
+    cone.data_to_color_blue_white_red(cone.curv[:, 2], True)
     cone.save('curv/cone_mean_analytic.obj', wo)
-    cone.data_to_color_with_zero(cone.curv[:, 3])
+    cone.data_to_color_blue_white_red(cone.curv[:, 3], True)
     cone.save('curv/cone_gaussian_analytic.obj', wo)
 
     cone2 = cone.copy()
     cone2.compute_curvature()
-    cone2.data_to_color_with_zero(cone2.curv[:, 2])
+    cone2.data_to_color_blue_white_red(cone2.curv[:, 2], True)
     cone2.save('curv/cone_mean_discrete.obj', wo)
-    cone2.data_to_color_with_zero(cone2.curv[:, 3])
+    cone2.data_to_color_blue_white_red(cone2.curv[:, 3], True)
     cone2.save('curv/cone_gaussian_discrete.obj', wo)
 
 # Torus
 if 1:
     torus = geomproc.create_torus(1.0, 0.33, 90, 30)
-    torus.data_to_color_with_zero(torus.curv[:, 2])
+    torus.data_to_color_blue_white_red(torus.curv[:, 2], True)
     torus.save('curv/torus_mean_analytic.obj', wo)
-    torus.data_to_color_with_zero(torus.curv[:, 3])
+    torus.data_to_color_blue_white_red(torus.curv[:, 3], True)
     torus.save('curv/torus_gaussian_analytic.obj', wo)
 
     torus2 = torus.copy()
     torus2.compute_curvature()
-    torus2.data_to_color_with_zero(torus2.curv[:, 2])
+    torus2.data_to_color_blue_white_red(torus2.curv[:, 2], True)
     torus2.save('curv/torus_mean_discrete.obj', wo)
-    torus2.data_to_color_with_zero(torus2.curv[:, 3])
+    torus2.data_to_color_blue_white_red(torus2.curv[:, 3], True)
     torus2.save('curv/torus_gaussian_discrete.obj', wo)
 
 # Saddle
 if 1:
     saddle = geomproc.create_open_surface(30, 30, 1)
-    saddle.data_to_color_with_zero(saddle.curv[:, 2])
+    saddle.data_to_color_blue_white_red(saddle.curv[:, 2], True)
     saddle.save('curv/saddle_mean_analytic.obj', wo)
-    saddle.data_to_color_with_zero(saddle.curv[:, 3])
+    saddle.data_to_color_blue_white_red(saddle.curv[:, 3], True)
     saddle.save('curv/saddle_gaussian_analytic.obj', wo)
 
     saddle2 = saddle.copy()
     saddle2.compute_curvature()
-    saddle2.data_to_color_with_zero(saddle2.curv[:, 2])
+    saddle2.data_to_color_blue_white_red(saddle2.curv[:, 2], True)
     saddle2.save('curv/saddle_mean_discrete.obj', wo)
-    saddle2.data_to_color_with_zero(saddle2.curv[:, 3])
+    saddle2.data_to_color_blue_white_red(saddle2.curv[:, 3], True)
     saddle2.save('curv/saddle_gaussian_discrete.obj', wo)
 
 # Monkey saddle
 if 1:
     monkey_saddle = geomproc.create_open_surface(30, 30, 2)
-    monkey_saddle.data_to_color_with_zero(monkey_saddle.curv[:, 2])
+    monkey_saddle.data_to_color_blue_white_red(monkey_saddle.curv[:, 2], True)
     monkey_saddle.save('curv/monkey_saddle_mean_analytic.obj', wo)
-    monkey_saddle.data_to_color_with_zero(monkey_saddle.curv[:, 3])
+    monkey_saddle.data_to_color_blue_white_red(monkey_saddle.curv[:, 3], True)
     monkey_saddle.save('curv/monkey_saddle_gaussian_analytic.obj', wo)
 
     monkey_saddle2 = monkey_saddle.copy()
     monkey_saddle2.compute_curvature()
-    monkey_saddle2.data_to_color_with_zero(monkey_saddle2.curv[:, 2])
+    monkey_saddle2.data_to_color_blue_white_red(monkey_saddle2.curv[:, 2], True)
     monkey_saddle2.save('curv/monkey_saddle_mean_discrete.obj', wo)
-    monkey_saddle2.data_to_color_with_zero(monkey_saddle2.curv[:, 3])
+    monkey_saddle2.data_to_color_blue_white_red(monkey_saddle2.curv[:, 3], True)
     monkey_saddle2.save('curv/monkey_saddle_gaussian_discrete.obj', wo)
