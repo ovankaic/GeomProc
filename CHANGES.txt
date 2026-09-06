@@ -1,3 +1,7 @@
+v1.9.0 2026/09/06: Made the function create_open_surface more general by allowing a custom domain range and user-defined function.
+                   Included a function that plots data with a (blue, white, red) colormap.
+                   Using the new color map for displaying curvature in the demos.
+
 v1.8.0 2025/08/28: Added an option to pre-compute corner values to speed up 
                    marching cubes.
                    Fixed a bug in filter_correspondences.
