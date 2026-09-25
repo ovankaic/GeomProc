@@ -494,16 +494,17 @@ def marching_cubes(start, end, num_cubes_per_dim, fun, precompute=True, merge_du
     #
     # Modification contributed by Noverita
     if precompute:
-        value = np.zeros((num_cubes_per_dim + 1, num_cubes_per_dim + 1, num_cubes_per_dim + 1), dtype=float)
+        array_size = num_cubes_per_dim + 1
+        value = np.zeros((array_size, array_size, array_size), dtype=float)
         zi = 0
         z = start[2]
-        while z <= end[2]:
+        while zi < array_size:
             yi = 0
             y = start[1]
-            while y <= end[1]:
+            while yi < array_size:
                 xi = 0
                 x = start[0]
-                while x <= end[0]:
+                while xi < array_size:
                     value[xi, yi, zi] = fun(np.array([x, y, z]))
                     xi += 1
                     x += cube_size[0]
@@ -532,13 +533,13 @@ def marching_cubes(start, end, num_cubes_per_dim, fun, precompute=True, merge_du
     # Go through each cube of the volume
     zi = 0
     z = start[2]
-    while z < end[2]:
+    while zi < num_cubes_per_dim:
         yi = 0
         y = start[1]
-        while y < end[1]:
+        while yi < num_cubes_per_dim:
             xi = 0
             x = start[0]
-            while x < end[0]:
+            while xi < num_cubes_per_dim:
                 # Go over the 8 corners of the cube and store the
                 # coordinates of the corners and function value at the
                 # corners
